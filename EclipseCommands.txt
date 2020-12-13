@@ -1,0 +1,1 @@
+ctrl+shft+W : close all open file in eclipse
