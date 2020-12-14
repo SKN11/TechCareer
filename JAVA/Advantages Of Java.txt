@@ -1,0 +1,1 @@
+1. In java we can declare multiple method with same with different arg(Overloading) unlinke in C language
