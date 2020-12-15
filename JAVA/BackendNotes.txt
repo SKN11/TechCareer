@@ -1,0 +1,66 @@
+Rest With Spring Boot
+
+Ques1:Why Representaion State Transfer?
+because it provide the representation of the resource.
+
+HTTP also defines the following standard status code:
+
+404: RESOURCE NOT FOUND
+200: SUCCESS
+201: CREATED
+401: UNAUTHORIZED
+500: SERVER ERROR
+
+GET: It reads a resource.
+PUT: It updates an existing resource.
+POST: It creates a new resource.
+DELETE: It deletes the resource.
+
+Ques2 :Can we exclude some files from autoconfiguration in spring boot ?
+@SpringBootApplication (exclude={JacksonAutoConfiguration.class, JmxAutoConfiguration.class})  
+spring.autoconfiguration.exclude=org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration  
+
+
+Http req ----->Dispatcher Servlet
+					|
+				ControllerClass
+					|
+Http res<------	view
+
+
+Ques 3:What is ResponseEntityExceptionHandler class.
+ It is an abstract and base class for the exceptions that provide centralized exception handling across all the different exception handler methods
+ 
+ Ques 4:What is Internationalization of Restful services
+ Internationalization is the process of designing web applications or services in such a way that it can provide support for various countries
+
+
+
+...........Annotations...
+
+@RestController //Specifies it is controller
+
+@RequestMapping("/api") //map request
+
+@GetMapping(path="/contact-bean/{name}") //map get request means require some info
+
+@PostMapping //maps update info 
+
+
+@PathVariable //  ex : getPathVariable(@PathVariable String name->to get variable in uri also called path variable
+
+@RequestBody // The @RequestBody annotation maps body of the web request to the method parameter
+
+@RequestHeader /Annotation which indicates that a method parameter should be bound to a web request header
+
+@Configuration //
+Indicates that a class declares one or more @Bean methods andmay be processed by the Spring container to generate bean definitions andservice requests 
+for those beans at runtime, for example: 
+ @Configuration
+ public class AppConfig {
+
+     @Bean
+     public MyBean myBean() {
+         // instantiate, configure and return bean ...
+     }
+ }
