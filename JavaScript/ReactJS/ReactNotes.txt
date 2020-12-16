@@ -1,0 +1,43 @@
+https://reactjs.org/tutorial/tutorial.html
+
+node -v //node version
+npm -v //npm version
+
+install create react app : sudo npm install -g create-react-app
+
+npx create-react-app hello-react --use-npm //create node project
+
+ReactDom.render 
+ --takes two arg(element want to create,root element or where to put the element)
+ 
+React.createElement(element in string ,element attribute,in text)
+
+Example: React.createElement("h1",{style:{color:"red"}},"Hello!" or React.createElement can be used)
+
+React Server start : npm start
+
+
+
+React & Redux
+
+
+
+
+
+
+
+
+React Ques...
+
+Ques 1) What is package.json file?
+It is file in which dependencies are declared
+
+Ques 2) What is export defaut
+
+A module is a self contained unit that can expose assets to other modules using export, and acquire assets from other modules using import.
+
+
+Ques3: In function onClick={()=>props.onClick} dont work instead use onClick={props.onClick}
+
+
+Ques4: setInterval(Tick, 1000); is used for? //It is used to call function repeatedly with given time

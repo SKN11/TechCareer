@@ -1,0 +1,10 @@
+Ques 1:
+var x=5;
+var y=6;
+var res=eval("x*y"); 
+document.write(res);
+Ans 1: 30 , eval evaluateds the expression
+
+
+
+

@@ -1,0 +1,294 @@
+JavaScript Notes:
+
+Web Page= HTML(ContentLayer)+CSS(Presentation Layer)+Javascript(Presentation Layer+Interactive Layer)
+
+-----
+
+What is Javascript? 
+It is a scripting language runs in background and interacts with html & CSS to see what is change or what u can do. also weakly typed language
+
+-----
+
+Java & javascript are two very different. Ex: Cat is to Catfish
+
+----
+
+Javascript is EICMAScript standard 
+
+----
+
+JQuery is abstarction to the core Javascript ....It is a library to code javascript in very limited code
+
+----
+
+var Date = new Date();
+
+docment.body.innerHTML = "" ;
+
+---
+
+
+If you write <script> in head it will through error as it has not loaded the html body tag. It should be written after body element.
+Recommended:write js or src after body is executed;
+
+How to make it More Modular? Put it js code in separate .js files
+
+<script src ="script.js" async></script>
+HTML parsing and JS download downloaded at the same time....Render blocking executed when script is fully loaded. (Attach picture from video)
+
+---
+
+javascript Rules
+1. JS is case sensitive ex new date() is wrong new Date() is correct.
+2. Use camelCase for var , Objects and Classes with uppercase ,Constant are in all caps
+3.whitespace matters only to human not to javascript
+4.use semicolon; so code should be readable
+5. Use comments in ur code // or /*multilin*/
+
+
+How should you import an external JavaScript and execute it only after everything else is loaded?
+<script src ="script.js" async></script>
+
+----
+to avoid global scope use var. Also using var would provide variable with some scope
+
+difference between undefined and null in javascript
+In JavaScript, undefined is a type, whereas null an object. It means a variable declared, but no value has been assigned a value. Whereas, null
+in JavaScript is an assignment value. You can assign it to a variable
+
+var e=null; console o/p object
+var e; console o/p undefined
+
+---
+
+var a=4;
+var b="5";
+var b1=5:
+var sum=a+b; 
+sum=45
+a+b1=9
+
+a-b1 console o/p = Nan , Not a Number as a is number b1 is string
+
+== check equality
+=== check equaltity and data type i.e strict equality
+
+----
+
+Array Methods
+do 03_08 exercise file.
+arr.fill('a') //fills all the array with 'a'
+arr.fill('a',2,4) //fills all the array with 'a' starting from to index 4
+
+
+Anonymous Function
+do 04_06
+
+----
+
+ECMA Script 2015
+const & let......
+
+let :- Block scope variable & Smaller scope than var
+use when u want to limit variable to just a code block use let
+
+JS Object
+
+var course = new Object();
+course.name="physics";
+course.teacher="sam";
+
+OR
+
+var course = {
+name:"physics",
+teacher:"sam",
+views:0,
+updateviews:function()
+{
+return ++view:
+}
+}
+
+Object Constrcutors.....
+
+function Course(name,teacher){
+this.name=name;
+this.teacher=teacher;
+}
+
+var course1 = new Course("physics","sam");
+var course1 = new Course("math","andrew");
+
+Dot Notation Bracket Notation
+course.title   course["title"]
+
+
+Closures....
+
+function doSomeMath(){
+var a=1;
+var b=2;
+
+function multiply()
+{
+return a*b;
+}
+return multiply;
+}
+
+var result = doSomeMath(); 
+console.log(result);//o/p Full multiply function body
+console.log(result());//o/p 2
+
+It is Closure
+var a=1;
+var b=2;
+
+function multiply()
+{
+return a*b;
+}
+
+Definition of Closures : a function inside function that relies on variable in the outside function to work.
+
+
+Question:What happens if you try to set new value for a const variable that is already defined?
+The script will break on an exception.
+
+BOM:Browser Object Model(window,browser etc)
+
+DOM:Document Object Model(HTML,CSS,
+
+document.getElementById("id");
+document.getElementsByClassName("claassname");
+document.querySelector(".hello"); //first specified className hello
+document.querySelectorAll("a"); //all all anchor tag in dom
+
+document.querySelector(".hello a"); //first a with className hello
+document.querySelectorAll(".hello a"); //all  anchor tag with className hello in dom
+
+
+Browser Level Events
+Load- when the resource and dependednts have finished loading
+Error-when a resource failed to load
+Online/Offline-self explanatory
+Resize
+Scroll
+
+DOM Events
+Focus
+Blur
+Reset/Submit
+MouseEvent
+
+element.classList.toggle("hide") hide the hide applied before
+
+If u use two click on same element then one of click event is hindered
+Alternative:use Addeventlisterner
+
+element.addEventListener("click",rfunction name eithout paranthesis, false);
+
+functionName : name or name() . use name(not name()) only if you dont want it to execute when script loads
+
+
+
+Scope of let & var
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>An empty page</title>
+</head>
+
+<body>
+
+</body>
+
+<script src="script.js">
+
+</script>
+
+</html>
+
+
+
+
+
+------------------------
+
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>An empty page</title>
+</head>
+
+<body>
+
+</body>
+<script>
+
+var d = new Date();
+document.body.innerHTML="<h1>"+d +"</h1>";
+
+</script>
+</html>
+
+-----------------------
+
+
+function logscope()
+{
+var localVar=2;
+
+if(localVar){
+
+	var localVar = "hi";
+	console.log(localVar);
+
+}
+console.log(localVar);
+
+}
+
+O/p hi hi
+--------
+
+function logscope()
+{
+var localVar=2;
+
+if(localVar){
+
+	let localVar = "hi";
+	console.log(localVar);
+
+}
+console.log(localVar);
+
+}
+
+O/p hi 2
+
+----
+
+function logscope()
+{
+let localVar=2;
+
+if(localVar){
+
+	let localVar = "hi";
+	console.log(localVar);
+
+}
+console.log(localVar);
+
+}
+
+O/p hi 2
