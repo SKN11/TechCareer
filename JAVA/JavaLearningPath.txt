@@ -19,11 +19,28 @@ Design Patterrn-
 GraphQL
 
 
-Advanced Java
+Advanced Java........
 
 hibernate-partially done(mapping left)
 
 SpringAndRestApp from lynda(project name cnm)
 
 Restful Services from Javatpoint
+
+
+Javascript..........
+
+
+
+
+
+ReactJS.......
+
+
+
+
+
+ReactNative..............
+
+
 
