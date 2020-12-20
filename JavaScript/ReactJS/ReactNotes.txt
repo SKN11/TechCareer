@@ -41,3 +41,5 @@ Ques3: In function onClick={()=>props.onClick} dont work instead use onClick={pr
 
 
 Ques4: setInterval(Tick, 1000); is used for? //It is used to call function repeatedly with given time
+
+Ques 5: react is not inheritence type startegy it is composition type startegy

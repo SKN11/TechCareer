@@ -20,10 +20,10 @@ export default class AddContact extends Component {
         //console.log(contact);
 
 
-        fetch("http://localhost:8080/api/contacts",
+        fetch("http://localhost:8080/api/save-contact",
         {
             method:"POST",
-            headers:{"content-type":"application/json"},
+            headers:{"content-type":"application/json",},
             body:JSON.stringify(contact)
         }).then(response => response.json());
 

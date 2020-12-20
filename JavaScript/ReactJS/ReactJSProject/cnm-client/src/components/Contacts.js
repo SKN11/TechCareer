@@ -1,6 +1,5 @@
 import React,{Component} from 'react'
 import SingleContact from './SingleContact.js'
-import SingleContact2 from './SingleContact2.js'
 import AddContact from './AddContact'
 
 
@@ -19,9 +18,18 @@ this.state={
 
 componentDidMount()
 {
-    fetch("http://localhost:8080/api/contacts")
+    fetch("http://localhost:8080/api/all-contact")
     .then(response => response.json())
     .then(data => this.setState({contacts:data}))
+
+
+    // fetch("http://localhost:8080/api/all-contact",
+    // {
+    //     method:"GET",
+    //     headers:{"content-type":"application/json",
+    //     "Access-Control-Allow-Origin": "*" }
+    // }) .then(response => response.json())
+    // .then(data => this.setState({contacts:data}))
 }
 
     render()
