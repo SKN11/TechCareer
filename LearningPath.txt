@@ -1,0 +1,29 @@
+Core Java.........
+
+Exception Handling-done
+Collection- partially done( Collection and Array Left)
+Map-done
+MultiThreading - done
+Java8 Feature - undergoing
+FunctionalInterface -done
+Interface-done
+Generics-done
+RegularExpression-
+OOPS-
+InnerClasses-
+File I/O- 
+Serialization-
+Design Patterrn-
+
+
+GraphQL
+
+
+Advanced Java........
+
+hibernate-partially done(mapping left)
+
+SpringAndRestApp from lynda(project name cnm)
+
+Restful Services from Javatpoint
+
