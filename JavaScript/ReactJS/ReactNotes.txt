@@ -3,7 +3,8 @@ https://reactjs.org/tutorial/tutorial.html
 node -v //node version
 npm -v //npm version
 
-install create react app : sudo npm install -g create-react-app
+install create react app command
+npm install -g create-react-app
 
 npx create-react-app hello-react --use-npm //create node project
 
@@ -43,3 +44,10 @@ Ques3: In function onClick={()=>props.onClick} dont work instead use onClick={pr
 Ques4: setInterval(Tick, 1000); is used for? //It is used to call function repeatedly with given time
 
 Ques 5: react is not inheritence type startegy it is composition type startegy
+
+Ques 6: //use this.setState only to change state if you use this.state.contact[0] ={} it wont work
+
+Ques 7: this.setState merges the state that you give use State doesn't i.e it replaces
+
+you can have as many useState as you want it gives you freedom to split up your big state object to small pieces of object
+
