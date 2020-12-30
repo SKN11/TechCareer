@@ -3,7 +3,7 @@ https://reactjs.org/tutorial/tutorial.html
 node -v //node version
 npm -v //npm version
 
-install create react app : sudo npm install -g create-react-app
+npm install -g create-react-app //install create react app
 
 npx create-react-app hello-react --use-npm //create node project
 
@@ -11,10 +11,11 @@ ReactDom.render
  --takes two arg(element want to create,root element or where to put the element)
  
 React.createElement(element in string ,element attribute,in text)
-
 Example: React.createElement("h1",{style:{color:"red"}},"Hello!" or React.createElement can be used)
 
-React Server start : npm start
+npm start //React Server start
+
+npm install --save radium //installing radium
 
 
 
@@ -43,3 +44,8 @@ Ques3: In function onClick={()=>props.onClick} dont work instead use onClick={pr
 Ques4: setInterval(Tick, 1000); is used for? //It is used to call function repeatedly with given time
 
 Ques 5: react is not inheritence type startegy it is composition type startegy
+
+Ques 6: What are pseudo selector?
+A CSS pseudo-class is a keyword added to a selector that specifies a special state of the selected element(s). For example,
+ :hover can be used to change a button's color when the user's pointer hovers over it.
+ https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes
