@@ -3,7 +3,12 @@ https://reactjs.org/tutorial/tutorial.html
 node -v //node version
 npm -v //npm version
 
+<<<<<<< HEAD
 npm install -g create-react-app //install create react app
+=======
+install create react app command
+npm install -g create-react-app
+>>>>>>> eac1a6e19592bed5cfb5fa57fddd5b216a157c65
 
 npx create-react-app hello-react --use-npm //create node project
 
@@ -45,7 +50,59 @@ Ques4: setInterval(Tick, 1000); is used for? //It is used to call function repea
 
 Ques 5: react is not inheritence type startegy it is composition type startegy
 
+<<<<<<< HEAD
 Ques 6: What are pseudo selector?
 A CSS pseudo-class is a keyword added to a selector that specifies a special state of the selected element(s). For example,
  :hover can be used to change a button's color when the user's pointer hovers over it.
  https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes
+=======
+Ques 6: //use this.setState only to change state if you use this.state.contact[0] ={} it wont work
+
+Ques 7: this.setState merges the state that you give use State doesn't i.e it replaces
+
+you can have as many useState as you want it gives you freedom to split up your big state object to small pieces of object
+
+Ques 8 : Stateless Component are also called Presentational componenr or dumb components and it is best practice to use it as many as possible
+
+Ques 9 : React Component Lifecycle hooks ( Nothing to do with react hooks)
+
+constructor
+\|/
+getDerivedStatefromProps //if props changes update state
+\|/
+render()
+\|/
+Render Child Component
+\|/
+componenrDidMount // call your setstate after completion of http call in CDM Component
+\|/
+
+
+Component Life - Update
+
+getDerivedStatefromProps
+\|/
+shouldComponentUpdate //permission for com
+\|/
+render()
+\|/
+UpdateChildComponent props
+\|/
+getSnapshotBeforeUpdate
+\|/
+componentDidUpdate
+
+
+
+useEffect is executed at every cycle of component also use for clean up activities
+
+React.memo() // stores the snapshot of Component only rerender when its input changes otherwise no changes
+				if any props passedto component chnagesthen only it render otherwise old copies
+				
+When should u not use react memo & ShouldComponentUpdate? //if we know coz of parent child component changes then dont wrap it in these two techniques 
+which run unneccessary code while executing
+
+What is PureComponent?
+
+no need to use shouldComponentUpdate if you are checking for all properties extends it with PureComponent
+>>>>>>> eac1a6e19592bed5cfb5fa57fddd5b216a157c65
