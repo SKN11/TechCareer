@@ -51,3 +51,46 @@ Ques 7: this.setState merges the state that you give use State doesn't i.e it re
 
 you can have as many useState as you want it gives you freedom to split up your big state object to small pieces of object
 
+Ques 8 : Stateless Component are also called Presentational componenr or dumb components and it is best practice to use it as many as possible
+
+Ques 9 : React Component Lifecycle hooks ( Nothing to do with react hooks)
+
+constructor
+\|/
+getDerivedStatefromProps //if props changes update state
+\|/
+render()
+\|/
+Render Child Component
+\|/
+componenrDidMount // call your setstate after completion of http call in CDM Component
+\|/
+
+
+Component Life - Update
+
+getDerivedStatefromProps
+\|/
+shouldComponentUpdate //permission for com
+\|/
+render()
+\|/
+UpdateChildComponent props
+\|/
+getSnapshotBeforeUpdate
+\|/
+componentDidUpdate
+
+
+
+useEffect is executed at every cycle of component also use for clean up activities
+
+React.memo() // stores the snapshot of Component only rerender when its input changes otherwise no changes
+				if any props passedto component chnagesthen only it render otherwise old copies
+				
+When should u not use react memo & ShouldComponentUpdate? //if we know coz of parent child component changes then dont wrap it in these two techniques 
+which run unneccessary code while executing
+
+What is PureComponent?
+
+no need to use shouldComponentUpdate if you are checking for all properties extends it with PureComponent
