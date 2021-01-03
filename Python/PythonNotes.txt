@@ -1,3 +1,31 @@
 pip install django==3.0.3 //installing django
 
-django-admin startproject wisdompets
+python -m django --version //know django version
+
+python manage.py runserver  //run python django server
+
+django-admin startproject wisdompets //create django project
+
+python manage.py startapp adoptions //create adoption app
+
+python manage.py makemigrations //make migrations and create ur first mugration
+
+python manage.py showmigrations //displays all the migrations in a project
+
+python manage.py migrate //apply all the migration in an app after that database structure dbsqlite is generated
+
+
+//delete super user via python shell
+python manage.py shell
+$ from django.contrib.auth.models import User
+$ User.objects.get(username="joebloggs", is_superuser=True).delete()
+
+
+
+
+L9CR8P5LYATQRXY macafee pass
+
+3306 mysql
+3000 react localhost
+8080 springboot
+8000 django

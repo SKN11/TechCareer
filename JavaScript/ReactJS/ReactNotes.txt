@@ -3,33 +3,25 @@ https://reactjs.org/tutorial/tutorial.html
 node -v //node version
 npm -v //npm version
 
-<<<<<<< HEAD
-npm install -g create-react-app //install create react app
-=======
-install create react app command
-npm install -g create-react-app
->>>>>>> eac1a6e19592bed5cfb5fa57fddd5b216a157c65
 
-npx create-react-app hello-react --use-npm //create node project
+npm install -g create-react-app //install create react app
+
+npx create-react-app hello-react --use-npm //create react project with node project
+
+npm start //React Server start
+
+npm install --save radium //installing radium
+
+npm install --save prop-types //install proptypes
+
+npm install axios --save  //install axios for ajax calls
+
 
 ReactDom.render 
  --takes two arg(element want to create,root element or where to put the element)
  
 React.createElement(element in string ,element attribute,in text)
 Example: React.createElement("h1",{style:{color:"red"}},"Hello!" or React.createElement can be used)
-
-npm start //React Server start
-
-npm install --save radium //installing radium
-
-
-
-React & Redux
-
-
-
-
-
 
 
 
@@ -50,12 +42,11 @@ Ques4: setInterval(Tick, 1000); is used for? //It is used to call function repea
 
 Ques 5: react is not inheritence type startegy it is composition type startegy
 
-<<<<<<< HEAD
 Ques 6: What are pseudo selector?
 A CSS pseudo-class is a keyword added to a selector that specifies a special state of the selected element(s). For example,
  :hover can be used to change a button's color when the user's pointer hovers over it.
  https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes
-=======
+
 Ques 6: //use this.setState only to change state if you use this.state.contact[0] ={} it wont work
 
 Ques 7: this.setState merges the state that you give use State doesn't i.e it replaces
@@ -90,11 +81,12 @@ UpdateChildComponent props
 \|/
 getSnapshotBeforeUpdate
 \|/
-componentDidUpdate
+componentDidUpdate //called when props and state updates
 
 
 
-useEffect is executed at every cycle of component also use for clean up activities
+
+useEffect is executed at every cycle of component also use for clean up activities or after all rendering done
 
 React.memo() // stores the snapshot of Component only rerender when its input changes otherwise no changes
 				if any props passedto component chnagesthen only it render otherwise old copies
@@ -102,7 +94,17 @@ React.memo() // stores the snapshot of Component only rerender when its input ch
 When should u not use react memo & ShouldComponentUpdate? //if we know coz of parent child component changes then dont wrap it in these two techniques 
 which run unneccessary code while executing
 
-What is PureComponent?
+Ques : What is PureComponent?
 
 no need to use shouldComponentUpdate if you are checking for all properties extends it with PureComponent
->>>>>>> eac1a6e19592bed5cfb5fa57fddd5b216a157c65
+
+
+Ques : What are higher order component
+Ques : What are propTypes
+Ques : cssfilename.module.css in order to run it without npm run eject
+
+
+
+Pending
+Create Snippet in vs code
+

@@ -1,0 +1,75 @@
+CONFIGURATION
+git config --global user.name "sameer khan"
+git config --global user.email "sameerkhanec@gmail.com"
+git config --list //list all configuration
+git config --global core.editor "notepad.exe/vim/atom --wait /etc."
+git config --global color.ui true
+
+
+User level
+git config --global
+
+System Level
+git config --system
+
+Project Level
+git config
+
+
+GIT HELP
+command- git help
+git help command_name(ex:log)
+
+
+GIT COMMANDS....
+1.INITIALISE GIT REPO
+git init
+
+2.GIT LOG
+git log --grep="any word from the commit message "    //grep search globally using regular expression
+
+3.GIT COMMIT
+git commit -m "only write in past tense"
+
+4.GIT ADD
+git add . //use for staging for ex if user checkout 10 files wants to commit only 5 git add will help in that way
+
+5.GIT DIFF
+git diff  //use difference between working dir & Staging Tree
+git diff --staged //use difference between Staging Tree & repository not staging & WD*
+git diff --color-words // show changes in word only not line
+git diff sha1..sha2 //compare any two commit
+
+
+6.GIT DELETE
+git rm "filename"
+
+7.GIT MOVE & REMOVE
+git mv file.txt file_rename.txt //renames the file
+
+8.GIT STAGE AND COMMIT SHORTCUT
+git commit -am "message"
+
+git mv file.txt folder/file.txt //moves the file in folder --treat as renaming the file
+
+9.VIEW A COMMIT
+git show sha_id
+
+10.
+
+
+
+
+Git 3 Trees
+respository
+staging index  // use for cleaner commits , can commit whatever we want using git staging, It helps in reviewing what exactly we want to  commit
+working
+
+
+
+Notes....
+. files in git is used to store changes made in the git repo
+
+
+IMPORTANT LINKS....
+
