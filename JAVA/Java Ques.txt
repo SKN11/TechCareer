@@ -50,6 +50,12 @@ but still abstarct class and interface are diffrent as we can not create constru
 
 
 Ques 7: StringJoiner
+StringJoiner joinNames = new StringJoiner(",", "[", "]");   // passing comma(,) and square-brackets as delimiter   
+        joinNames.add("Rahul");  
+        joinNames.add("Raju");  
+        joinNames.add("Peter");  
+        joinNames.add("Raheem");  
+        System.out.println(joinNames);   // [Rahul,Raju,Peter,Raheem]
 
 
 
@@ -69,5 +75,5 @@ To show data in different parts is pagination. For ex at google page it shows 10
 Ques 1:Singleton factory
 Ques 2:Depenedncy Inection
 Ques 3:Model-View-Controller design pattern
-Ques 4:SOA Designpattern
+Ques 4:SOA (Service Oriented Pattern) Designpattern 
 

@@ -16,6 +16,8 @@ npm install --save prop-types //install proptypes
 
 npm install axios --save  //install axios for ajax calls
 
+npm install -save react-router react-router-dom  //install router
+
 
 ReactDom.render 
  --takes two arg(element want to create,root element or where to put the element)
@@ -107,4 +109,21 @@ Ques : cssfilename.module.css in order to run it without npm run eject
 
 Pending
 Create Snippet in vs code
+
+Routing...
+wrap App.js in BrowserRouter component
+
+Redirect...
+can be used with Switch or can be used directly but without switch u cannot use from u can only use to props
+
+Guards...
+{this.state.auth ? <Route path='/new-post'  component={NewPost} : null />}
+
+Handle 404 case using Route without path...
+<Route render={()=> <h1>Not found 404</h1>}/>
+
+Lazy Route loading...
+
+ReactFragment.....
+<ReactFragment> react inbuild hoc
 
