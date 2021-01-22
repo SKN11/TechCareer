@@ -4,7 +4,7 @@ Exception Handling-done
 Collection- partially done( Collection and Array Left)
 Map-done
 MultiThreading - done
-Java8 Feature - undergoing
+Java8 Feature - done (1 feauture left)
 FunctionalInterface -done
 Interface-done
 Generics-done
@@ -27,6 +27,11 @@ SpringAndRestApp from lynda(project name cnm)
 
 Restful Services from Javatpoint
 
+System.out.println
+
+
+URI
+
 
 Javascript..........
 
@@ -41,6 +46,8 @@ ReactJS.......
 
 
 ReactNative..............
+
+
 
 
 

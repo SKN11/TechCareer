@@ -105,7 +105,7 @@ Ques : What are higher order component
 Ques : What are propTypes
 Ques : cssfilename.module.css in order to run it without npm run eject
 
-
+.................Topic: React Routing...................
 
 Pending
 Create Snippet in vs code
@@ -124,6 +124,46 @@ Handle 404 case using Route without path...
 
 Lazy Route loading...
 
+this.props.history.push('/checkout'); //pushes checkout page into the current page thus it allows us to switch the page on stack of pages
+
 ReactFragment.....
 <ReactFragment> react inbuild hoc
+
+
+.....................Topic: send Data via Query Param...........
+const queryParams = [];
+        for(let i in this.state.ingredients)
+        {
+            queryParams.push(encodeURIComponent(i)+'='+encodeURIComponent(this.state.ingredients[i]))
+        }
+        console.log(this.props.history);
+        const query = queryParams.join('&');
+        this.props.history.push({
+            pathname:'/checkout',
+            search:'?'+query
+            
+        });
+        
+ Reading via query Param...........
+ 
+  const queryParam = new URLSearchParams(this.props.location.search);
+        console.log(queryParam);
+        const ingredient = {};
+        for(let param of  queryParam.entries())
+        {
+            ingredient[param[0]] = parseInt(param[1]);
+        }
+
+
+.............Topic: React Authentication...........
+
+Why Token not stored in redux state ? //coz if somebody reloads SPA then all thing gone so it is stored in client side local storag
+React
+
+
+
+
+
+
+
 

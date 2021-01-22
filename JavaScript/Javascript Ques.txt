@@ -3,8 +3,30 @@ var x=5;
 var y=6;
 var res=eval("x*y"); 
 document.write(res);
-Ans 1: 30 , eval evaluateds the expression
+Ans 1: 30 , eval evaluates the expression
 
 
 
+
+push & concat difference?
+(return same array with pushing it i.e mutated obj) and concat (add item and return copy of the array i.e immutable array obj)
+
+
+?
+function insertItem(array, action) {
+    let newArray = array.slice();
+    newArray.splice(action.index, 0, action.item);
+    return newArray;
+}
+
+? 
+function removeItem(array, action) {
+    let newArray = array.slice();
+    newArray.splice(action.index, 1);
+    return newArray;
+}
+
+
+provide new array and removing element where condition matches
+const removedIdIngre = prevIngredients.filter(ingr => ingr.id !== id)
 

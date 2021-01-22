@@ -1,0 +1,7 @@
+1 nickel = 5 cents
+
+US has 48 states
+
+Which digit represents the tenths space in 10,987.36?   //It is 3 not 7
+
+1 foot = 12 inches

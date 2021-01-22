@@ -1,0 +1,50 @@
+React Hooks......
+
+
+React.memo/ //changes only when props changes not depends on if parent changes
+
+
+sideEffect -> it is something for ex an http call which effect our applictaion .
+ex fetching data after u update your component
+
+
+useEfffect(()=>{
+//body
+},[]) // executed after every component render cycle done similiar componentDidUpdate
+solution add empty array in useEffect
+
+if you use setState in useEffect it will go in loop you can c that in network tab so give it the limit in array which is second arg
+
+
+useCallback()  // It cache the function and do not execute when page reloads or component mounted again
+
+
+useEffect(()=>{
+
+const s = ()=>{};   //useEffcet Business Logic
+
+
+return ()=>{}  //useEffect can return something which can only be function //clean up code
+
+},[dependencie]
+
+
+
+useEffect can also to be used to reset authentication token for the logged in user
+
+msg = String Interpolation
+String Interpolation `hello this is ${msg} `
+
+
+React updates sate in batches
+ex: setError()
+setLoading()
+
+if written together will execute in synchronlously and thus only one render cycle
+
+useReducer // use when ur state dependeds on prevstate or very complex state or various operation like add set delete
+
+
+what is named Export
+import {Login} from './login/Login'
+

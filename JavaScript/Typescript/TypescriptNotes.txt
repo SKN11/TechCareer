@@ -1,0 +1,66 @@
+tsc -w // coimpile and runnning it further for future compilation
+
+javascript types
+String ,Boolean, Number ,BigInt , null ,undefined,symbol,Object*
+
+----------------
+
+interface in javascript
+
+tells ts function what type the object is
+
+interface InrterfaceList{
+id :number,
+email :string
+
+}
+
+interface InrterfaceList{
+id :number,
+readonly name : string, //can't change after it defined it is only for read
+email? :string // it telss it is not mandatory to send this property but if u r sending type should be checked
+}
+
+
+
+
+function getList(list) : InterfaceList{  //what type return a function return
+} 
+
+function getList(list : InterfaceList) //what type of value arg needed
+{
+} 
+
+addnote: (note: string)=> string;
+-----------------
+
+
+
+let cost : number | string =425 //accepts both number string not any other
+let cost : number | string ='sam' 
+
+
+type costType : number | string
+
+let cost : costType = 425
+let cost : costType = 'sam'
+or cost = 'sam'
+
+but if u use it like
+let cost :costType ;
+
+let newCost:number = cost   //shows error 
+
+if(typeOf cost === number)
+{
+let newCost:number = cost // now no error
+}
+
+------------------
+
+
+Access modifier in Typesscript
+
+private //only visisble to class
+protected // only visisble to class and extending class
+public //bydefault

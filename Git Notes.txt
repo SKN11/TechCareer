@@ -27,6 +27,15 @@ git init
 
 2.GIT LOG
 git log --grep="any word from the commit message "    //grep search globally using regular expression
+filtering : git log --since=2019-01-01
+git log --until=2019-01-01
+git log --after=2.weeks
+git log -3 //show last 3 commit
+git log -author='skn11'
+git log sha1...HEAD
+git log filename-without quotes
+git log --oneline 
+
 
 3.GIT COMMIT
 git commit -m "only write in past tense"
@@ -39,6 +48,7 @@ git diff  //use difference between working dir & Staging Tree
 git diff --staged //use difference between Staging Tree & repository not staging & WD*
 git diff --color-words // show changes in word only not line
 git diff sha1..sha2 //compare any two commit
+git diff branch1..branch2 //diff b/w two branches
 
 
 6.GIT DELETE
@@ -55,7 +65,104 @@ git mv file.txt folder/file.txt //moves the file in folder --treat as renaming t
 9.VIEW A COMMIT
 git show sha_id
 
-10.
+10.Ancestry
+
+git log HEAD^ or git log HEAD~1 or or git log HEAD~ //first parent
+git log HEAD^^ or git log HEAD~2//second paremt 
+git log HEAD^^^ or git log HEAD~3 //3rd parent
+
+11.Trees
+
+git ls-tree <tree-ish> //shows all the files & directory ANd to see files between different commit
+git ls-tree HEAD or or git ls-tree HEAD^
+
+
+12.Create Branch
+git branch branch_name
+
+git checkout newly_branch_name // switch branch
+
+git checkout -b branch_name //create and switch
+
+git branch --merged //show branches with all the commits
+git branch --no-merged  //show branches with  no included commit
+git branch -m new_name //change current branch name to new_name
+git branch -d branch_name_delete //delete branch
+git branch -D branch_name_delete //delete branch with some changes
+
+git merge branch_name // merge current branch with the branch_name
+
+git log --graph --all --oneline --decorate
+
+git remote -v   //origin
+git remote -m origin //delet origin
+
+git push -u origin master
+
+git branch -r //show remote branch
+git branch -a //show all branch
+
+git clone path //
+git clone path directory_name //
+
+
+git push --set-upstream // sets the branch to remote
+
+------
+git branch non_tracking  //creates branch
+
+git push origin non_tracking //it shows the branch non_tracking is not connected to master and it is non tracking
+//recommeeded to make tracking branches
+
+git branch -u origin/non_tracking non_tracking   //to make branch tracking
+
+git branch -unsetupstream non_tracking  // ro make branch untracking
+------
+
+
+git fetch //shows what other thing happen to remote
+git pull = git fetch+git merge
+
+
+Collaboration Example........
+
+git checkout master
+git fetch
+optional: git branch -r
+git merge origin/master
+git checkout -b feedback_form  //remember to track this untrack branch using -u origin feedback_form
+git add feedback.html
+git commit -m "msg"
+git push -u origin feedback_form  //to push and trcak the branch
+
+
+coworker
+
+optional : git clone
+git checkout master
+git fetch
+optional: git branch -r 
+git merge origin/master
+git checkout -b feedback_form  origin/feedback_form //create barnch feedback_form to see feedback_form of the main collaborator,
+													if u dont use origin/feedback_form then it will create a branch feedback_form 
+													under the master branch and u cannot see the changes done by the main collaborator
+git log
+git show 866ggdhsd
+git add feedback.html
+git commit -m "msg"
+git fetch
+git push  // no need to provide -u as git already knows it is a trcaking branch
+
+
+see cowroker change
+
+git fetch
+git log -p feedback_form...origin/feedback_form
+git merge origin/feedback_form
+git checkout master
+git fetch
+git merge origin/master
+git push
 
 
 
@@ -72,4 +179,65 @@ Notes....
 
 
 IMPORTANT LINKS....
+
+
+
+
+SSH Key..........
+
+
+
+ssh-keygen -t rsa  -b 4096  
+//rsa is encryption
+//4096 is bits
+then type pass
+it creates 2 files id_rsa (private key) & id_rsa.pub (public key)
+
+traffic is encrypted public key and decrypted with private key
+
+To see ssh key type 
+cat .ssh/id_rsa.pub // when u are in home folder
+
+To Copy .ssh data to any other dir
+sudo cp /home/sameer/.ssh/*  /home/sameer/Career/FreeLance/devskn3/
+
+
+............GitHUb SAM-K3 Account........
+title = sam_nextup
+5686336@sS  //ssh key password
+
+
+
+
+
+meeting with stefan
+
+how db i can import directly
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

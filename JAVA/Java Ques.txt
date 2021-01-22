@@ -40,6 +40,23 @@ can have default mathod
 @FunctionalInterface
 
 Ques 4: Java Stream
+It is functional in nature and lazy and evaluates code when only it requires
+List<Float> productPriceList2 =productsList.stream()  
+                                     .filter(p -> p.price > 30000)// filtering data  
+                                     .map(p->p.price)        // fetching price  
+                                     .collect(Collectors.toList()); // collecting as list  
+                                     
+Stream.iterate(1, element->element+1)  
+
+long count = productsList.stream()  
+                    .filter(product->product.price<30000)  
+                    .count();  
+                    
+convert Set To List
+ .collect(Collectors.toSet());
+
+convert List Into Map
+productsList.stream().collect(Collectors.toMap(p->p.id, p->p.name));                         
 
 Ques 5:what is Base64 Encoding and Decoding?
 Ans : Use to encode decode message url etc.
@@ -57,6 +74,31 @@ StringJoiner joinNames = new StringJoiner(",", "[", "]");   // passing comma(,) 
         joinNames.add("Raheem");  
         System.out.println(joinNames);   // [Rahul,Raju,Peter,Raheem]
 
+Ques 8: For Each in java8
+ gamesList.forEach(games -> System.out.println(games)); 
+ 
+ 
+Ques9: Optional Class
+Optional<String> checkNull = Optional.ofNullable(str[5]);  
+        if(checkNull.isPresent()){  // check for value is present or not  
+            String lowercaseString = str[5].toLowerCase();  
+            System.out.print(lowercaseString);  
+        }else  
+            System.out.println("string value is not present"); 
+            
+          or
+          
+ Optional<String> checkNull = Optional.ofNullable(str[5]);  
+        checkNull.ifPresent(System.out::println);   // printing value by using method reference  
+        System.out.println(checkNull.get());    // printing value by using get method  
+        
+        
+QUes10: Parallersort in array
+Arrays.parallelSort(arr,0,4);  //0 is inclusive 4 is exclusive  , use for partial sorting
+ Arrays.parallelSort(arr)
+ 
+ Ques 11. What is Type Annotation?  //yet to learn
+        
 
 
 ............General Question........
@@ -76,4 +118,19 @@ Ques 1:Singleton factory
 Ques 2:Depenedncy Inection
 Ques 3:Model-View-Controller design pattern
 Ques 4:SOA (Service Oriented Pattern) Designpattern 
+
+
+
+....Some Code to remember.....
+
+Math.abs(-1) // it will become 1
+
+
+
+
+Nagarro Process
+do gfg question for nagarro
+revise eclipse Problem solve question
+
+
 

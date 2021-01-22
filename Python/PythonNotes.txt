@@ -1,4 +1,22 @@
-pip install django==3.0.3 //installing django
+---------------PYTHON------------
+#	try:
+            return Snippet.objects.get(pk=pk)
+        except Snippet.DoesNotExist:
+            raise Http404
+
+The raise keyword is used to raise an exception
+
+
+
+
+
+
+
+
+---------------Django------------
+SuperUser //sameer sameerkhanec@gmail.com 56....@sS
+
+pip install django==3.0.3 //installing django   *use pip3 for linux
 
 python -m django --version //know django version
 
@@ -14,11 +32,74 @@ python manage.py showmigrations //displays all the migrations in a project
 
 python manage.py migrate //apply all the migration in an app after that database structure dbsqlite is generated
 
+pip install django-filter //instalss django filters
+
+@csrf_exempt //exempt csrf token , used in views.py
+
+two pattern in Django views 
+class based and decoratorview( @api_view) 
+
+def snippet_list(request, format=None):   //format=None ensures we can use any response type json,xml etc
+
 
 //delete super user via python shell
 python manage.py shell
 $ from django.contrib.auth.models import User
 $ User.objects.get(username="joebloggs", is_superuser=True).delete()
+
+
+Ques :  To set ordering on generic api views?
+
+class Meta:
+        ordering = ['created']   //'created' is model property
+        
+
+
+**kwargs //dictionary
+*args //a tuple(list)
+
+
+python3 manage.py shell  //to go into shell for testing
+
+Serialization is converting django model object to text-based,json,xml,yaml to transfer over it on wire by rest api
+
+Deserialization is similar. First we parse a stream into Python native datatypes..
+
+ModelSerializer classes //It is simply a shortcut for creating serializer classes:
+
+
+
+@csrf_exempt //It is same like @CrossOrigin in Java
+
+
+
+
+
+
+GenericAPIVIEW //it took care for the render the serialized object in the proper format ex JSON to the views
+for exact match use =food
+
+
+
+.......Topic : CURL................
+curl is use to make rest script
+
+curl is a command line tool to transfer data to or from a server
+
+curl uses any of the supported protocols (HTTP, FTP, IMAP, POP3, SCP, SFTP, SMTP, TFTP, TELNET, LDAP or FILE).
+
+curl tool is preferred for automation, since it is designed to work without user interaction
+
+Hit Post Api using curl
+curl -X post http://localhost:8000/api/v1/products/new -d price=1.00 -d name='My Product' -d description='HelloWorld'
+
+
+
+
+
+
+
+
 
 
 

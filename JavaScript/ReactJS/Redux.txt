@@ -1,0 +1,83 @@
+Redux...
+
+It need 4 thing
+reducer //normal js function which takes 2 arg state and action and returns state also contains initial state of the app
+store   //createStore
+subscription
+dispatchingAction
+
+yarn add redux //3rd part redux
+yarn add react-redux //redux with react support
+
+
+connect store with our react...
+need special package react-redux
+import Provider from this package
+Provider 
+//help to inject store into the react applictaion
+//need props store
+<Provider store={store}><App/></Provider>
+
+Subscribe in react is implemented by 'connect' from 'react-redux'
+connect(mapStateProps)(ComponentName) 
+connect is a fucntion which return a hoc
+connect(arg1,arg2) //arg1 : mapStateToProps arg2:dispatch object
+
+mapStateProps // is a store state provided by the react we pass it to the connect whic gives the updated state if any action is executed
+const mapStateProps = (state) =>{
+return ctr : state.counter
+}
+
+
+Dispatch action in react app...
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onIncrementCounter: () => dispatch({type:'INCREMENT'}),
+    }
+}
+
+pass this disoatch const to connect method second arg
+
+
+comibineReducer //to combine diff reducer
+
+Middleware .....
+It gives inside of our store but only we dispatch any action
+act as middle person between action dispatcher and reducer
+
+onst logger = store => {
+    return next => {
+        return action => {    //it is ismple middleware
+            console.log('[Middleware] Dispatching',action);
+            const result = next(action);   // now redux takes these action to reducer
+            //this is the middleware part
+            console.log('[Middleware] next state',store.getState());
+            return result;
+        }
+    }
+}
+
+const store = createStore(rootReducer , applyMiddleware(logger));
+
+applyMiddleware(middleware1,middleware2....) can pass any no of middleware.... which executed sequentially
+
+yarn add redux-devtools-extension //to install redux extension
+
+react compose -> allows us to combine enhancer
+
+react combineReducer -> allows us to combine reducer
+
+redux thunk  //It is use to handle asynchronous call in react redux application
+
+action creators....
+const submitResult = (res) => { //it is Action Creators
+    return (dispatch) => {
+
+        setTimeout(()=> dispatch(saveResult(res)),2000); //it will be dispatched by middleware redux thunk
+        
+    }
+}
+
+
+Redux thunk getState....
+to get state in the asychronous redux thunk action creator 
