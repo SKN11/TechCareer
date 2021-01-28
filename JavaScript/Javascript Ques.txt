@@ -7,13 +7,13 @@ Ans 1: 30 , eval evaluates the expression
 
 
 
-Ques : push & concat difference?
+Ques : push & concat difference?   //[Array 
 (return same array with pushing it i.e mutated obj) and concat (add item and return copy of the array i.e immutable array obj)
 
 
 ?
 function insertItem(array, action) {
-    let newArray = array.slice();
+    let newArray = array.slice();   //gives copy of the array , [Array slice]Method
     newArray.splice(action.index, 0, action.item);
     return newArray;
 }
@@ -25,7 +25,36 @@ function removeItem(array, action) {
     return newArray;
 }
 
+[Array Fill] Method   //mutable method
+var ingr = [1,2,3,4,5];
+ingr.fill(9);   //  [9, 9, 9, 9, 9]
 
-Ques : provide new array and removing element where condition matches
-const removedIdIngre = prevIngredients.filter(ingr => ingr.id !== id)
+[Array Filter] Method
+Ques : provide new immutable array and removing element where condition matches 
+var ingr = [1,2,3,4,5];
+const removedIdIngre = prevIngredients.filter(ingr => ingr !== 2)
+o/p = [1,3,4,5]
+
+
+Ques : What is the use of useScript in  javascript?  
+ It is not a statement, but a literal expression
+ With strict mode, you can not, for example, use undeclared variables.
+ 
+Ques :Is javscript multithreaded ? It is single threaded
+
+Ques : Why arrow function is better than normal function?
+Arrow syntax automatically binds this to the surrounding code's context.
+arrow functions are less verbose
+
+Ques : Array & Object Destructuring?
+const array = [1, 2, 3];
+const [a, b] = array;
+
+const myObj = {
+ name: 'Max',
+ age: 28
+ }
+ const {name} = myObj;
+ console.log(name); //'Max'
+
 

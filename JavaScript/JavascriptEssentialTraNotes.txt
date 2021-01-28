@@ -75,7 +75,7 @@ var sum=a+b;
 sum=45
 a+b1=9
 
-a-b1 console o/p = Nan , Not a Number as a is number b1 is string
+a-b console o/p = Nan , Not a Number as a is number b1 is string
 
 == check equality
 === check equaltity and data type i.e strict equality
@@ -101,13 +101,13 @@ use when u want to limit variable to just a code block use let
 
 JS Object
 
-var course = new Object();
+var course = new Object();   //first technique
 course.name="physics";
 course.teacher="sam";
 
 OR
 
-var course = {
+var course = {   //second technique
 name:"physics",
 teacher:"sam",
 views:0,
@@ -124,11 +124,11 @@ this.name=name;
 this.teacher=teacher;
 }
 
-var course1 = new Course("physics","sam");
+var course1 = new Course("physics","sam");  //third technique using constructor
 var course1 = new Course("math","andrew");
 
 Dot Notation Bracket Notation
-course.title   course["title"]
+course.title   course["title"]  //very important ....mug it
 
 
 Closures....
@@ -161,7 +161,7 @@ Definition of Closures : a function inside function that relies on variable in t
 
 
 Question:What happens if you try to set new value for a const variable that is already defined?
-The script will break on an exception.
+The script will break on an exception.  //Uncaught SyntaxError: Identifier 'i' has already been declare
 
 BOM:Browser Object Model(window,browser etc)
 
@@ -194,7 +194,7 @@ element.classList.toggle("hide") hide the hide applied before
 If u use two click on same element then one of click event is hindered
 Alternative:use Addeventlisterner
 
-element.addEventListener("click",rfunction name eithout paranthesis, false);
+element.addEventListener("click",function name without paranthesis, false);
 
 functionName : name or name() . use name(not name()) only if you dont want it to execute when script loads
 
@@ -284,18 +284,3 @@ O/p hi 2
 
 ----
 
-function logscope()
-{
-let localVar=2;
-
-if(localVar){
-
-	let localVar = "hi";
-	console.log(localVar);
-
-}
-console.log(localVar);
-
-}
-
-O/p hi 2

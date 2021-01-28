@@ -1,7 +1,7 @@
 https://javascript.info/async
 
 what is CallBacks?
-Ex if you want to load a script and call a func that script has in it. If we call after load scriot it will throw error as script is not loaded
+Ex if you want to load a script and call a func that script has in it. If we call after load scriot it will throw error as may be script is not loaded
 instead we use callbacks to call that function
 
 ...For Error handling
@@ -23,7 +23,7 @@ loadScript('/my/script.js', function(error, script) {  //error-first callback”
   }
 });
 
-Ques 2: What is Pyramid of doom?
+Ques 2: What is Pyramid of doom in Javascript?
 callbacks in callbacks........
 
 Ques 3: What is Promise   //plz refere PromiseDemo.html in Javascript folder
