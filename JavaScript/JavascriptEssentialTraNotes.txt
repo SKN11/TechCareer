@@ -31,10 +31,19 @@ docment.body.innerHTML = "" ;
 If you write <script> in head it will through error as it has not loaded the html body tag. It should be written after body element.
 Recommended:write js or src after body is executed;
 
-How to make it More Modular? Put it js code in separate .js files
+How to make it More Modular?   //Put it js code in separate .js files
 
+How should you import an external JavaScript and execute it only after everything else is loaded?
 <script src ="script.js" async></script>
 HTML parsing and JS download downloaded at the same time....Render blocking executed when script is fully loaded. (Attach picture from video)
+
+<script src ="script1.js" async></script>
+<script src ="script1.js" async></script>
+Both script downloaded asynchronously
+
+<script src ="script1.js" defer></script>
+<script src ="script1.js" defer></script>
+script1 downloaded first and script2 afterwards 
 
 ---
 
@@ -46,14 +55,12 @@ javascript Rules
 5. Use comments in ur code // or /*multilin*/
 
 
-How should you import an external JavaScript and execute it only after everything else is loaded?
-<script src ="script.js" async></script>
-
 ----
 to avoid global scope use var. Also using var would provide variable with some scope
 
 difference between undefined and null in javascript
-In JavaScript, undefined is a type, whereas null an object. It means a variable declared, but no value has been assigned a value. Whereas, null
+In JavaScript, undefined is a type, whereas null an object.
+It means a variable declared, but no value has been assigned a value. Whereas, null
 in JavaScript is an assignment value. You can assign it to a variable
 
 var e=null; console o/p object

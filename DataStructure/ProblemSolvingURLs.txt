@@ -22,6 +22,13 @@ https://practice.geeksforgeeks.org/problems/preorder-traversal/1
 https://practice.geeksforgeeks.org/problems/postorder-traversal/1
 
 
+PENDING
+a.Add all greater values to every node in a BST 
+https://practice.geeksforgeeks.org/problems/add-all-greater-values-to-every-node-in-a-bst/1
+
+
+
+
 ~~~~~~~~~~~~~~~~Heap 
 
 1.Min sum formed by digits in an array
@@ -36,3 +43,11 @@ https://practice.geeksforgeeks.org/problems/min-sum-formed-by-digits/0   (Heap s
 
 2.Second Largest Element in Array
 https://practice.geeksforgeeks.org/problems/find-second-largest-element/0
+
+
+
+~~~~~~~~~~~~~~~~~String
+
+1. remove second string char from first string char 
+https://practice.geeksforgeeks.org/problems/remove-character3815/1
+

@@ -1,1 +1,3 @@
 ctrl+shft+W : close all open file in eclipse
+
+ctrl+I : to indent

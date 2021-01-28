@@ -1,0 +1,12 @@
+Ques : Difference b/w Controlled and uncontrolled components?   //refer https://www.javatpoint.com/react-controlled-vs-uncontrolled-component
+
+Ques : difference between compiler and interpreter and transpiler 
+compiler - high level lang to low level lang
+transpiler - y=translates at same level of abstaraction exaple react jsx Babel
+interpretor- which directly executes instruction
+
+Ques : What is Babel ?   //a transpiler and compiler
+
+Ques : Webpack dev server default port //8080
+
+Ques : How many stages are there in React js life cycle   //React Js lifecycle have three stages named Mounting , Updating and Unmounting

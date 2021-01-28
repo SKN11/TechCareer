@@ -1,0 +1,227 @@
+Database
+
+systemctl status mysql.service //check mysql is running ornot
+
+sudo systemctl start mysql  //to start mysql
+
+sudo mysql //to start db
+
+
+'sammy'@'localhost' IDENTIFIED BY 'password' //database credential ubuntu
+current crendential same as ubuntu credentials
+
+
+type "quit" to exit 
+
+
+
+................Topic : SQL COmmands.........
+
+empty check
+SELECT column_names
+FROM table_name
+WHERE column_name IS NULL;    //IS NOT NULL
+
+
+update syntax  //use always where with update otherwise it will update the whole column
+UPDATE table_name
+SET column1 = value1, column2 = value2, ...
+WHERE condition;
+
+
+delete syntax ///use always where with delete otherwise it will delete all records
+DELETE FROM table_name WHERE condition   
+
+
+pagination or limit or top sql synatx
+SELECT column_name(s)
+FROM table_name
+WHERE condition
+LIMIT number;
+
+
+min max
+SELECT MAX(column_name)   //MIN(column_name)
+FROM table_name
+WHERE condition;
+
+
+The SQL COUNT(), AVG() and SUM() Functions
+SELECT COUNT(column_name) //AVG(column_name) , SUM(column_name)    //null values are ignored
+FROM table_name
+WHERE condition;
+
+SQL LIKE Operator
+It uses two wild card
+1. % - zero ,one or more
+2. _ -single character should be presnt (can use __ for 2 char two present)
+3. [] - represent single char within brackets
+4. ^ - any char not in the bracket
+5. -  -repressent range of character
+
+syntax
+SELECT column1, column2, ...
+FROM table_name
+WHERE columnN LIKE pattern;  //NOT LIKE Pattern
+
+City is an "a" or a "c" or an "s".   // City LIKE '[acs]%';
+
+
+IN Operator  // allows you to specify multiple values in a WHERE clause.
+SELECT * FROM Customers
+WHERE Country IN ('Germany', 'France', 'UK');   //NOT IN ()
+
+
+Between Operator
+SELECT * FROM Products
+WHERE Price BETWEEN 10 AND 20;   //NOT BETWEEN
+
+aliases
+use as
+
+
+SQL JOINS   //JOIN clause is used to combine rows from two or more tables, based on a related column between them
+
+INNER JOIN..
+SELECT Orders.OrderID, Customers.CustomerName
+FROM Orders
+INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID;
+
+LEFT OUTER JOIN...
+SELECT Customers.CustomerName, Orders.OrderID
+FROM Customers
+LEFT JOIN Orders ON Customers.CustomerID = Orders.CustomerID
+ORDER BY Customers.CustomerName;
+
+RIGHT OUTER JOIN.....
+SELECT Orders.OrderID, Employees.LastName, Employees.FirstName
+FROM Orders
+RIGHT JOIN Employees ON Orders.EmployeeID = Employees.EmployeeID
+ORDER BY Orders.OrderID;
+
+FULL OUTER JOIN
+SELECT Customers.CustomerName, Orders.OrderID
+FROM Customers
+FULL OUTER JOIN Orders ON Customers.CustomerID=Orders.CustomerID
+ORDER BY Customers.CustomerName;
+
+SELF  JOIN
+SELECT A.CustomerName AS CustomerName1, B.CustomerName AS CustomerName2, A.City
+FROM Customers A, Customers B
+WHERE A.CustomerID <> B.CustomerID
+AND A.City = B.City
+ORDER BY A.City;
+
+
+Sql Union....
+SELECT City FROM Customers
+UNION     //UNION ALL
+SELECT City FROM Suppliers
+ORDER BY City;
+
+NOTE: if some customers or suppliers have the same city, each city will only be listed once, because UNION selects only distinct values. Use UNION ALL to also select duplicate values
+
+
+"a.custid <> b.custid "  //It is called not equa to operator
+Checks if the value of two operands are equal or not, if values are not equal then condition becomes true.	(a <> b) is true.
+
+
+Sql Procedure....
+CREATE PROCEDURE SelectAllCustomers @City nvarchar(30), @PostalCode nvarchar(10)
+AS
+SELECT * FROM Customers WHERE City = @City AND PostalCode = @PostalCode
+GO;
+
+EXEC SelectAllCustomers @City = 'London', @PostalCode = 'WA1 1DP';   //you can create procedure without this @
+
+
+Comment in sql....
+Comment select * form cust   //--select * from cust;
+for multiline /* */
+
+
+
+.................Topic : Database Command...........
+
+create database test;    //create db
+show databases; 		//show dbs
+use dbname;  		//use that db
+drop database test 		//delete db
+backup database test to disk ="filepath"   //backup db
+CREATE TABLE Persons (     //create table in db
+    PersonID int,   
+    LastName varchar(255),
+    FirstName varchar(255)); 
+    
+drop table customer //delete full table from rdbms
+truncate table customer //delete only its data not table
+ALTER TABLE Customers ADD Email varchar(255);    //ADD,MODIFY,DROP etc
+
+
+SQL contraints...
+NOT NULL - Ensures that a column cannot have a NULL value
+UNIQUE - Ensures that all values in a column are different
+PRIMARY KEY - A combination of a NOT NULL and UNIQUE. Uniquely identifies each row in a table
+FOREIGN KEY - Uniquely identifies a row/record in another table
+CHECK - Ensures that all values in a column satisfies a specific condition
+DEFAULT - Sets a default value for a column when no value is specified
+INDEX - Used to create and retrieve data from the database very quickly
+
+
+create table orders (
+    OrderID int NOT NULL,   //Orderid NOT NULL UNIQUE ,
+    OrderNumber int NOT NULL,
+    PersonID int AUTO_INCREMENT,
+    Age int CHECK (Age>=18),
+    City varchar(255) DEFAULT 'United states',
+    PRIMARY KEY (OrderID),
+    FOREIGN KEY (PersonID) REFERENCES Persons(PersonID)    //this row will referes to another table primary key
+);
+
+CREATE INDEX idx_lastname
+ON Persons (LastName);
+
+
+SQL Date //DATE - format YYYY-MM-DD
+SELECT * FROM Orders WHERE OrderDate='2008-11-11'
+
+SQL VIew...
+a view is a virtual table based on the result-set of an SQL statement.
+CREATE VIEW [Brazil Customers] AS
+SELECT CustomerName, ContactName
+FROM Customers
+WHERE Country = 'Brazil';
+
+select * from {Brazil Customers]
+
+
+Ques: DIfferenece b/w view and stored procedure
+1.what
+procedure executes the query inside the procedure
+whereas view is simply data stored separately in the database as view (data is what when theview is created by query command)
+2.Execution Time
+view are faster than procedure as procedure fires query views not it just fetches the stored data from db
+
+
+SQL Injection
+SQL injection is a code injection technique that might destroy your database.
+
+ex : SELECT * FROM Users WHERE UserId = 105 OR 1=1;
+
+How To solve?  //SQL Param
+txtUserId = getRequestString("UserId");
+txtSQL = "SELECT * FROM Users WHERE UserId = @0";
+
+    
+    
+
+
+
+
+
+
+
+
+
+
+

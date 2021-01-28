@@ -1,0 +1,47 @@
+................Topic: Design Pattern................React
+
+Ques1 : Higher-Order Component (or HOC) is essentially a design pattern, also known as a Decorator Pattern.
+
+
+
+
+................Topic: Design Pattern................Java
+
+Ques : Why we use Design P? //to improve performance and memory utilization
+
+[Singleton Pattern]  design patter
+  done from notes
+  private constructor
+  public factorymethod
+  private static Object Variable
+
+
+[IOC]  design pattern  //It is a Design pattern which is used to remove dependency (or Tight Coupling)from the programming code
+	class Employee{  
+	Address address;  
+	Employee(){  
+	address=new Address();  
+	}  
+	}
+	
+	class Employee{  
+	Address address;  
+	Employee(Address address){  
+	this.address=address;  
+	}  
+	}
+	
+
+[Model-View-Controller]  design patter
+
+
+[SOA]    (Service Oriented Pattern) designpattern 
+    
+
+
+
+
+
+
+
+

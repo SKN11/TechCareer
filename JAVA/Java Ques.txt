@@ -4,20 +4,39 @@ Ques 1 : What is Automatic Promotion in Java Overloading?
 Ques 2 : When to use has a and is a functionality in java?
 Ques 3 : Differnce between upcasting(Parent p = new Child();right) and downcasting( Child c = new Parent;wrong) ? 
 Ques 4 : What is covariance in java? is it applicable to primitive type?
-Ques 5 : Can we override private mehod and final mehod?
+Ques 5 : Can we override private method and final mehod?
 Ques 6 : What is difference between Object Based or Object-Oriented prog languages?
-Ques 7 : How to Call Garbage Collector?
+Ques 7 : How to Call Garbage Collector?    //System.gc();
+
+
+
+
+............String................
+Ques : What happen if you pass string as parameter to method which changes the sring?
+Refer -> https://theopentutorials.com/tutorials/java/strings/passing-string-as-parameter-to-a-method/
+
+Ques : String s1 = "geeksquiz";
+       String s2 = "geeksquiz";
+       System.out.println("s1 == s2 is:" + s1 == s2);  //+ is more precednce than == o/p is "s1 == s2 is: + geeksquiz == geeksquiz"
+        
+Ques : System.out.println(10  +  20 + "GeeksQuiz");  //30GeeksQuiz
+       System.out.println("GeeksQuiz" + 10 + 20);   //GeeksQuiz1020
+
 
 
 
 ...............Thread.................
-Ques 1:What start() method does?
-Ques 2:What is Thread Scheduler
+Ques 1:What start() method does? //instantiate,allocates CPU
+
+Ques 2:What is Thread Scheduler?  // allocates CPU
+
 Ques 3:Does run method of thread class can have arguments?  //public void run(){}
-Ques 4:Which method is useful to create Thread, extending thread or implementing runnable interface?
-Ques 5:Thread Deadlock startegy? Thread.currentThread().join() or put join on each other thread
-Ques 6: How Synchronized Block is better approach then Synchronised Method? // The main advantage of synchronized block over synchronized method is it
-reduces waiting time of Thread and improves performance of the system
+
+Ques 4:Which method is useful to create Thread, extending thread or implementing runnable interface?   //implementing runnable
+
+Ques 5:Thread Deadlock startegy?   //Thread.currentThread().join() or put join on each other thread
+
+Ques 6: How Synchronized Block is better approach then Synchronised Method? // The main advantage of synchronized block over synchronized method is it reduces waiting time of Thread and improves performance of the system
 Ques 7:Draw Full Thread Life cycle?
 
 
@@ -107,17 +126,37 @@ A Java source file can have only one class declared as public, we cannot put two
 a . java file. This is because of the restriction that the file name should be same as the name of the public class with . java extension.
 Answers
 
-Ans 7 : System.gc();
+
 
 Ques 2:What is Pagination
 To show data in different parts is pagination. For ex at google page it shows 10 search link and rest show with number hyperlink in the end
 
+Ques: What is Copy COnstructor?
+which gives the same object content
+how ? create constructor with its Object type arg and assign data variable
 
-........Design Pattern...........
-Ques 1:Singleton factory
-Ques 2:Depenedncy Inection
-Ques 3:Model-View-Controller design pattern
-Ques 4:SOA (Service Oriented Pattern) Designpattern 
+Ques : How to make constant in java ?  // To make any variable a constant, we must use 'static' and 'final' modifiers ?
+
+Ques: What is a Virtual Function In Java?
+Every non-static method in Java is by default a virtual method
+
+Ques : What is a Pure Virtual Function In Java?
+interface methods // no implemenation method just declareation
+
+Ques : why we us epackages in java?
+To avoid name clashes
+To givr class scope
+
+Ques : Java doesn't support default arguments? Yes
+static int fun(int x = 0)   //compiler error
+    {
+      return x;
+    }
+    
+Ques : What is >> & >>>operator ? //It is a right shift operator and The left operands value is moved right by the number of bits specified by the right operand
+>> for signed -4>>1 = -2  ,  4>>1 = 2
+>>> for unsigned -4 >> 2
+
 
 
 
