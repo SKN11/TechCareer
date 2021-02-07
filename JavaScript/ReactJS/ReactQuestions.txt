@@ -2,7 +2,7 @@ Ques : Difference b/w Controlled and uncontrolled components?   //refer https://
 
 Ques : difference between compiler and interpreter and transpiler 
 compiler - high level lang to low level lang
-transpiler - y=translates at same level of abstaraction exaple react jsx Babel
+transpiler - y=translates at same level of abstaraction example react jsx Babel
 interpretor- which directly executes instruction
 
 Ques : What is Babel ?   //a transpiler and compiler

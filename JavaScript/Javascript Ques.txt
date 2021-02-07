@@ -35,12 +35,34 @@ var ingr = [1,2,3,4,5];
 const removedIdIngre = prevIngredients.filter(ingr => ingr !== 2)
 o/p = [1,3,4,5]
 
+[Array slice()]  //gives theshalow copy
+const animals = ['ant', 'bison', 'camel', 'duck', 'elephant'];
+console.log(animals.slice(2));   // expected output: Array ["camel", "duck", "elephant"]
+console.log(animals.slice(2, 4));  // expected output: Array ["camel", "duck"]
+console.log(animals.slice(1, 5));  // expected output: Array ["bison", "camel", "duck", "elephant"]
 
-Ques : What is the use of useScript in  javascript?  
+[Array splice ] //removes or adds the array
+const months = ['Jan', 'March', 'April', 'June'];
+months.splice(1, 0, 'Feb'); //add
+// inserts at index 1 , Array ["Jan", "Feb", "March", "April", "June"]
+
+months.splice(4, 1, 'May');   //removes
+// replaces 1 element at index 4 , ["Jan", "Feb", "March", "April", "May"]
+
+
+
+
+
+
+
+
+Ques : What is the use of useStrict in  javascript?  
  It is not a statement, but a literal expression
  With strict mode, you can not, for example, use undeclared variables.
+eliminates silent errors
+instead throws them so that the code won't run with errors in the code
  
-Ques :Is javscript multithreaded ? It is single threaded
+Ques :Is javscript multithreaded ? It is single threaded //it is also disadvanatage of java
 
 Ques : Why arrow function is better than normal function?
 Arrow syntax automatically binds this to the surrounding code's context.
@@ -54,7 +76,71 @@ const myObj = {
  name: 'Max',
  age: 28
  }
- const {name} = myObj;
- console.log(name); //'Max'
+const {name} = myObj;
+console.log(name); //'Max'
+ 
+-----------------
+Ques:What is First Class Function?
+ A programming language is said to have First-class functions when functions in that language are treated like any other variable
+ It can be passed as an arg or return from a function
+ const foo = function() {
+   console.log("foobar");
+}
+// Invoke it using the variable
+foo();
 
+Ques : document.write("1 plus 1 is " + 1 + 1); //1 plus 1 is 11
+
+Ques : Lexical Scoping ?
+A lexical scope in JavaScript means that a variable defined outside a function can be accessible inside another function defined after the variable declaration. But the opposite is not true; the variables defined inside a function will not be accessible outside that function.
+
+This concept is heavily used in closures in JavaScript.
+
+Let's say we have the below code.is
+
+var x = 2;
+var add = function() {
+    var y = 1;
+    return x + y;
+};
+
+
+
+Ques : How to add event listener on element?
+element.addEventListener("click",function name without paranthesis, false);
+
+what is that third argument? 
+It is "useCapture" in the specification allows the programmer to specify which phase they want to use capture phase and bubbling phase events
+capturephase & bubblephase 
+ex: when click on a element
+html (capture phase)
+body (capture phase)
+a (capture phase)
+a (bubbling phase)
+body (bubbing phase)
+html (bubbling phase)
+
+
+
+Ques : How to set the cursor to wait in JavaScript?
+window.document.body.style.cursor = "wait";   
+
+Ques:What is the difference between View state and Session state?
+View state : session only for current page ex: paymenet page
+Session state : session for any page ex:you can open your amazon account on any page
+
+Ques: popup boxes in javascript
+alert , confirm , prompt
+
+Ques: How can we detect OS of the client machine using JavaScript?
+navigator.appVersion
+
+Ques:Array Initiliase
+var arrayname=[value1,value2.....valueN];  
+
+var emp = new Array();  
+emp[0] = "Arun";  
+emp[1] = "Varun";  
+
+var emp= new Array("Jai","Vijay","Smith");  
 

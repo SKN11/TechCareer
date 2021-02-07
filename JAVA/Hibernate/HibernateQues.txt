@@ -1,0 +1,398 @@
+
+Ques : What is HIbernate?
+It is an implementation of the specifications of JPA (Java Persistence API) for data persistence.
+
+Ques : What is jpa? //Map application classes to database table
+
+Ques : Hibernate use what method to create object of persistence class?
+newInstance()
+Test t = (Test)Class.forName("Test").newInstance();
+
+----------
+Ques : Persistence Class requirement?
+A no-arg constructor
+Provide an identifier property
+Declare getter and setter methods
+Prefer non-final class: 
+----------
+
+Ques : Hibernate BoilerPlate Code?
+StandardServiceRegistry ssr = new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();  
+Metadata meta = new MetadataSources(ssr).getMetadataBuilder().build();  
+          
+SessionFactory factory = meta.getSessionFactoryBuilder().build();  //How to create session factory?
+try{
+Session session = factory.openSession();    // How to open session ?
+Transaction t = session.beginTransaction();  //how to create transaction?
+    
+Employee e1= new Employee("1","sky","sky@gmail.com")    
+session.save(e1);  
+t.commit();  
+System.out.println("successfully saved");    
+}
+catch(Exception e)
+{
+e.printstacktrace
+t.rollback()
+}
+finally {
+session.close();
+}
+factory.close();  
+--------------------
+
+
+Ques : org.hibernate.id.IdentifierGenerator interface ?
+
+All the generator classes implements this interface
+XML :- <generator class="increment"></generator> 
+Annotaion :- @GeneratedValue(strategy=GenerationType.AUTO)  
+
+Ques : MYSQL Dialect?
+org.hibernate.dialect.MySQLDialect
+----------
+
+Ques:Hibernate Logging?
+Using Log4j
+by xml or properties file
+log4j.appender.file.File=C:\\javatpointhibernate.log 
+
+----------
+
+Ques : Hibernate Configuration?
+
+<hibernate-configuration>  
+  <session-factory>  
+        <property name="hbm2ddl.auto">update</property>
+        <property name="dialect">org.hibernate.dialect.Oracle9Dialect</property>    
+        <property name="connection.url">jdbc:oracle:thin:@localhost:1521:xe</property>    
+        <property name="connection.username">system</property>    
+        <property name="connection.password">jtp</property>    
+        <property name="connection.driver_class">oracle.jdbc.driver.OracleDriver</property>   
+       <mapping class="com.javatpoint.mypackage.Employee"/>    
+    </session-factory>  
+</hibernate-configuration>  
+ 
+ Note :         <mapping resource="hbm.employee.xml"/>    for xmlconfig
+----------
+        
+        
+Ques :HIbernate Inheritance Mapping?
+
+1.Table Per Hierarchy   //we can map the whole hierarchy by single table only 
+
+	@Inheritance(strategy=InheritanceType.SINGLE_TABLE)  //TPH
+	@DiscriminatorColumn(name="type",discriminatorType=DiscriminatorType.STRING)  
+	@DiscriminatorValue(value="employee")  //put on each class
+	
+	@DiscriminatorValue(value="regularemplyee")  //put on each class
+	@DiscriminatorValue(value="contractemployee")  //put on each class
+	
+2.Table Per Concrete class   //each table for each class   and subclass has parentclass column i.e no foreignkey type mapping
+
+	@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+	
+in child class put 
+	@AttributeOverrides({     //in case table perclass
+    @AttributeOverride(name="id", column=@Column(name="id")),  
+    @AttributeOverride(name="name", column=@Column(name="name"))  
+})  
+public class Regular_Employee extends Employee{  
+
+}
+	
+	
+3.Table Per Subclass //subclass mapped tables are related to parent class mapped table by primary key and foreign key relationship.
+
+	@Inheritance(strategy=InheritanceType.JOINED)   //  TPS
+	
+put this annotation in top of child class to create column foreignkey column
+	@PrimaryKeyJoinColumn(name="ID")  
+
+-------------------------------------------------------------------
+Ques : Hibernate Mapping
+
+1. One to Many      //one-to-many mapping means that one row in a table is mapped to multiple rows in another table.
+ex:one question has many answer
+one airport has multiple airlines
+one cart has multiple items
+
+
+example : put this annotation on answer list type variable i.e many object(Answer) in one object (Question)
+
+@OneToMany(mappedBy="question" ,cascade = CascadeType.ALL)  
+@JoinColumn(name="qid")  
+@OrderColumn(name="type")  
+private List<Answer> answers; 
+
+Note: no need to pu anything in answer class just create it like a normal class. but
+to making this a bidirectional relationship put @ManyToOne on on Question Data reference in Answer (remembr it's optional)
+---
+
+2. Many to Many Annotation
+ex: question has many answer or answer has many questions
+    any given employee can be assigned to multiple projects and a project may have multiple employees working for it.
+
+example: Put this annotation on Set project variable in EMployee Class
+    
+	@ManyToMany(cascade = { CascadeType.ALL })
+	@JoinTable(
+        name = "Employee_Project", 
+        joinColumns = { @JoinColumn(name = "employee_id") }, 
+        inverseJoinColumns = { @JoinColumn(name = "project_id") }
+    	)
+    	Set<Project> projects = new HashSet<>();
+    	
+    	
+    	In Project class..
+    	
+    	@ManyToMany(mappedBy = "projects")
+        private Set<Employee> employees = new HashSet<>();
+    
+
+Note : Try creating many to many exam	ple in eclipse
+
+
+----------------------------------------------------------------------------------------------------------------------------
+
+Ques : What is cascade = { CascadeType.ALL } ?
+
+for example, the Person–Address relationship. Without the Person, the Address entity doesn't have any meaning of its own. When we delete the Person entity, our Address entity should also get deleted.
+
+Cascading is the way to achieve this. When we perform some action on the target entity, the same action will be applied to the associated entity.
+
+Cascade.ALL - propagates all below operations — including Hibernate-specific ones — from a parent to a child entity.
+
+CascadeType.PERSIST(Jpa specific) - When we save the person entity, the address entity will also get saved(or persist)
+
+CascadeType MERGE(Jpa specific) - the merge operation first loads both address and person entities and then updates both of them.
+
+CascadeType.REMOVE(Jpa specific) & CascadeType.DELETE(Hibernate specific)
+		propagates the remove operation from parent to child entity
+
+CascaseType.DETACH - the child entity will also get removed from the persistent context if parent entity removed
+
+CascadeType.LOCK (hibernate specific)- re-attaches the entity and its associated child entity with the persistent context again.
+
+CascadeType REFRESH(hibernate specific) -  the child entity also gets reloaded from the database whenever the parent entity is refreshed.
+
+CascadeType.REPLICATE() -The replicate operation is used when we have more than one data source, and we want the data in sync. With 				CascadeType.REPLICATE, a sync operation also propagates to child entities whenever performed on the parent entity.
+
+CascadeType.SAVE_UPDATE -CascadeType.SAVE_UPDATE propagates the same operation to the associated child entity. 
+
+
+------------------------------------
+Ques : Enable Hibernate seconlevel caache?
+
+@Cacheable  
+@Cache(usage=CacheConcurrencyStrategy.READ_ONLY)  
+public class Employee {    
+}    
+ 
+
+--------------------------------------------------------------    
+Ques : Annotations 
+
+@Entity   
+@Table(name = "employee101")  
+-------------------
+@Id  
+@GeneratedValue(strategy=GenerationType.AUTO)        
+@Column(name = "id")  
+-------------
+@AttributeOverrides({     //in case table perclass
+    @AttributeOverride(name="id", column=@Column(name="id")),  
+    @AttributeOverride(name="name", column=@Column(name="name"))  
+}) 
+public class Regular_Employee extends Employee{  
+
+----------------------
+@Join Table - create column in the table acting as foreign key to the table
+mappedBy=employee - To make this association bidirectional. the value of mappedBy is the name of the association-mapping attribute on the owning 				side.
+		In employee class use (mappedBy = "employee")
+		In project class use (mappedBy = "projects")
+
+
+
+1 Employee has 1 fixed address
+@OneToOne(targetEntity=Address.class,cascade=CascadeType.ALL)  
+private Address address;  
+@OneToOne(targetEntity=Employee.class)  
+private Employee employee;  
+
+
+every employee has one company address only and one address belongs to many employees
+@ManyToOne(cascade=CascadeType.ALL)  
+private Address address;  
+
+@OneToOne(cascade=CascadeType.ALL)  
+private Employee employee;  
+    
+-----------------------------------------------------------------------------------------------------------------
+
+
+Ques : Bidirectional association : if Employee class has-a reference of Address and Address has a reference of Employee. Additionally, you have applied one-to-one or one-to-many relationship for the classes in mapping file as well, it is known as bidirectional association.
+
+Ques :Hibernate Lazy Loading
+Hibernate 3.0, lazy collection is enabled by default.
+
+To use lazy collection, you may optionally use lazy="true" attribute in your collection. It is by default true, so you don't need to do this. If you set it to false, all the child objects will be loaded initially which will decrease performance in case of big data.   
+ 
+ 
+ ---------------------
+ Component Mapping
+ <component name="address" class="com.javatpoint.Address">  
+<property name="city"></property>  
+<property name="country"></property>  
+<property name="pincode"></property>  
+</component>  
+
+its is like one to one mapping
+
+---------------------------
+Hibernate Transaction....
+a transaction simply represents a unit of work
+A transaction can be described by ACID properties (Atomicity, Consistency, Isolation and Durability).
+---------
+
+Hibernate Query Language....HQL
+It is same like Sql 
+database independent
+
+Query Interface - object oriented representation of Hibernate Query
+
+Select
+	Query query = session.createQuery("from Employee")  //class name is Employee     //from Employee where id:i
+	query.setFirstResult(5);  
+	query.setMaxResult(10)
+	List list = query.list();
+
+Update
+	Query q=session.createQuery("update User set name=:n where id=:i");  
+	q.setParameter("n","Sky Cutie");  
+	q.setParameter("i",111);  
+	int status=q.executeUpdate();  
+	System.out.println(status);  
+Delete
+
+	Query query=session.createQuery("delete from Emp where id=100");  //specifying class name (Emp) not tablename  
+	query.executeUpdate();  
+	
+
+Hibernate HCQL....
+
+Crietria c=session.createCriteria(Emp.class);  
+c.setFirstResult(10);  
+c.setMaxResult(20);  
+List list=c.list(); 
+
+1.   c.add(Restrictions.gt("salary",10000))
+2.   c.addOrder(Order.asc("salary")); 
+
+
+
+Hibernate Named Query...
+The hibernate named query is way to use any query by some meaningful name. It is like using alias names
+
+In POJO
+@NamedQueries(  
+    {  
+        @NameQuery(  
+        name = "findEmployeeByName",  
+        query = "from Employee e where e.name = :name"  
+        )  
+    }  
+)  
+
+
+//Hibernate Named Query    
+   TypedQuery query = session.getNamedQuery("findEmployeeByName");    
+    query.setParameter("name","amit");   
+            
+    List<Employee> employees=query.getResultList(); 
+ 
+ 
+ -------------------  
+ Ques :What is the advantage of second level cache?
+ if we have two session who has same requirement then both session fire same query if we are using first level cache only but it will not fire second query if we use second level cache
+ 
+ To enable write this in your pojo after @Entity
+ @Cacheable  
+@Cache(usage=CacheConcurrencyStrategy.READ_ONLY)  
+    
+  --------------------------
+Ques :   Hibernate LifeCycle?
+https://www.javatpoint.com/hibernate-lifecycle
+get - get the object
+load - get the object
+save - save the transient object in db or detached object in db
+persist - save the transient object in db
+delete - delete from the database and removes from session i.e back to transient state
+
+
+------
+Ques : what is proxy in hibernate load method ?
+It is a dummy object which is created by hibernate. when we use that object hibernate repopulate it again by hitting db query thus improves system
+performance a lot
+
+
+-------
+Ques : core interfaces of Hibernate framework are:
+Configuration			two components- Database Connection,Class Mapping Setup
+SessionFactory
+Session   			factory.openSession();
+Transaction 			Transaction t = session.beginTransaction();
+Query
+Criteria
+
+Ques: Can we generate Standard SQL query in hibernate ?
+Session.createSQLQuery
+
+
+---------------------------
+save() v/s persist()
+1.Basic 
+It stores object in database    ||    It also stores object in database
+
+2.Return Type 
+It return generated id and return type is serializable || It does not return anything. Its void return type. 
+
+3.Transaction Boundaries 
+It can save object within boundaries and outside boundaries || It can only save object within the transaction boundaries 
+
+4.Detached Object 
+It will create a new row in the table for detached object   || It will throw persistence exception for detached object 
+
+5.Supported by 
+It is only supported by Hibernate  || It is also supported by JPA
+
+6.Real Life example
+adding items in cart can be done by save || but banking payment cannot it should be under transaction
+
+
+get() vs load()
+1.Basic 
+It is used to fetch data from the database for the given identifier  || It  is also used to fetch data from the database for the given identifier 
+
+2.Null Object 
+It object not found for the given identifier then it will return null object || It will throw ObjectNotFoundException 
+
+3.Lazy or Eager loading 
+It returns fully initialized object so this method eager load the object  || It always returns proxy object so this method is lazy load the object  
+
+4.Performance 
+It is slower than load() because it return fully initialized object    || It is slightly faster.
+which impact the performance of the application  
+
+5.Use Case
+If you are not sure that object exist then use get() method  || If you are sure that object exist then use load() method 
+
+   
+update() vs merge()
+1.
+Update means to edit something   ||   Merge means to combine something.
+2.
+update() should be used if the session doesn't contain an already   ||   merge() should be used if you don't know the state of the session
+ persistent state with the same id. It means an update should be         means you want to make the modification at any time. 
+ used inside the session only. After closing the session, it will
+  throw the error.	

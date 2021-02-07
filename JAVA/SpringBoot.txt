@@ -1,0 +1,585 @@
+
+........Topic :Spring Boot..................
+
+Spring Boot is a Spring module that provides the RAD (Rapid Application Development) feature to the Spring framework.
+
+
+Annotations   //Spring Boot Annotations is a form of metadata that provides data about a program
+
+different Annotations // please refer https://www.javatpoint.com/spring-boot-annotations
+
+@SpringBootApplication: It is a combination of three annotations @EnableAutoConfiguration, @ComponentScan, and @Configuration.
+
+application.properties //Built-in mechanism for application configuration using a file application.properties
+conatins application configuration
+
+YAML Properties File //The Yaml file works because the Snake YAML jar is present in the classpath but the Yml file should be present in the classpath.
+
+--------------------------------------------------------
+Spring Boot Starter..
+spring-boot-starter-*,  in pom.xml   // spring-boot-starter-data-jpa
+To add jars in the classpath. 
+
+For ex:
+<dependency>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-starter-data-rest</artifactId>
+</dependency>
+
+
+Spring Boot Starter Parent...
+1. It provides default configurations for our applications. 
+2. It is used internally by all dependencies. 
+
+All Spring Boot projects use spring-boot-starter-parent as a parent in pom.xml file.
+
+<parent>  
+	<groupId>org.springframework.boot</groupId>  
+		<artifactId>spring-boot-starter-parent</artifactId>  
+	<version>1.4.0.RELEASE</version>  
+</parent>  
+-------------------------------------------------------------
+
+Spring Data JPA...
+adds a layer on the top of JPA.
+Spring Data JPA adds its own features such as the no-code implementation of the repository 
+creation of database queries from the method name.   //also creation of pattern 
+
+Features
+No code repository
+reduced boiler plate code
+Generated queries based on the method name
+
+Spring Data JPA provides three repositories are as follows:
+
+CrudRepository:
+PagingAndSortingRepository:
+JpaRepository:
+
+Ques : What is jpa? //Map application classes to database table
+
+Ques : Entity Manager: 
+Once we define the mapping, it handles all the interactions with the database.
+
+Ques : JPQL (Java Persistence Query Language)
+ It provides a way to write queries to execute searches against entities. It is different from the SQL queries. JPQL queries already understand the mapping that is defined between entities. We can add additional conditions if required.
+Criteria API: It defines a Java-based API to execute searches against the database.
+
+Note: Spring internally generates a JPQL (Java Persistence Query Language) query based on the method name. 
+
+
+
+http://localhost:8080/h2-console
+username : sa
+password : 
+
+
+
+....................................
+Spring Boot Actuator
+help us to monitor and manage the Spring Boot application.
+for ex : {"status":"up"}
+
+actuator/health -> endpoint provides the basic health information of an application
+
+Note:Try it with full application to see all features
+.....................................
+
+Spring Boot Starter Test
+The spring-boot-starter-test is the primary dependency for the test
+
+default ContextLoader - SpringBootContextLoader
+
+.......................Topic: SpringBoot Dev Tools....................
+
+It picks up the changes and restart the application.
+also Live Reloading
+
+Features------
+Property Defaults
+Spring Boot provides templating technology Thymeleaf that contains the property spring.thymeleaf.cache. 
+It disables the caching and allows us to update pages without restart app.
+
+Automatic Restart
+ Auto-restart means reloading of Java classes and configure it at the server-side
+ after that dynamically deployed and server restart happen
+
+Spring Boot ClassLoaders:
+base ClassLoader -    The classes that do not change (third-Jars) are loaded in the base ClassLoader.
+restart ClassLoader - The classes that we are actively developing are loaded in the restart ClassLoader.
+
+Note:To disable
+spring.devtools.restart.enabled:false
+
+LiveReload: 
+It is an embedded SPringboot sever called LiveReload  //also known as auto refresh
+
+Note:To disable
+spring.devtools.livereload.enabled:false.
+
+....................Topic: Spring Boot Multi Module Project................
+
+Nested maven projects is called multi module project
+the parent project works as a container for base maven configurations.
+Advantage - Easy to maintain or remove or add the sub applictation in big enterprise application
+For example, we are creating an EAR (Enterprise ARchive), WAR (Web ARchive), and JAR (Java ARchive) file. A JAR file is bundled into a war file that is bundled into an EAR file. The EAR file is the final package that is ready to deploy on the application server.
+
+
+Parent pom.xml 	// consists the list of all modules, common dependencies, and properties that are inherited by the child projects
+The parent POM defines the Group ID, Artifact ID, version, and packaging
+For Multi ModuleProject - <packaging>pom</packaging>  not "jar" &
+add
+	<modules>  
+		<module>module1</module>  
+		<module>module2</module>  
+	</modules> 
+	
+
+
+
+Note:
+When we run the multi-module project, all the modules are deployed together in an embedded Tomcat Server.
+Child Pom file does not contain the common dependencies like starter-web, web-mvc, etc. It inherits from parent
+
+....................Topic: Spring Boot Packaging...................................
+three types
+[Ear]
+The below two files(war,jar) are packaged as a JAR file with the .ear extension
+ 
+[War]
+WAR is a module that loads into a Web container of the Java Application Server
+Advantage- It can be deployed easily on the client machine in a Web server environment. To execute a WAR file, a Web server or Web container is required. For example, Tomcat, Weblogic, and Websphere.
+
+[Jar]
+A file that encapsulates one or more Java classes, a manifest, and descriptor is called JAR file
+
+
+
+=======================================================================================================================
+..............Topic : Rest With Spring Boot..............
+
+Ques:Why Representaion State Transfer?   //bcoz it provide the representation of the resource.
+
+HTTP also defines the following standard status code:
+200: SUCCESS                //HttpStatus.
+201: CREATED		//HttpStatus.CREATED
+
+404: RESOURCE NOT FOUND      //HttpStatus.NOT_FOUND
+400:Bad Request		//HttpStatus.BAD_REQUEST
+401: UNAUTHORIZED	//HttpStatus.UNAUTHORIZED
+406:Not acceptable
+
+500: SERVER ERROR	//HttpStatus.INTERNAL_SERVER_ERROR
+
+
+GET: It reads a resource.
+PUT: It updates an existing resource.
+POST: It creates a new resource.
+DELETE: It deletes the resource.
+
+Ques :Can we exclude some files from autoconfiguration in spring boot ?
+@SpringBootApplication (exclude={JacksonAutoConfiguration.class, JmxAutoConfiguration.class})  
+spring.autoconfiguration.exclude=org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration  
+
+
+Http req ----->Dispatcher Servlet
+					|
+				ControllerClass
+					|
+Http res<------	view
+
+Ques : ResponseEntity Class
+extends HttpEntity and HttpStatus class.
+user can use it to know the location where his data stored in the server by reading headers in the response
+	@PostMapping("/users-with-entity")  
+	public ResponseEntity<Object> createUserWithStatus(@RequestBody User user)  
+	{  
+	User sevedUser=service.save(user);    
+	URI location=ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(sevedUser.getId()).toUri();
+	System.out.println(location);
+	return ResponseEntity.created(location).build();  
+	} 
+
+location- http://localhost:8080/api/users/6
+
+Ques :What is ResponseEntityExceptionHandler class.
+ It is an abstract and base class for the exceptions that provide centralized exception handling across all the different exception handler methods
+ 
+Ques :if the date is displaying in the default timestamp format?
+spring.jackson.serialization.write-dates-as-timestamps=false   // in application.properties file
+
+------------------------------------------------------------------
+
+Ques :What is hibernate Validator   //Implemenet java Bean Validation API
+
+Ques :What is dispatcher servlet?   //It is front controller to the spring application
+					//it passes all the reques to controller method
+Ques : Jackson Jar    // implememntation entity of rest fremaework
+
+Ques : Spring MVC AUtoConfigurations?   //Dispatcher servlet, a view resolver, Jackson, data source, transaction manager etc
+
+Ques :Auto configuration done by Spring Boot?
+
+DispatcherServletAutoConfiguration (disatcherservlet)
+DataSourceAutoConfiguration (hibernate)
+JacksonAutoConfiguration (rest services)
+ErrorMvcAutoConfiguration (#basicErrorController)
+
+Ques: WHen WhiteLabelError comes   //when there is no error handling in the app . It is default error handler in spring app
+
+Ques: HelloWorld bean returns response in which format?   //json( all data member in the class)
+
+
+ 
+
+...........................Topic:ExceptionHandling in SPringBooot.................
+ResponseEntityExceptionHandler  //default exception handler
+It is an abstract and base class for the exceptions that provide centralized exception handling across all the different exception handler methods.
+
+
+@ExceptionHandler(Exception.class) //override method of ResponseEntityExceptionHandler class  
+	public final ResponseEntity<Object> handleAllExceptions(Exception ex, WebRequest request)  
+	{  
+		
+		ErrorFlowManagement errorFlowMgt= new ErrorFlowManagement(new Date().toString(), ex.getMessage(), request.getDescription(false));
+		
+		//returning exception structure and specific status   
+		
+		return new ResponseEntity(errorFlowMgt, HttpStatus.NOT_FOUND);
+		//return new ResponseEntity<ErrorFlowManagement>(errorFlowMgt, HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+
+
+........................Topic : SpringBoot Validation......................
+
+When we get a request to create a user, we should validate its content. If it is invalid, we should return a proper response.
+
+@Valid     //place in controller -- use to validate response body userjson object
+public void createUser(@Valid  @RequestBody User user)  
+
+@Size(min=5) 	  //place in pojo   -- size must be min 5
+private String name;  
+
+@Past	   //place in pojo   -- date should be from past i.e before present
+private Date dob;  
+	
+	
+........................Topic : HATEOAS......................	
+HATEOAS acronyms for Hypermedia as the Engine of Application State
+for ex: if you search for some user it will give u a link to all user autmatically if it is configured in the application
+Term hypermedia refers to content that contains a link to other forms of media like images, movies, and text
+
+Resource Describes own capabilities
+Resource describes own interactions
+
+Resource<User> resource=new Resource<User>(user);   //constructor of Resource class  
+//add link to retrieve all the users  
+ControllerLinkBuilder linkTo=linkTo(methodOn(this.getClass()).retriveAllUsers());  
+resource.add(linkTo.withRel("all-users"));  
+return resource;  
+
+ "_links" : {
+    "users" : {
+      "href" : "http://localhost:8080/api/users"
+    },
+
+........................Topic : Internationalization......................	
+Ques :What is Internationalization of Restful services
+Internationalization is the process of designing web applications or services in such a way that it can provide support for various countries.
+
+Why It is I18N?   // because the word internationalization has total 18 characters starting from I to N 
+
+In main class...
+	@Bean
+	public LocaleResolver localeResolver()
+	{
+		AcceptHeaderLocaleResolver localeResolver = new AcceptHeaderLocaleResolver();
+		localeResolver.setDefaultLocale(Locale.US);
+		return localeResolver;
+	}
+
+In controller class
+
+	@GetMapping(path="/i18n")  
+	public String helloWorldInternationalized()  
+	{  
+		return messagesource.getMessage("good.morning.messsage", null, LocaleContextHolder.getLocale());
+	}  
+
+........................Topic : Content Negotiatations......................
+
+Content negotiation is the process of selecting the best representation(xml,json,html)   for a given response when there are multiple representations available
+
+If we need to handle request via xml import jackson-dataformat-xml depenedncy in pom.xml
+
+
+........................Topic : HTTP Headers......................
+
+Content-type    //An incoming request may have an entity(User Object entity) attached to it. To determine the type of entity server uses the HTTP 		request header Content-Type
+Content-Type: application/json
+Content-Type: application/xml
+Content-Type: text/html
+Content-Type: images/jpg 
+etc.
+
+HTTP header ACCEPT    //It is used to determine what type of representation is desired at the client-side.
+Accept: application/json  
+
+........................Topic : SpringBoot JPA......................
+
+userRepository.findAll();     //list of users
+userRepository.findById(id);   //return specific user with id and it is a Optional<User> and we can get the user using .get() method
+userRepository.deleteById(id);  //delete user with id   .... return nothing
+
+fetch=FetchType.LAZY
+
+
+
+........................Topic : Annotations......................
+Spring Boot Annotation
+@SpringBootApplication: It is a combination of three annotations @EnableAutoConfiguration, @ComponentScan, and @Configuration.
+	@EnableAutoConfiguration :auto configure bean present in classpath
+	@ComponentScan: It is used when we want to scan a package for beans. It is used with the annotation @Configuration
+	@Configuration: It is a class-level annotation.The class annotated with @Configuration used by Spring Containers as a source of bean definitions.
+	
+Note : Auto-configuration can be enabled by adding @SpringBootApplication
+	
+Example:
+@ComponentScan(basePackages = "com.javatpoint")  
+@Configuration  
+public class ScanComponent{
+}
+
+-----------------------
+@SpringBootTest & @Test   //It applies on a Test Class that runs Spring Boot based tests
+
+-------------
+@Controller     //marks a class as a web request handler basically used in Spring MVC
+---------------------
+@RestController //Special controller used in RESTFul web services and the equivalent of @Controller + @ResponseBody.
+
+
+------------------
+@RequestMapping("/api") //map request
+		This annotation maps HTTP requests to handler methods of MVC and REST controllers
+		Ex:@RequestMapping("/api")
+		public class UserController {
+----------------
+@GetMapping  //map get request means require some info
+		@GetMapping("/users")  
+		public List<User> retriveAllUsers()  
+		{  
+			return service.findAll();  
+		} 
+------------------
+@PostMapping //maps update info 
+		@PostMapping("/users")  
+		public void createUser(@RequestBody User user)  
+		{  
+		User sevedUser=service.save(user);    
+		}  
+-----------------
+@RequestBody // The @RequestBody annotation maps body of the web request to the method parameter
+--------------
+@PathVariable 
+		@GetMapping("/users/{id}")  
+		public User retriveUser(@PathVariable int id)  
+		{  
+		return service.findOne(id);  
+		}
+---------------
+@Requestparam? //all param after ?name='sky' ex @RequestParam("name") String name
+		@GetMapping(path="/reqparam")
+		public String checkRequestParam(@RequestParam String param) {
+			System.out.println(param); //use http://localhost:8080/api/reqparam?param=s
+			return "Request Param is : " + param;
+		}
+--------------
+@ResponseStatus(HttpStatus.NOT_FOUND)  	//use to set Http Status Code 
+
+
+---------------
+@ControllerAdvice  -- use for some advice for example exception if user not found
+
+
+@ExceptionHandler(Exception.class) 				//for throw Exception  (if any handling method like conatctnotfoundexception not 									thier then this method execute by default
+@ExceptionHandler(ContactNotFoundException.class)     //for   throw ContactNotFoundException
+
+--------------
+@DeleteMapping  - delete user
+
+	@DeleteMapping("/users/{id}")  
+	public void deleteUser(@PathVariable int id)  
+	{  
+		User user= service.deleteById(id);  
+		if(user==null)  
+			//runtime exception  
+			throw new UserNotFoundException("id: "+ id);  
+	}  
+
+
+
+--------------
+@Valid     //place in controller -- use to validate response body userjson object
+public void createUser(@Valid  @RequestBody User user)  
+
+@Size(min=5) 	  //place in pojo   -- size must be min 5
+private String name;  
+
+@Past		//place in pojo   -- date should be from past i.e before present
+private Date dob;  
+		
+
+
+
+----------------
+@RequestHeader //Annotation which indicates that a method parameter should be bound to a web request header
+
+@Configuration //Indicates that a class declares one or more @Bean methods and may be processed by the "Spring container" to generate bean 				definitions andservice requests for those beans at runtime, 
+for ex: 
+ @Configuration
+ public class AppConfig {
+
+     @Bean
+     public MyBean myBean() {
+         // instantiate, configure and return bean ...
+     }
+ }
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+ ............Topic: Static & Dynamic Filtering for RESTful Services.........
+It ignores the property for serialization & Deseraialization
+
+Static
+@JsonIgnore //applied on data variable
+@JsonIgnoreProperties({"name", "phone"})   //aplied on the class , name & phone is the data variable
+
+
+Dynamic
+put @JsonFilter("SomeBeanFilter")  before the class name
+
+and In controller class
+
+@RequestMapping("/filtering")  
+public MappingJacksonValue retrieveSomeBean()  
+{  
+SomeBean someBean=new SomeBean("Amit", "9999999999","39000");     (name,number,salary)   //It also can be a list
+
+SimpleBeanPropertyFilter filter=SimpleBeanPropertyFilter.filterOutAllExcept("name", "salary");   //invoking static method filterOutAllExcept()  
+FilterProvider filters=new SimpleFilterProvider().addFilter("SomeBeanFilter",filter);   //creating filter using FilterProvider class  
+
+MappingJacksonValue mapping = new MappingJacksonValue(someBean);   //constructor of MappingJacksonValue class  that has bean as constructor argument  
+
+mapping.setFilters(filters);   //configuring filters  
+
+return mapping;  
+
+}  
+
+
+......................Topic :Versioning RESTful Web Services............
+URI Versioning....  //Twitter uses URI versioning.
+differentiate service based on the Request URI
+@GetMapping("v1/person")  
+@GetMapping("v2/person")  
+-------
+Versioning using Custom Request Parametr....   // Amazon uses the request parameter versioning. 
+wdifferentiate service based on the Request Parameter
+URI http://localhost:8080/person/param?version=1
+URI http://localhost:8080/person/param?version=2
+
+handle this in your controller
+@GetMapping(value="/person/param", params="version=1")  
+@GetMapping(value="/person/param", params="version=2")  
+-----
+Versioning using Request Header...... //Microsoft uses the request header versioning
+we differentiate service based on the Request Header.
+@GetMapping(value="/person/header", headers="X-API-Version=1")  
+@GetMapping(value="/person/header", headers="X-API-Version=2")  
+
+send in headers
+key:X-API-Version  Value:1
+--------
+
+Versioning using Accept Header..... //Git Uses  uses the accept header versioning
+
+@GetMapping(value="/person/produces", produces="application/vnd.company.app-v1+json")  
+
+send in header
+key:Accept value:application/vnd.company.app-v1+json
+
+--------
+
+
+........................Topic: Basic Authentication Spring.................
+<dependency>  
+<groupId>org.springframework.boot</groupId>  
+<artifactId>spring-boot-starter-security</artifactId>  
+</dependency>  
+
+put
+spring.security.user.name=root  
+spring.security.user.password=root  
+in application.properties file
+
+go in auhorization tab in postman type root root
+-----
+
+OAUTH 2 via springboot.....
+
+@EnableWebSecurity
+@EnableOauth2sso     //put it on class,it specifies we are enabling oauth2
+
+
+Override WebSecurityConfigureAdapter  method configure(HttpSecurity security)
+
+To specify to authenticate via google put some oath property in properties file
+
+oath acccess tokenuri = "some googleauthenticateurl"
+tokenName =oath_token
+scope = profile , username
+clietid=
+clientsecret =
+
+register google cloud, login it, go in apia7services -> go in outh tab->give ur app name->provide scope
+then save
+create oauth client id
+give url from where access needed
+
+
+
+it will give u now clientid &clientsecret id put it in you properties file
+
+create pricipal for user in your controller 
+and u r done :)
+
+ 
+
+
+
+......................Topic : Richardson Maturity Model............
+
+Richardson Maturity Model grades API by their RESTful maturity
+
+
+.......................Topic: RestFulWebservices Best Practices..........
+
+a.The first and last best practice is the Consumer First.
+b.Use the right request method (GET, POST, PUT, and DELETE) 
+c.ensure that we are sending a proper response status back.
+d.When a resource is CREATED, don't send SUCCESS, send CREATED back.
+e.When a ESOURCE NOT FOUND, don't send the SERVER ERROR
+f.Use /users/1 not /user/1
+

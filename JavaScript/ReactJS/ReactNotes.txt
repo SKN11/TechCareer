@@ -16,7 +16,7 @@ npm install --save prop-types //install proptypes
 
 npm install axios --save  //install axios for ajax calls
 
-npm install -save react-router react-router-dom  //install router
+
 
 
 ReactDom.render 
@@ -51,7 +51,7 @@ A CSS pseudo-class is a keyword added to a selector that specifies a special sta
 
 Ques 6: //use this.setState only to change state if you use this.state.contact[0] ={} it wont work
 
-Ques 7: this.setState merges the state that you give use State doesn't i.e it replaces
+Ques 7: this.setState merges the state that you give useState doesn't i.e it replaces
 
 you can have as many useState as you want it gives you freedom to split up your big state object to small pieces of object
 
@@ -91,14 +91,13 @@ componentDidUpdate //called when props and state updates
 useEffect is executed at every cycle of component also use for clean up activities or after all rendering done
 
 React.memo() // stores the snapshot of Component only rerender when its input changes otherwise no changes
-				if any props passedto component chnagesthen only it render otherwise old copies
+				if any props passedto component chnages then only it render otherwise old copies
 				
 When should u not use react memo & ShouldComponentUpdate? //if we know coz of parent child component changes then dont wrap it in these two techniques 
 which run unneccessary code while executing
 
 Ques : What is PureComponent?
-
-no need to use shouldComponentUpdate if you are checking for all properties extends it with PureComponent
+Pure Components in React are the components which do not re-renders when the value of state and props has been updated with the same values.If the value of the previous state or props and the new state or props is the same, the component is not re-rendered.
 
 
 Ques : What are higher order component
@@ -106,9 +105,8 @@ Ques : What are propTypes
 Ques : cssfilename.module.css in order to run it without npm run eject
 
 .................Topic: React Routing...................
-
-Pending
-Create Snippet in vs code
+To install in your app 
+npm install -save react-router react-router-dom  //install router
 
 Routing...
 wrap App.js in BrowserRouter component

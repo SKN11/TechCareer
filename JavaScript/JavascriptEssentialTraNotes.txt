@@ -98,8 +98,8 @@ const & let......
 
 let :- Block scope variable & Smaller scope than var
 use when u want to limit variable to just a code block use let
-
-JS Object
+-------------
+JS Object   //very important
 
 var course = new Object();   //first technique
 course.name="physics";
@@ -129,7 +129,7 @@ var course1 = new Course("math","andrew");
 
 Dot Notation Bracket Notation
 course.title   course["title"]  //very important ....mug it
-
+---------------
 
 Closures....
 
@@ -158,7 +158,9 @@ return a*b;
 }
 
 Definition of Closures : a function inside function that relies on variable in the outside function to work.
+Note: if you change any value in closures it wont affect outside varibale.
 
+-----
 
 Question:What happens if you try to set new value for a const variable that is already defined?
 The script will break on an exception.  //Uncaught SyntaxError: Identifier 'i' has already been declare
@@ -194,7 +196,7 @@ element.classList.toggle("hide") hide the hide applied before
 If u use two click on same element then one of click event is hindered
 Alternative:use Addeventlisterner
 
-element.addEventListener("click",function name without paranthesis, false);
+element.addEventListener("click",function name without paranthesis, false);  //add event listener on element element
 
 functionName : name or name() . use name(not name()) only if you dont want it to execute when script loads
 

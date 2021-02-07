@@ -1,34 +1,39 @@
-Core Java.........
+................Topic : Core Java.........
 
 Exception Handling-done
-Collection- partially done( Collection and Array Left)
+Collection- partially done( Collection and Array Left) 
 Map-done
 MultiThreading - done
-Java8 Feature - done (1 feauture left)
-FunctionalInterface -done
-Interface-done
-Generics-done
-Constructor-done
-RegularExpression-
+Java8 Feature - done
+FunctionalInterface- done
+Interface- done
+Generics- done
+Constructor- done
+RegularExpression- done
 OOPS- done
-InnerClasses-
+InnerClasses -
 File I/O- 
-Serialization-
-Design Patterrn- see DesignPattern.txt
+Serialization- done (partially)
 JVM Architecture-
 Declaration& AcceessModifier -      //from copy
 Listeners In java -
+Enums-
+Languagefundamentals-done   //from orange copy
+
+
+InterviewQuestion
+collections - https://www.javatpoint.com/java-collections-interview-questions    - done
+
 
 MCQ
 https://www.geeksforgeeks.org/java-multiple-choice-questions/   //coreJava total set 31
+https://tutorialsinhand.com/aptitudes/java-aptitude/java-string-mcq/java-string-mcq-set-2.aspx
 
 
 Advanced Java........
 
-hibernate-partially done(mapping left)
-
+Hibernate-partially done(mapping left)
 SpringAndRestApp from lynda(project name cnm)
-
 URI
 
 ................Topic : Spring..........
@@ -37,37 +42,50 @@ AOP -done
 SpringORM -done
 SPEL -done
 Restful Services from Javatpoint -done
+CrossOriginConcepts - 
 
 
 MCQ (Spring+Spring MVC)
 https://tutorialsinhand.com/aptitudes/spring-aptitude/spring-mcq-aptitude/spring-mcq-1.aspx
 https://www.tutorialspoint.com/spring/spring_online_quiz.htm
  
+ 
+-----------------------------------------------------------------------FRONTEND------------------------------------------------------------
 
 
-Javascript..........
+
+................Topic : Javascript..........
 JavascriptEssentialTrainingNotes.txt -done
 Javascript Ques.txt  -done
 FrontEndJavascriptNotes.txt  -
 w3schools tutorial  -
 nextgen js summary.pdf (UdemyMaxmillian) -done
 PromiseDemo.html -done
+ArrayMethods-
 
 MCQ
 W3schools
 https://letsfindcourse.com/technical-questions/javascript-mcq/javascript-mcq-questions-1
 
 
+.......Topic : CSS.............
+MCQ : https://www.examtiger.com/mcq/css-mcq-on-stylesheet/
 
 
 
-
-ReactJS.......
+................Topic : ReactJS.......
 Udemy Maxmillian course
-redux
-Component Lifecycle
-React Hooks
-redux-learning cards.pdf
+
+React Hooks  done(left 4 lectures)  //hooks-demo
+React Web And Routing -done //react-post-ajax
+redux demo - done        //redux-01-start
+redux with burgeryy -    
+redux-learning cards.pdf -done
+Component Lifecycle - done
+
+
+Interview
+https://www.fullstack.cafe/blog/react-js-interview-questions
 
 MCQ
 https://tutorialsinhand.com/aptitudes/reactjs-mcq/reactjs-concepts/reactjs-mcq-set-1.aspx //total set 5
@@ -79,16 +97,54 @@ SQL Tutorial  -  partial done
 SQL Database - done
 SQL Refrences and quiz - 
 
-ReactNative..............
+MCQ :
+https://tutorialsinhand.com/aptitudes/sql-aptitude/sql-mcq/sql-mcq-2.aspx
+
+
+................Topic : ReactNative..............
 
 
 
-GraphQL.....
+................Topic : GraphQL.....
+What is GraphQL?
+GraphQL is a query language for APIs   //developed by facebook
 
 
 
 
 
+Question To ask vikas?
 
+what strategy generation type u used in you project
+auto
+
+how we achieve I18n in our app
+take system language and select what file to use
+
+
+Tell meabout nagarro?
+
+oath with springboot
+
+revise
+hateos
+hibernate relationships
+
+
+spring annotation
+configuration
+
+
+...........................About Nagarro.............................................
+
+Its a company headquartered in Münich, Germany And Spread across 25 countries and It is founded in 1996. Nagarro CEO Mr Manas Fuloria has a vision of agile based company not only it in software developmenet but also in software industry and  future technology vision.
+
+Motivating line from Nagarro................If we only solve today's problems, it's not enough. We must do more. 
+
+Nagarro was taken over by the German technology group Allgeier SE in 2011.
+
+What a developer need from company ? Flexible hours , Good Management, Nice employee support policy
+
+ with a big collaborating team of 8400 colleagues
 
 

@@ -45,7 +45,7 @@ Middleware .....
 It gives inside of our store but only we dispatch any action
 act as middle person between action dispatcher and reducer
 
-onst logger = store => {
+const logger = store => {
     return next => {
         return action => {    //it is ismple middleware
             console.log('[Middleware] Dispatching',action);

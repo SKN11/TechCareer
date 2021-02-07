@@ -1,27 +1,46 @@
 React Hooks......
 
+React hooks are not related to Lifecycle hooks
 
-React.memo/ //changes only when props changes not depends on if parent changes
+introduced hooks in react 16
+
+React.memo //changes only when props changes not depends on if parent changes
+
+useState has two component current state , set state method
+const [enteredTitle, setEnteredTitle] = useState('');
+
+Rules:
+You must use it on the root level only
+u cant use hooks in nested function
+not allowed in if statement
 
 
+---------------------------------
 sideEffect -> it is something for ex an http call which effect our applictaion .
 ex fetching data after u update your component
 
 
 useEfffect(()=>{
 //body
-},[]) // executed after every component render cycle done similiar componentDidUpdate
+},[]) // executed after every component render cycle done similiar to componentDidUpdate
 solution add empty array in useEffect
 
-if you use setState in useEffect it will go in loop you can c that in network tab so give it the limit in array which is second arg
+if you use setState in useEffect it will go in loop you can c that in network tab so u have give it the limit in array which is second arg([])
 
 
 useCallback()  // It cache the function and do not execute when page reloads or component mounted again
+useCallback is used to memoize functions
+
+
+add this rules in firebase to filter by title
+"ingredients":{
+        ".indexOn":["title"]
+      }
 
 
 useEffect(()=>{
 
-const s = ()=>{};   //useEffcet Business Logic
+const s = ()=>{};   //useEffect Business Logic
 
 
 return ()=>{}  //useEffect can return something which can only be function //clean up code
@@ -31,20 +50,51 @@ return ()=>{}  //useEffect can return something which can only be function //cle
 
 
 useEffect can also to be used to reset authentication token for the logged in user
+useEffect is used for cleanupactivities //ex reset setTimeout 
 
+
+-----------------------
 msg = String Interpolation
 String Interpolation `hello this is ${msg} `
+-------------------------------
 
-
-React updates sate in batches
+React updates state(setState) in batches //means react.setState works asynchronlously
 ex: setError()
-setLoading()
+    setLoading()
 
 if written together will execute in synchronlously and thus only one render cycle
-
+-------------------------------
 useReducer // use when ur state dependeds on prevstate or very complex state or various operation like add set delete
+It has no connection to react redux
+const [userIngredients, dispatch] =  useReducer(ingredientReducer,[]);    //(first arg is the handler funct , second arg is an initial state)
+dispatch is a function in which u can trigger your action
+ex
+dispatchHttp({type : 'ERROR',errorMessage:"Something went wrong"});
+
+React will re render the component whenever your reducer returns the new state
 
 
+--------------------
 what is named Export
 import {Login} from './login/Login'
+
+
+fetch() :- It is a browser functions which sents request
+
+-------------------
+{props.loading && <LoadingIndicator/>} is same as
+{props.loading ? <LoadingIndicator/> : null}
+-------------------
+
+
+useContext - is used for getting context object in the application
+
+
+
+
+
+react hooks
+useState , useEffect ,useContext , useRef ,useReducer
+
+state , ,createContext , createRef
 

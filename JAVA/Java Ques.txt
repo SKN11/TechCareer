@@ -21,6 +21,11 @@ Ques : String s1 = "geeksquiz";
         
 Ques : System.out.println(10  +  20 + "GeeksQuiz");  //30GeeksQuiz
        System.out.println("GeeksQuiz" + 10 + 20);   //GeeksQuiz1020
+       
+Ques : String intern() method //returns string from SCP
+
+String Buffer is synchronized and hence thread-safe. 
+String Builder is not synchronized or thread safe
 
 
 
@@ -39,51 +44,99 @@ Ques 5:Thread Deadlock startegy?   //Thread.currentThread().join() or put join o
 Ques 6: How Synchronized Block is better approach then Synchronised Method? // The main advantage of synchronized block over synchronized method is it reduces waiting time of Thread and improves performance of the system
 Ques 7:Draw Full Thread Life cycle?
 
+Ques : why wait,notify,notifyall present in object class if it is specific to thread.why not it in thread class?
+coz thread applies these methods on objects 
+ex: locking concept
 
+Ques: Thread uses what scheduling?
+Premptive - high priority executes first      //in tim slicing thread exexutes for some time and go in ready state again
+
+
+
+..............Collection.............
+Ques : Fail Fast and Fail Safe Iterators in Java
+Fail-Fast iterators immediately throw ConcurrentModificationException if there is structural modification of the collection.
+Iterator on ArrayList, HashMap classes
+
+Non fail-fast iterators (Fail Safe) 
+iterators don’t throw any exceptions
+CopyOnWriteArrayList, ConcurrentHashMap classes are examples of fail-safe Iterator
+
+Ques : Concurrent Modification ?
+ Concurrent Modification in programming means to modify an object concurrently when another task is already running over it.
+ 
+Ques: COllection extends ?
+Iterable : to iterate over its element
+Cloneable : to clone it
+Serialixable : to transfer over network
+
+Ques : ArrayList Read-only?
+ by calling the Collections.unmodifiableCollection() method. 
 
 
 ............Java8Features..........
 Ques 1:What is Lambda Expression? 
 ()-> {}
 use to implement functional interface And Less Code(ex apllying for each on list etc)
-
+list.forEach(   (n)->System.out.println(n)  );  
+Runnable r2=()->{   System.out.println("Thread2 is running...");   };  
+-------
 Ques 2:What is Method Reference
 Ans : By Static =  ClassName::MethodName;
 By Insatnce Method = InstnceObject::MethodName;
 By Constructor = className::new;
-
+------
 Ques 3:What is Functional Interface 
+
 which only has one abstract method
 can have object class method
-can have default mathod
+can have default mathod and static method
 @FunctionalInterface
-
+------
 Ques 4: Java Stream
 It is functional in nature and lazy and evaluates code when only it requires
+It simply conveys elements from a source such as a data structure, an array, or an I/O channel, through a pipeline of computational operations.
+
+Ex: Tea net in kitchens
+
 List<Float> productPriceList2 =productsList.stream()  
-                                     .filter(p -> p.price > 30000)// filtering data  
-                                     .map(p->p.price)        // fetching price  
+                                     .filter(p -> p.price > 30000)// filtering data..  using lambda expr
+                                     .map(p->p.price)        // fetching price only from p object
                                      .collect(Collectors.toList()); // collecting as list  
                                      
 Stream.iterate(1, element->element+1)  
 
 long count = productsList.stream()  
                     .filter(product->product.price<30000)  
-                    .count();  
+                    .count();       //.forEach(product -> System.out.println(product.name));  to print name
                     
-convert Set To List
- .collect(Collectors.toSet());
-
-convert List Into Map
-productsList.stream().collect(Collectors.toMap(p->p.id, p->p.name));                         
-
+collect() method - convert Set To List
+ 		   .collect(Collectors.toSet());
+		
+		convert List Into Map
+		productsList.stream().collect(Collectors.toMap(p->p.id, p->p.name)); 
+		
+reduce() method - accumate results
+		.reduce(0.0f,(sum, price)->sum+price);   // accumulating price  
+        	System.out.println(totalPrice);  
+        	                        
+--------
 Ques 5:what is Base64 Encoding and Decoding?
 Ans : Use to encode decode message url etc.
+uses the Base64 alphabet as specified in RFC 2045 for encoding and decoding operations
+
+Ex: It is used when u want to share cryptic data or url
+MIME uses this technique
+-----
 
 Ques 6: Default method in interface
 Ans :  yes we can create default method in a java8 interface also we can make static method in an interface
 but still abstarct class and interface are diffrent as we can not create constructor in an interface whereas we can make that in abstarct class
 
+why it is made? //to give default implementation , you can override it to create your implementation
+
+You can also define static methods inside the interface. Static methods are used to define utility methods. 
+-----
 
 Ques 7: StringJoiner
 StringJoiner joinNames = new StringJoiner(",", "[", "]");   // passing comma(,) and square-brackets as delimiter   
@@ -92,10 +145,24 @@ StringJoiner joinNames = new StringJoiner(",", "[", "]");   // passing comma(,) 
         joinNames.add("Peter");  
         joinNames.add("Raheem");  
         System.out.println(joinNames);   // [Rahul,Raju,Peter,Raheem]
-
+------
 Ques 8: For Each in java8
  gamesList.forEach(games -> System.out.println(games)); 
- 
+
+
+Ques : Java Collectors?
+
+Collectors is a final class that extends Object class.
+It provides reduction operations, such as accumulating elements into collection
+Collectors.toList())
+Collectors.toSet())
+collect(Collectors.summingDouble(x->x.price));  // productsList.stream().collect(Collectors.summingInt(x->x.id));  
+Collectors.counting())
+Collectors.Map(p.id,p.name)
+
+
+
+------ 
  
 Ques9: Optional Class
 Optional<String> checkNull = Optional.ofNullable(str[5]);  
@@ -111,12 +178,34 @@ Optional<String> checkNull = Optional.ofNullable(str[5]);
         checkNull.ifPresent(System.out::println);   // printing value by using method reference  
         System.out.println(checkNull.get());    // printing value by using get method  
         
-        
+-----------------      
 QUes10: Parallersort in array
 Arrays.parallelSort(arr,0,4);  //0 is inclusive 4 is exclusive  , use for partial sorting
  Arrays.parallelSort(arr)
  
- Ques 11. What is Type Annotation?  //yet to learn
+Ques: Java Type Inferenece?
+In java 8 it can automatically recoginize type for example in lambda empression no need to give any type.
+
+------------
+Qyes:Parameter Reflection?
+public class Calculate {  
+    int add(int a, int b){  
+        return (a+b);  
+    }  
+    int mul(int a, int b){  
+        return (b*a);  
+    }  
+}  
+javac -parameters Calculate.java  
+-parameter flag in the above command is used to store parameters in the Calculate class file. bydefault it doesn't.
+
+mul int a int b      //mul int arg0 int arg1     without -parameter
+add int a int b	//add int arg0 int arg1
+
+Ques 11. What is Type Annotation? 
+@NonNull String str;  
+@Encrypted File file  
+hrows @ZeroDivisor ArithmeticException
         
 
 
@@ -143,9 +232,9 @@ Every non-static method in Java is by default a virtual method
 Ques : What is a Pure Virtual Function In Java?
 interface methods // no implemenation method just declareation
 
-Ques : why we us epackages in java?
+Ques : why we use packages in java?
 To avoid name clashes
-To givr class scope
+To give class some scope
 
 Ques : Java doesn't support default arguments? Yes
 static int fun(int x = 0)   //compiler error
@@ -156,6 +245,62 @@ static int fun(int x = 0)   //compiler error
 Ques : What is >> & >>>operator ? //It is a right shift operator and The left operands value is moved right by the number of bits specified by the right operand
 >> for signed -4>>1 = -2  ,  4>>1 = 2
 >>> for unsigned -4 >> 2
+
+
+Ques: class extends Object , interface what?
+ Every public method in Object class, there is an implicit abstract and public method declared in every interface which does not have direct super interfaces.
+ This is the standard Java Language Specification which states like this,
+ 
+ "If an interface has no direct superinterfaces, then the interface implicitly declares a public abstract member method m with signature s, return type r, and throws clause tcorresponding to each public instance method m with signature s, return type r, and throws clause t declared in Object, unless a method with the same signature, same return type, and a compatible throws clause is explicitly declared by the interface.”
+
+
+Ques : Object Class Methods?
+https://www.javatpoint.com/object-class
+Total 11
+tostring , equals , hashcode ,finalize    //most commonly used
+ getClass ,getClone,    // less commonly used
+wait , notify ,notifyall    //used by threads
+
+Ques : Is Object class Serializable by default? 
+no 
+The reason the java.lang.Object didnt implement Serializable is because, what if you do NOT want to make certain fields as Serializable and you my mistake missed to add transient to that field, then will be a havoc
+
+
+Ques : In how many ways we can create new object in java?   //refer black oops copy for detail
+newInstance()    Test t = (Test)Class.forName("Test").newInstance();
+clone()	Test t2 = (Test)t.clone();
+new		Test t = new Test();
+readObject()	Test t = objInputStream.readObject();
+factorymethod   Runtime r = Runtime.getRuntime();
+
+
+Note:
+final variable is already serializable i.e no effect of transient keyword
+
+
+Ques :final blank variable?
+class Student{  
+int id;  
+String name;  
+final static String PAN_CARD_NUMBER;  //can be initiliase by static block
+final String PAN_CARD_NUMBER;  //can be initiliase by constructor
+...  
+}  
+
+
+
+Ques : How will you invoke any external process in Java?
+Runtime.getRuntime().exec("notepad");//will open a new notepad  
+
+Ques : What is shutdown hook?   //The shutdown hook is a thread that is invoked implicitly before JVM shuts down
+Runtime r=Runtime.getRuntime();  
+r.addShutdownHook(new MyThread());  
+
+
+Ques : Marshalling is the process of writing Java objects to XML file.
+Unmarshalling is the process of converting XML content to Java objects
+
+
 
 
 

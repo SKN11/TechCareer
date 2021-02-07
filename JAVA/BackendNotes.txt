@@ -79,24 +79,6 @@ Less code //don't need to write such as getting the connection, starting transac
 Integrated transaction management
 better exception handling
 
-save() v/s persist()
-1.Basic 
-It stores object in database    ||    It also stores object in database
-
-2.Return Type 
-It return generated id and return type is serializable || It does not return anything. Its void return type. 
-
-3.Transaction Boundaries 
-It can save object within boundaries and outside boundaries || It can only save object within the transaction boundaries 
-
-4.Detached Object 
-It will create a new row in the table for detached object   || It will throw persistence exception for detached object 
-
-5.Supported by 
-It is only supported by Hibernate  || It is also supported by JPA
-
-6.Real Life example
-adding items in cart can be done by save || but banking payment cannot it should be under transaction
 
 
 Ques : SPEL 
@@ -116,9 +98,6 @@ OAuth 2.0 Login //facility to the user to login into the application by using th
 ===============================================================================================================================================
 
 
-........Topic :Spring Boot..................
-
-Spring Boot is a Spring module that provides the RAD (Rapid Application Development) feature to the Spring framework.
 
 
 
@@ -136,73 +115,6 @@ Spring Boot is a Spring module that provides the RAD (Rapid Application Developm
 
 
 
-
-
-
-
-
-
-..........Rest With Spring Boot..............
-
-Ques1:Why Representaion State Transfer?
-because it provide the representation of the resource.
-
-HTTP also defines the following standard status code:
-
-404: RESOURCE NOT FOUND
-200: SUCCESS
-201: CREATED
-401: UNAUTHORIZED
-500: SERVER ERROR
-
-GET: It reads a resource.
-PUT: It updates an existing resource.
-POST: It creates a new resource.
-DELETE: It deletes the resource.
-
-Ques2 :Can we exclude some files from autoconfiguration in spring boot ?
-@SpringBootApplication (exclude={JacksonAutoConfiguration.class, JmxAutoConfiguration.class})  
-spring.autoconfiguration.exclude=org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration  
-
-
-Http req ----->Dispatcher Servlet
-					|
-				ControllerClass
-					|
-Http res<------	view
-
-Ques : ResponseEntity Class
-extends HttpEntity and HttpStatus class.
-user can use it to know the location where his data stored in the server
-
-Ques 3:What is ResponseEntityExceptionHandler class.
- It is an abstract and base class for the exceptions that provide centralized exception handling across all the different exception handler methods
- 
- Ques 4:What is Internationalization of Restful services
- Internationalization is the process of designing web applications or services in such a way that it can provide support for various countries
-
-Ques 5:if the date is displaying in the default timestamp format
-spring.jackson.serialization.write-dates-as-timestamps=false    in application.properties file
-
-Ques 4:What is hibernate Validator
-Implemenet java Bean Validation API
-
-Ques :What is dispatcher servlet?
-It is front controller to the spring application
-it passes all the reques to controller method
-
-Ques : Jackson Jar
-implememntation entity of rest fremaework
-
-Ques :Auto configuration done by Spring Boot?
-
-DispatcherServletAutoConfiguration (disatcherservlet)
-DataSourceAutoConfiguration (hibernate)
-JacksonAutoConfiguration (rest services)
-ErrorMvcAutoConfiguration (#basicErrorController)
-
-Ques WHen WhiteLabelError comes
-when there is no error handling in the app . It is default error handler in spring app
 
 
 
@@ -253,137 +165,5 @@ What is service?
 A service is a well-defined, self-contained logical function that represents a unit of functionality.
 For ex: TCS tcs is a compony that provides services to their clients also interact with other Companies(other service) to get the task done
 
-
-
-
-
-
-
-...........Annotations...
-
-@SpringBootApplication or @EnableAutoConfiguration  //To enable Auto configuration in the webapp ex. dispatcher servlet, hibernate,jackson
-
-@RestController //Specifies it is controller
-
-@RequestMapping("/api") //map request
-This annotation maps HTTP requests to handler methods of MVC and REST controllers
-
-
-@GetMapping(path="/contact-bean/{name}") //map get request means require some info
-
-@PostMapping //maps update info 
-
-@RequestBody // The @RequestBody annotation maps body of the web request to the method parameter
-
-@PathVariable //  ex : getPathVariable(@PathVariable String name->to get variable in uri also called path variable
-
-@Requestparam? //all param after ?name='sky' ex @RequestParam("name") String name
-
-@RequestHeader /Annotation which indicates that a method parameter should be bound to a web request header
-
-@Configuration //Indicates that a class declares one or more @Bean methods and may be processed by the "Spring container" to generate bean 				definitions andservice requests for those beans at runtime, 
-for ex: 
- @Configuration
- public class AppConfig {
-
-     @Bean
-     public MyBean myBean() {
-         // instantiate, configure and return bean ...
-     }
- }
  
  
- 
- 
- 
- ............Topic 1 :Static & Dynamic Filtering for RESTful Services.........
-It ignores the property for serialization & Deseraialization
-
-Static
-@JsonIgnore //applied on data variable
-@JsonIgnoreProperties({"name", "phone"})   //aplied on the class , name & phone is the data variable
-
-
-Dynamic
-put @@JsonFilter("SomeBeanFilter")  before the class name
-
-and
-
-@RequestMapping("/filtering")  
-public MappingJacksonValue retrieveSomeBean()  
-{  
-SomeBean someBean=new SomeBean("Amit", "9999999999","39000");  
-
-SimpleBeanPropertyFilter filter=SimpleBeanPropertyFilter.filterOutAllExcept("name", "salary");   //invoking static method filterOutAllExcept()  
-
-FilterProvider filters=new SimpleFilterProvider().addFilter("SomeBeanFilter",filter);   //creating filter using FilterProvider class  
-
-MappingJacksonValue mapping = new MappingJacksonValue(someBean);   //constructor of MappingJacksonValue class  that has bean as constructor argument  
-
-mapping.setFilters(filters);   //configuring filters  
-
-return mapping;  
-
-}  
-
-
-......................Topic 2:Versioning RESTful Web Services............
-URI Versioning....  //Twitter uses URI versioning.
-We differentiate service based on the Request URI
-@GetMapping("v1/person")  
-@GetMapping("v2/person")  
-
-Versioning using Custom Request Parametr....   // Amazon uses the request parameter versioning. 
-we differentiate service based on the Request Parameter
-URI http://localhost:8080/person/param?version=1
-URI http://localhost:8080/person/param?version=2
-
-handle this in your controller
-@GetMapping(value="/person/param", params="version=1")  
-@GetMapping(value="/person/param", params="version=2")  
-
-Versioning using Request Header...... //Microsoft uses the request header versioning
-we differentiate service based on the Request Header.
-@GetMapping(value="/person/header", headers="X-API-Version=1")  
-@GetMapping(value="/person/header", headers="X-API-Version=2")  
-
-send in header 
-key:X-API-Version  Value:1
-
-
-Versioning using Accept Header..... //Git Uses  uses the accept header versioning
-
-@GetMapping(value="/person/produces", produces="application/vnd.company.app-v1+json")  
-
-send in header
-key:Accept value:application/vnd.company.app-v1+json
-
-
-
-
-........................Topic 3: Basic Authentication Spring.................
-<dependency>  
-<groupId>org.springframework.boot</groupId>  
-<artifactId>spring-boot-starter-security</artifactId>  
-</dependency>  
-
-put
-spring.security.user.name=root  
-spring.security.user.password=root  
-in application.properties file
-
-go in auhorization tab in postman type root root
-
-......................Topic : Richardson Maturity Model............
-
-Richardson Maturity Model grades API by their RESTful maturity
-
-
-.......................Topic: RestFulWebservices Best Practices..........
-
-a.The first and last best practice is the Consumer First.
-b.Use the right request method (GET, POST, PUT, and DELETE) 
-c.ensure that we are sending a proper response status back.
-d.When a resource is CREATED, don't send SUCCESS, send CREATED back.
-e.When a ESOURCE NOT FOUND, don't send the SERVER ERROR
-f.Use /users/1 not /user/1
