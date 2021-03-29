@@ -1,0 +1,99 @@
+
+all datacentre(3 to 6) are separated geographically (to save from disaster) with high bandwidth and ultra low latency
+For Low Latency choose availibilty zone which is near to you
+
+Note: Availablity Zones(AZ) start from 2 but choose which has 3 AZ
+
+........AWS Service
+EC2 -  location based
+IAM - global service(no region in init)
+
+RegionTable- tells what service is avaialble where
+
+
+.........IAM(Identity Access Management)
+
+It is a service of aws used to manage users and their level of access to the aws management console.
+
+what is least priviige principle ? //to give very less access to user
+Never use root as an IAM credentials
+
+OneIAM user per person
+OneIAM role per applictaion
+
+Create user -> mangeruser+createuser+add + access type (ex: console access, cli)
+Create Security -> give all the security it needed(passwrdpolicy,group rules,delete root access key etc)
+
+
+............EC2
+renting vm(EC2)
+storing data on vd(viryual drive)(EBS)
+distribute loads(ELB)
+autoscaling group(ASG)
+
+AMI-Amazon Machine Image
+
+Instance type(Total step 7)- create instance type memory cpu storage security etc of the vm.... 
+I used once t2.micro
+
+SSH-secureShell - commuinacate to ur remote ec2 machine using ssh
+//if not SSH supported- alternative EC2InstanceCOnnect
+
+
+Connect Your Laptop to EC2 VM
+1. ssh -i file.pem ec2-user@ip_address      //file.pem is the key file (to secure it use 'chmod command')
+
+2.whoami //ec-2user use to check who is the user
+
+SecurityGroups - Inbound Outbound Tag ....it is for security for connection b/w ur machine and ec2 vm machine
+
+Rules.....
+Inbound - vm  can access who
+Outbound - remotely who can access( port )
+Tag -  
+
+--------------------
+
+Ques: What cloud service u use in your company?
+IAM
+EC2
+S3
+Lambda
+
+Outscale Based
+ServiceDefinition.xml -> requirement ex volume, security ,roles etc
+cmd -> 
+create ws
+attch fws + serviceDefinition.xml
+cloudbuild
+---
+Ques: AWS lambda....
+loging
+just need to focus on code and dependnecy
+auto server installed
+scaling based on incoming request
+support lot of language
+
+While using Lambda, you don't have to worry about scaling, patching, operating systems, etc.
+
+----
+
+s3:
+It is object-based storage
+bucket+object(dir+files)
+bucket name dependent geolocation region(cannot create copy)
+----
+
+messaging- sns, sqs //producer consumer queue bus
+
+messageque is used to connect two microservices
+
+---
+
+monitoring- amazon cloud watch service -
+ds- supervision - create at a time when we create ec2 instance
+---
+
+what to study?
+loadbalancer
+scalability

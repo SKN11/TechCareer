@@ -10,10 +10,16 @@ sudo mysql //to start db
 'sammy'@'localhost' IDENTIFIED BY 'password' //database credential ubuntu
 current crendential same as ubuntu credentials
 
+SELECT User, Host FROM mysql.user
+SELECT db, host, user FROM mysql.db WHERE db = 'test'
 
-type "quit" to exit 
+CREATE USER 'front'@'localhost' IDENTIFIED BY 'front';
+GRANT ALL PRIVILEGES ON database_name.* TO 'front'@'localhost';
 
 
+UPDATE  mysql.user SET  Password = PASSWORD('rootnew') WHERE  User = 'root'; 
+FLUSH PRIVILEGES;
+exit;
 
 ................Topic : SQL COmmands.........
 
@@ -108,7 +114,7 @@ ORDER BY Customers.CustomerName;
 SELF  JOIN
 SELECT A.CustomerName AS CustomerName1, B.CustomerName AS CustomerName2, A.City
 FROM Customers A, Customers B
-WHERE A.CustomerID <> B.CustomerID
+WHERE A.CustomerID <> B.CustomerID     //not equal operator
 AND A.City = B.City
 ORDER BY A.City;
 
@@ -122,7 +128,7 @@ ORDER BY City;
 NOTE: if some customers or suppliers have the same city, each city will only be listed once, because UNION selects only distinct values. Use UNION ALL to also select duplicate values
 
 
-"a.custid <> b.custid "  //It is called not equa to operator
+"a.custid <> b.custid "  //It is called not equal to operator
 Checks if the value of two operands are equal or not, if values are not equal then condition becomes true.	(a <> b) is true.
 
 
@@ -211,6 +217,19 @@ ex : SELECT * FROM Users WHERE UserId = 105 OR 1=1;
 How To solve?  //SQL Param
 txtUserId = getRequestString("UserId");
 txtSQL = "SELECT * FROM Users WHERE UserId = @0";
+
+
+
+
+Ques: see table schema
+desc table_name;
+
+
+.....................Topic : DB Interview Question.......................
+
+Ques:create query which fetches employee count based on country ?
+select city,count(id) from employee group by city
+
 
     
     

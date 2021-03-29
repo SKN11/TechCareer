@@ -55,7 +55,7 @@ Ques 7: this.setState merges the state that you give useState doesn't i.e it rep
 
 you can have as many useState as you want it gives you freedom to split up your big state object to small pieces of object
 
-Ques 8 : Stateless Component are also called Presentational componenr or dumb components and it is best practice to use it as many as possible
+Ques 8 : Stateless Component are also called Presentational component or dumb components and it is best practice to use it as many as possible
 
 Ques 9 : React Component Lifecycle hooks ( Nothing to do with react hooks)
 
@@ -127,6 +127,9 @@ this.props.history.push('/checkout'); //pushes checkout page into the current pa
 ReactFragment.....
 <ReactFragment> react inbuild hoc
 
+Ques:What is this.props.history ?
+https://stackoverflow.com/questions/44121069/how-to-pass-params-with-history-push-link-redirect-in-react-router-v4
+
 
 .....................Topic: send Data via Query Param...........
 const queryParams = [];
@@ -160,6 +163,89 @@ React
 
 
 
+
+
+
+
+
+
+.............Topic: Unit Test...........
+
+We make first unit test and then start development. 
+Intially it fails but as application code done it runs successfully
+
+It is possible that in First Draft all unit test are passing but if any new feature comes some unit test are failing.
+
+What to test
+Dont test library
+Dont test complex connection
+Do Test isolated unit ex conditional output,components,check various o/p on various conditions 
+
+
+Enzyme
+It allows us to just render this navigation items component standalone independent of the entire react application
+enzyme need adapter to connect with react
+shallow function -render the component but replaces as placeholder
+
+Installation.....
+npm install --save enzyme react-test-render enzyme-adapter-react-16    //yarn add
+react-test-render - depenedncy that enzyme needed
+enzyme-adapter-react-16 - t connect enzyme with react app
+
+describe()-defines test suites
+it() defines individual test for a componenet in react
+
+
+
+.............Topic: WebPack...........
+Basically Webpack use for large full stack app but if u have small app or single page app u can use create-react-app
+
+
+webpack is use to bundle different file together 
+ex: bundle.js  bundle.css
+
+webpack neeed entry point for bundling after that it automatically reads import statement and bundle the various files together
+
+Basic Workflow requirements
+Compile NextGen Javascript Feautures
+Handle JSX
+CSS Autoprefixing
+Support Image Imports
+Optimize Code
+.................all done by loader in webpack
+
+npm install --save-dev webpack webpack-dev-server
+npm install --save-dev webpack-cli
+
+
+In Package.json in scripts
+
+"start":"webpack-dev-server"   -- tells npm to execute and start building our files
+
+
+Wee need to tell webpack entry point in our project  //entry: './src/index.js'
+Also need to tell output for generated output
+devtool:'cheap-module-eval-source-map' - use for debugging the original code rather than bundle code
+
+--------
+mode:"developement" or mode: "production"
+It tells server wheather apply some optimization or not for ex in decelopment mode it applies less shrinking which helps to debug
+but apply more optimization and shrinking for production
+
+Read webpack.config to understand full use of webpack in project
+
+
+
+.............Topic: Tables...........
+https://www.ag-grid.com/documentation/react/infinite-scrolling/#example-block-larger-page
+
+
+
+............................................................................................................
+Question yet to answer
+
+Ques:How to handle onclick event in child component by passing a value id?
+<li key={ig.id} onClick={props.onRemoveItem.bind(this, ig.id)}>   //this syntax basically used to pass some data from child component to parent component
 
 
 

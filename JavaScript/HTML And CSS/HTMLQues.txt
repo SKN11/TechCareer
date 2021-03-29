@@ -1,0 +1,2 @@
+Ques:Write " if a<b " in html tag ex: <a> if a<b </a>?
+<a href="">if a&lt;b</a>

@@ -28,7 +28,7 @@ solution add empty array in useEffect
 if you use setState in useEffect it will go in loop you can c that in network tab so u have give it the limit in array which is second arg([])
 
 
-useCallback()  // It cache the function and do not execute when page reloads or component mounted again
+useCallback(()=>{} ,[dependencies])  // It cache the function and do not execute when page reloads or component mounted again
 useCallback is used to memoize functions
 
 
@@ -41,11 +41,9 @@ add this rules in firebase to filter by title
 useEffect(()=>{
 
 const s = ()=>{};   //useEffect Business Logic
-
-
 return ()=>{}  //useEffect can return something which can only be function //clean up code
 
-},[dependencie]
+},[dependencie]);
 
 
 
@@ -64,7 +62,9 @@ ex: setError()
 
 if written together will execute in synchronlously and thus only one render cycle
 -------------------------------
+
 useReducer // use when ur state dependeds on prevstate or very complex state or various operation like add set delete
+
 It has no connection to react redux
 const [userIngredients, dispatch] =  useReducer(ingredientReducer,[]);    //(first arg is the handler funct , second arg is an initial state)
 dispatch is a function in which u can trigger your action
@@ -88,13 +88,35 @@ fetch() :- It is a browser functions which sents request
 
 
 useContext - is used for getting context object in the application
+ex: const authContext = useContext(AuthContext);
+
+create context object...
+
+export const AuthContext = React.createContext({
+    isAuth:false,
+    login:()=>{}
+});
+
+
+------
+useMemo()
+ useCallback is use to memoize function whereas useMemo(func,[]) is used for memoize data
+ 
+ ex: useMemo(()=>{
+    return(<IngredientList ingredients={userIngredients} onRemoveItem={(id)=>{onRemoveItemHandler(id)}} />);
+  },[userIngredients]
+  );
+  
+see Video Udemy 447 to learn to increase efficiency and reduce rerender cycle or increase performance
+
+-------------
 
 
 
 
 
 react hooks
-useState , useEffect ,useContext , useRef ,useReducer
+useState , useEffect ,useContext , useRef ,useReducer,useMemo
 
 state , ,createContext , createRef
 

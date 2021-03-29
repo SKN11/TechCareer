@@ -1,0 +1,4 @@
+HTML Entitities - used for put special character or specialsymbols inside html text
+ex: &gt; &lt; &amp; &euro; &copy (copyright symbol) 
+
+UTF - Unicode Transformation Format

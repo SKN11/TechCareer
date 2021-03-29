@@ -1,0 +1,404 @@
+...........Topic1 : Spring..............
+
+Ques : Why Spring? F Lw Lc
+Well firstly it helps to do development faster,
+reduces boilet plate code and
+supports various application like JDBC,ORM,IOC,AOP,DAO,MVC,Security by predefined templates
+It is a lightweight fw 
+		//that means you can use its application individually as well
+		for ex: you can use Spring JDBC without Spring MVC
+Loose coupling //It gives good support for IoC and Dependency Injection results in loose coupling
+
+Ques: Spring Modules?
+The Spring framework comprises of many modules such as 
+core,
+ beans,
+  context,
+   expression language,
+    AOP,
+     Aspects,
+      Instrumentation,
+       JDBC,
+        ORM,
+         OXM,
+          JMS,
+           Transaction,
+            Web,
+             Servlet
+-------------------------
+Ques : What is IOC ? Reduces Tight coupling
+
+Ques : But how ? IOC Container(Spring Container) responsible to inject dependency only we need to provide metadata via XML or Annotation
+
+Ques : How many IOC Container ? //both are interfaces
+
+Resource resource=new ClassPathResource("applicationContext.xml");  
+
+Ans : Bean Factory 
+	->BeanFactory factory=new XmlBeanFactory(resource);   //interface = implementation class  
+	->Student student=(Student)factory.getBean("studentbean");
+	
+      ApplicationContext
+      	-> ApplicationContext context =new ClassPathXmlApplicationContext("applicationContext.xml");   //interface = implementation class
+      	
+
+Ques : What is application context?
+The Application Context is Spring's advanced container. Similar to BeanFactory, it can load bean definitions, wire beans together, and dispense beans upon request
+
+
+Ques :  It is better to use ApplicationContext than BeanFactory why?
+Ans : built on top of the BeanFactory interface
+      simple integration with Spring's AOP,
+      message resource handling (for I18N),
+      event propagation,
+      application layer specific context (e.g. WebApplicationContext) for web application
+
+
+
+Ques: BeanFactory vs Application COntext?
+
+It is spring COntainer 		||    It is also a spring container
+It is lazy loading the bean		||	It eagerly loads the bean
+It doesnt support I18N			||	It supports I18N
+
+
+..........Topic : Spring Containers...............
+
+BeanFactory     //BeanFactory factory=new XmlBeanFactory(resource)
+
+ApplicationCOntext     //ApplicationContext context =new ClassPathXmlApplicationContext("applicationContext.xml");
+
+
+
+
+
+
+-----------Dependency INjection---------------
+Ques:Constructor arg DI ?
+	<bean id="e" class="com.javatpoint.Employee">  
+		<constructor-arg value="12" type="int"></constructor-arg>     //integer property
+		<constructor-arg value="Sonoo"></constructor-arg>  		//string property
+		<constructor-arg>  
+		<ref bean="a1"/>  						//referency to other bean
+		</constructor-arg>  
+	</bean>  
+
+
+Ques: what is parent atrribute in bean ?
+
+It basically inherits all the property of bean 'e1' into the bean 'e2'
+
+<bean id="e2" class="com.javatpoint.Employee" parent="e1">  
+<constructor-arg ref="address1"></constructor-arg>  
+</bean>
+
+
+Ques:Setter based DI ?
+
+	<bean id="obj" class="com.javatpoint.Employee">  
+		<property name="id">  
+			<value>20</value>  
+		</property>  
+		<property name="name">  
+			<value>Arun</value>  
+		</property>  
+		<property name="address" ref="address1">
+		</property>  
+	</bean>
+
+
+Ques : Why setter based DI is better than Constructorarg ? 
+1. Partial dependency 
+2. With constructor new bean is created everytime while in setter doesn't thats why setter based is lightweight & flexible.
+
+Ques : If we use both constructor and setter injection?
+Setter injection overrides the constructor injection. 
+
+
+-----------------
+
+Ques :Autowiring?
+
+use for DI, internally uses setter or contructor, only reference can be initialized with autowiring
+<bean id="b" class="org.sssit.B"></bean>  
+<bean id="a" class="org.sssit.A" autowire="byName"></bean>  
+
+autowire="byName" // bean id and bean name in class A must be same ex: B b;
+autowire="byType" //it will not require same bean name but bean type should be unique ex: only one B b;
+autowire="constructor" //autowire by constructor
+autowire="no"  //no autowiring
+
+
+Ques : Factory Method in Spring?
+
+Static FM which gives instance of own class , internally uses singleton pattren
+<bean id="a" class="com.javatpoint.A" factory-method="getA"></bean>  
+
+Static FM which gives instance of own class , internally uses singleton pattren
+<bean id="b" class="com.javatpoint.A" factory-method="getB"></bean>  
+
+
+Non Static FM which gives instance of another class
+<bean id="a" class="com.javatpoint.A"></bean>  
+<bean id="b" class="com.javatpoint.A" factory-method="getB" factory-bean="a"></bean>  
+-----------
+
+
+Ques :Aspect Oriented Programming (AOP) ?  //Implemented by "Spring AspectJ AOP"
+
+used to increase modularity by cross-cutting concerns.
+A cross-cutting concern is a concern that can affect the whole application and should be centralized in one location in code as possible, such as transaction management, authentication, logging, security etc
+
+AOP Provides modularity ? How 
+By separaing concerns from actual application
+
+JoinPoint : Method Executon for concern(ex:method doing logging part)     //Note: Spring supports only method execution join point.
+
+Advice: what you need to do along joinpoint //@Before  , @After (before return) ,@AfterReturn (afterreturn) ,@Around @AfterThrowing
+
+@PointCut : expression language of AOP  //@Pointcut
+
+@Aspect : It is a class that contains advices, joinpoints etc.  
+	@Aspect
+	public class TrackOperation{
+	}
+
+Weaving : Process of linking aspect with other application types or objects to create an advised object
+
+----------------
+Ques : Spring withORM?
+Spring provides " API " to easily integrate Spring with ORM frameworks such as Hibernate, JPA(Java Persistence API) ?
+
+Advantages :-
+Less code //don't need to write such as getting the connection, starting transaction, commiting transaction, closing connection etc
+Integrated transaction management
+better exception handling
+
+HibernateTemplate & JpaTemplate reduces the boiler plate code in Spring
+----------------
+
+Ques: Spring Bean Lifecycle ?
+
+Container Started -> Bean Instantiated -> Dependncies INjectcted -> init()method ->custom methods-> destroy method->
+
+@PostConstruct - for initmethod
+@Predestroy - for destroy method
+Reference - https://www.geeksforgeeks.org/bean-life-cycle-in-java-spring/
+
+
+
+
+
+--------------
+Ques : SPEL Spring Expression Language ?
+
+use to write expression within string 
+also use to set value of bean object
+
+ExpressionParser parser = new SpelExpressionParser();  
+
+parser.parseExpression("number").setValue(context,"5"); 
+
+String helloUpper = "'Hello SPEL'.toUpperCase()";  
+Expression exp = parser.parseExpression(helloUpper);
+String message = (String) exp.getValue(); 		//o/p HELLO SPEL
+-----------------
+
+Ques : Spring Scopes
+https://www.baeldung.com/spring-bean-scopes
+There are total 6 scopes
+singleton
+prototype
+request
+session
+application
+websocket
+
+
+Singleton -
+The container creates a single instance of that bean,
+and all Requests for that bean name will return the same object, which is cached.
+Any modifications to the object will be reflected in all references to the bean
+
+
+@Bean
+@Scope("singleton")                           //also @Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
+public Person personSingleton() {
+    return new Person();
+}
+
+Note in xml based type scope="prototype" as arg
+ex: <bean id="a" class="com.basic.Coach" scope="prototype"> </bean>
+
+---
+
+Prototype
+A bean with prototype scope will return a different instance every time it is requested from the container.
+@Scope("prototype")                             //also @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+
+---
+WebAwareScopes(request,session,application,websocket
+
+
+Request
+The request scope creates a bean instance for a single HTTP request
+
+@Bean
+@RequestScope                         //@Scope(value = WebApplicationContext.SCOPE_REQUEST, proxyMode = ScopedProxyMode.TARGET_CLASS)
+public HelloMessageGenerator requestScopedBean() {
+    return new HelloMessageGenerator();
+}
+
+The proxyMode attribute is necessary because, at the moment of the instantiation of the web application context, there is no active request. Spring will create a proxy to be injected as a dependency, and instantiate the target bean when it is needed in a request.
+
+---
+
+Session
+session scope creates a bean instance for an HTTP Session.
+
+@Bean
+@SessionScope                  //@Scope(value = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.TARGET_CLASS)
+public HelloMessageGenerator sessionScopedBean() {
+    return new HelloMessageGenerator();
+}
+
+Application
+@ApplicationScope             //@Scope( value = WebApplicationContext.SCOPE_APPLICATION, proxyMode = ScopedProxyMode.TARGET_CLASS)
+The application scope creates the bean instance for the lifecycle of a ServletContext
+
+WebSocket
+the websocket scope creates it for a particular WebSocket session.
+
+@Bean
+@Scope(scopeName = "websocket", proxyMode = ScopedProxyMode.TARGET_CLASS)
+
+
+----------------
+Ques:What's the difference between @Component, @Repository & @Service annotations in Spring?
+
+@Component	generic stereotype for any Spring-managed component
+@Repository	stereotype for persistence layer
+@Service	stereotype for service layer
+@Controller	stereotype for presentation layer (spring-mvc)
+
+
+
+
+...............Topic : Spring Security........................
+
+It targets two areas 
+authenticaion  //to know who is the user
+authorization   //to give permission
+
+OAuth 2.0 Login //facility to the user to login into the application by using their existing account at GitHub or Google.
+
+...............Topic : Spring Vikas Codes........................
+
+
+Ques: to load properties file inSpring?
+<context:property-placeholder location="classpath:sport.properties"/>
+@PropertySource("classpath:sport.properties");
+
+
+
+@Autowired
+@Qualifier("camelcase name of class")
+private FortuneService fortuneService;
+It basically tells spring container that which implementation to take if there are more than 1 bean available for "fortuneService".
+
+-------------------
+To configure properties from properties file
+
+@Component  
+@ConfigurationProperties("limits-service")  
+public class Configuration   
+{  
+private int maximum;  
+private int minimum; 
+
+}
+
+
+In application.properties
+
+limits-service.minimum=99  
+limits-service.maximum=9999  
+----------------------
+
+Ques: To call aanother rest service in Rest Controller?
+use new RestTemplate().getForEntity method
+
+example:
+ResponseEntity<CurrencyConversionBean>responseEntity=new RestTemplate().getForEntity("http://localhost:8000/currency-exchange/from/{from}/to/{to}", CurrencyConversionBean.class, uriVariables);  
+
+-----
+
+
+
+
+..........Topic : Spring MVC Validation...............
+
+(@Valid @ModelAttribute("emp")Employee emp,BindingResult r) in request handling method in controller
+
+@Size(min=1,message="required") in pojo datavariable
+private String pass; 
+
+@Pattern(regexp="^[a-zA-Z0-9]{3}",message="length must be 3")  
+private String pass; 
+
+@Min(value=18, message="must be equal or greater than 18")  
+@Max(value=45, message="must be equal or less than 45")  
+private int age;  
+	
+	
+CUSTOM VALIDATION 
+we can create custoem validation using
+
+@Constraint(validatedBy = PasswordConstraintValidator.class)  
+@Target( { ElementType.METHOD, ElementType.FIELD } )  
+@Retention(RetentionPolicy.RUNTIME)  
+public @interface Password {  
+    //error message  
+     public String message() default "must contain jtp";  
+     }
+
+
+
+...........Topic : RestFul WebServices..............
+
+What is Webservice?
+It is way to communicate between two devices or network
+For Ex :Java application can interact with Java, .Net, and PHP
+Use:if your client uses PHP as thier technology and wants some list from you which u have written in java so with the help of webservice
+it can be easily possible
+
+What is Remote Prodedure Call or RPC
+In distributed computing, a remote procedure call is when a computer program causes a procedure to execute in a different address space,
+ which is coded as if it were a normal procedure call.
+ 
+ SOAP Simple Object Access protocol
+ REST Representational state Transfer
+ 
+Ques : What is JAXWS & JAXRS?
+ JAX-WS is the java API specification for SOAP web services. Implemented by RPC Style OR Document style
+ JAX-RS is the java API specification for RESTful web services.  Implementor Jersey & RestEasy
+ 
+ **** REST permits different data such as PlainText,HTML,XML,Json whereas SOAP only permits XML
+
+What is service?
+A service is a well-defined, self-contained logical function that represents a unit of functionality.
+For ex: TCS tcs is a compony that provides services to their clients also interact with other Companies(other service) to get the task done
+
+ 
+ 
+ 
+Ques: How to upload file using spring boot?
+using MultipartFile file
+
+Ques: How will you redirect in your spring boot app?
+Using RedirectAttributes
+
+
+Ques:  POM ?
+Project Object Model 
+ 

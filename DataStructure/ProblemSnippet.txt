@@ -1,0 +1,75 @@
+P:Two sum
+
+var twoSum = function(nums, target) {
+    
+    let obj={};
+    let res=[];
+    for(let i=0;i<nums.length;i++)
+        {
+            let comp = target - nums[i];
+            if(comp in obj)  return [obj[comp],i];
+            else obj[nums[i]] =i;
+        }
+    return res;  //in case target not found 
+};
+
+//twoSum([-1,-2,-3,-4,-5],-8)
+twoSum([2,7,11,15],9);
+
+================================================
+
+Javscript sorting techinique
+  nums.sort((a,b)=>{return (a-b)});       //for String  return str1.length - str2.length;
+    console.log(nums);
+    
+================================================
+
+Problem : Three sum
+
+var threeSum = function(nums) {
+    nums.sort((a,b)=>{return (a-b)});
+    //console.log(nums);
+    
+    var res =[];
+    
+    let f=nums[0];
+    for(let i=0;i<nums.length;i++)
+        {
+            let n =nums.slice(0,i);
+            if(n.includes(nums[i]))
+            continue;
+            //console.log(nums[i]);
+
+            let target = 0-nums[i];
+            let end = nums.length-1;
+            //let start =i+1;
+            for(let start=i+1;start<nums.length && start<end;)
+            {
+                    let n1 =nums.slice(i+1,start);
+                    if(n1.includes(nums[start]))
+                    start++;
+                    
+                    let n2 =nums.slice(start,end);
+                    if(n2.includes(nums[end]))
+                    end--;
+                    
+                
+                    let sum = nums[start]+nums[end];
+                    if(sum > target)    end--;
+                    else if(sum < target) start++;
+                    else if(sum ==target)
+                        {
+                        res.push([nums[i],nums[start],nums[end]]);
+                        start++; end--;
+                        }
+             }
+            
+        }
+    
+    return res;
+};
+
+
+================================================
+
+Add two linked list

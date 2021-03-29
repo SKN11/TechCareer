@@ -51,3 +51,15 @@ https://practice.geeksforgeeks.org/problems/find-second-largest-element/0
 1. remove second string char from first string char 
 https://practice.geeksforgeeks.org/problems/remove-character3815/1
 
+2. String Permutation
+https://www.geeksforgeeks.org/print-all-permutations-of-a-string-in-java/
+
+
+
+~~~~~~~~~~~~~~~~~TrivialPrograms
+
+2.prit Fibonacci series
+https://www.geeksforgeeks.org/program-for-nth-fibonacci-number/
+
+3.
+

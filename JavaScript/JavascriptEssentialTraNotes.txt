@@ -144,7 +144,7 @@ return a*b;
 return multiply;
 }
 
-var result = doSomeMath(); 
+var result = doSomeMath(); summary
 console.log(result);//o/p Full multiply function body
 console.log(result());//o/p 2
 

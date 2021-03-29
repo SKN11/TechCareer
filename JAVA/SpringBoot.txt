@@ -68,7 +68,76 @@ Criteria API: It defines a Java-based API to execute searches against the databa
 Note: Spring internally generates a JPQL (Java Persistence Query Language) query based on the method name. 
 
 
+-----------------Topic : @QUery In JPA......................
 
+Ques: write native sql query in jparepository?
+@Query(
+  value = "SELECT * FROM USERS u WHERE u.status = 1", 
+  nativeQuery = true)
+Collection<User> findAllActiveUsersNative();    //nOte we cannot pass sort object to this method as it is not supported , it throws 							Invalidjpaquerymethodexception
+
+
+
+@Query("SELECT u FROM User u")  //get all user
+List<CompanyMaster> findAllActiveUsers();
+
+@Query(value = "SELECT u FROM User u ORDER BY id")
+Page<User> findAllUsersWithPagination(Pageable pageable);
+
+@Query("SELECT u FROM CompanyMaster u WHERE u.cmpCode = ?1")  //get cmp with id 40   using Indexed Parameter
+List<CompanyMaster> findAllActiveUsersByID(Integer cmpCode);	
+
+@Query("SELECT u FROM User u WHERE u.status = :status and u.name = :name")    //get cmp with status & name   using Named Parameter
+User findUserByStatusAndNameNamedParams(
+  @Param("status") Integer status, 
+  @Param("name") String name);
+  
+@Query(value = "SELECT u FROM User u WHERE u.name IN :names")
+List<User> findUserByNameList(@Param("names") Collection<String> names);
+
+
+For Update..
+@Modifying    //rememebr this we have to use it while firing Query in JPA SpringBoot
+@Query("update User u set u.status = :status where u.name = :name")
+int updateUserSetStatusForName(@Param("status") Integer status, 
+  @Param("name") String name);
+  
+Note:The return value defines how many rows the execution of the query updated.
+
+For Insert....
+@Modifying
+@Query(value = "insert into Users (name, age, email, status) values (:name, :age, :email, :status)",
+  	nativeQuery = true)
+void insertUser(@Param("name") String name, @Param("age") Integer age, 
+  @Param("status") Integer status, @Param("email") String email);
+
+Note: To perform an insert operation, we have to both apply @Modifying and use a native query since INSERT is not a part of the JPA interface:
+
+
+
+-------	
+Ques : Sorting for Jpa?
+userRepository.findAll(Sort.by(Sort.Direction.ASC, "name"));
+
+Pageable sortedByName =   PageRequest.of(0, 3, Sort.by("name"));   //PageRequest.of(0, 3, Sort.by("price").descending());
+-----
+
+Ques: Pagination for JPA?
+Pageable firstPageWithTwoElements = PageRequest.of(0, 2);
+return cmpMasterRepository.findAll(firstPageWithTwoElements);
+Note : it fires extra query to get count if u dont want that just take it as List<T> not Page<T>.
+
+Ques:what is Slice<T>
+A Slice only knows whether the next slice is available or not.
+-----
+
+Ques: EntityManager ?
+@PersistenceContext
+   private EntityManager entityManager;
+
+Ref---https://www.baeldung.com/spring-data-jpa-query
+
+-------
 http://localhost:8080/h2-console
 username : sa
 password : 
@@ -153,6 +222,10 @@ Advantage- It can be deployed easily on the client machine in a Web server envir
 [Jar]
 A file that encapsulates one or more Java classes, a manifest, and descriptor is called JAR file
 
+Manifest File - A manifest file in computing is a file containing metadata.
+
+Deescriptor -???
+
 
 
 =======================================================================================================================
@@ -161,6 +234,12 @@ A file that encapsulates one or more Java classes, a manifest, and descriptor is
 Ques:Why Representaion State Transfer?   //bcoz it provide the representation of the resource.
 
 HTTP also defines the following standard status code:
+1xx - Informational.
+2xx - Successful.
+3xx - Redirection.
+4xx - Client error.
+5xx - Server Error.
+
 200: SUCCESS                //HttpStatus.
 201: CREATED		//HttpStatus.CREATED
 
@@ -188,7 +267,7 @@ Http req ----->Dispatcher Servlet
 					|
 Http res<------	view
 
-Ques : ResponseEntity Class
+Ques : ResponseEntity Class ?
 extends HttpEntity and HttpStatus class.
 user can use it to know the location where his data stored in the server by reading headers in the response
 	@PostMapping("/users-with-entity")  
@@ -237,7 +316,7 @@ ResponseEntityExceptionHandler  //default exception handler
 It is an abstract and base class for the exceptions that provide centralized exception handling across all the different exception handler methods.
 
 
-@ExceptionHandler(Exception.class) //override method of ResponseEntityExceptionHandler class  
+	@ExceptionHandler(Exception.class) //override method of ResponseEntityExceptionHandler class  
 	public final ResponseEntity<Object> handleAllExceptions(Exception ex, WebRequest request)  
 	{  
 		
@@ -330,8 +409,83 @@ Accept: application/json
 userRepository.findAll();     //list of users
 userRepository.findById(id);   //return specific user with id and it is a Optional<User> and we can get the user using .get() method
 userRepository.deleteById(id);  //delete user with id   .... return nothing
+User sevedUser=userRepository.save(user); //to save new user  (by post method)
 
-fetch=FetchType.LAZY
+fetch=FetchType.LAZY  //It tells to lazily load child component
+			The reason we explicitly set the fetch attribute to FetchType.LAZY is because, by default, all @ManyToOne and @OneToOne 				associations are fetched eagerly, which can cause N+1 query issues.
+
+
+
+[  @OnetoMany  & @ManytoOne ].........................
+Refer this
+https://stackoverflow.com/questions/11938253/whats-the-difference-between-joincolumn-and-mappedby-when-using-a-jpa-onetoma
+
+Real Life Example : A user can have multiple post
+Foriegn Key Concept use in this mapping
+
+1.Unidirectional 
+2.Bidirectional
+
+1.Unidirectional
+If you use the @OneToMany annotation with @JoinColumn in User List<Post> post,and nothing in the post then you have a unidirectional association.
+put this only in the user...
+@OneToMany(cascade = CascadeType.ALL)
+@JoinColumn(name = "user_id")
+private List<Post> comments = new ArrayList<>();
+
+2.Bidirectional
+If you use the @OneToMany with the mappedBy attribute set, you have a bidirectional association
+In our case, both the User entity has a collection of post child entities, and the child post entity has a reference back to the parent User
+
+put this in the user...
+@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+private List<Post> comments = new ArrayList<>();
+
+put this in the post..
+@ManyToOne(fetch = FetchType.LAZY)
+private User user;
+
+Note: The reason we explicitly set the fetch attribute to FetchType.LAZY is because, by default, all @ManyToOne and @OneToOne 		         associations are fetched eagerly, which can cause N+1 query issues.
+
+
+Ques:what is the use of mappedBy?    //very Important question
+The mappedBy attribute of the @OneToMany annotation references the user property in the child post entity, and, this way, Hibernate knows that the bidirectional association is controlled by the @ManyToOne side.
+
+
+Ques: which is better Unidirectional or bidirectional?
+The unidirectional @OneToMany association does not perform very well, so you should avoid it.
+You are better off using the bidirectional @OneToMany which is more efficient.
+
+
+Note:For a bidirectional association, you also need to have two utility methods, like addPost and removePost in User POJO Class
+public void addPost(Post post) {
+    posts.add(comment);
+    post.setPost(this);  //set User to the User property in Post POJO Class
+}
+
+public void removePost(Post post) {
+    posts.remove(comment);
+    post.setPost(null);  //nullify User to the User property in Post POJO Class as it is removed from the post lists in User POJO Class
+}
+
+
+[  @OnetoOne  & @ManytoOne ].........................
+Real Life Example : A user can have one address(or mailing address) and that address belongs to one user only
+
+
+
+
+
+
+
+
+
+
+
+Some Mapping Question........................
+Ques : orphanRemoval=true
+orphanRemoval is an entirely ORM-specific thing. It marks "child" entity to be removed when it's no longer referenced from the "parent" entity, e.g. when you remove the post from the corresponding collection of the User entity.
+
 
 
 
@@ -400,6 +554,7 @@ public class ScanComponent{
 
 ---------------
 @ControllerAdvice  -- use for some advice for example exception if user not found
+apply same for ex: exception handling throughout the application
 
 
 @ExceptionHandler(Exception.class) 				//for throw Exception  (if any handling method like conatctnotfoundexception not 									thier then this method execute by default
@@ -446,7 +601,10 @@ for ex:
      }
  }
  
+------------------
+@RepositoryRestResource
 
+It tells spring boot container that is it the dao for the application
 
 
 
@@ -490,12 +648,12 @@ return mapping;
 
 
 ......................Topic :Versioning RESTful Web Services............
-URI Versioning....  //Twitter uses URI versioning.
+1)URI Versioning....  //Twitter uses URI versioning.
 differentiate service based on the Request URI
 @GetMapping("v1/person")  
 @GetMapping("v2/person")  
 -------
-Versioning using Custom Request Parametr....   // Amazon uses the request parameter versioning. 
+2)Versioning using Custom Request Parametr....   // Amazon uses the request parameter versioning. 
 wdifferentiate service based on the Request Parameter
 URI http://localhost:8080/person/param?version=1
 URI http://localhost:8080/person/param?version=2
@@ -504,7 +662,7 @@ handle this in your controller
 @GetMapping(value="/person/param", params="version=1")  
 @GetMapping(value="/person/param", params="version=2")  
 -----
-Versioning using Request Header...... //Microsoft uses the request header versioning
+3)Versioning using Request Header...... //Microsoft uses the request header versioning
 we differentiate service based on the Request Header.
 @GetMapping(value="/person/header", headers="X-API-Version=1")  
 @GetMapping(value="/person/header", headers="X-API-Version=2")  
@@ -513,7 +671,7 @@ send in headers
 key:X-API-Version  Value:1
 --------
 
-Versioning using Accept Header..... //Git Uses  uses the accept header versioning
+4)Versioning using Accept Header..... //Git Uses  uses the accept header versioning
 
 @GetMapping(value="/person/produces", produces="application/vnd.company.app-v1+json")  
 
@@ -550,22 +708,23 @@ To specify to authenticate via google put some oath property in properties file
 oath acccess tokenuri = "some googleauthenticateurl"
 tokenName =oath_token
 scope = profile , username
-clietid=
+clientid=
 clientsecret =
 
-register google cloud, login it, go in apia7services -> go in outh tab->give ur app name->provide scope
+register google cloud, login it, go in apia7services -> go in oauth tab->give ur app name->provide scope(information to show)
 then save
 create oauth client id
-give url from where access needed
+give url of your application from where access needed
 
 
 
 it will give u now clientid &clientsecret id put it in you properties file
 
-create pricipal for user in your controller 
+create principal for user in your controller 
 and u r done :)
 
- 
+......................Topic : Properties File Info............ 
+server.port=8090   //to set port
 
 
 
@@ -583,3 +742,11 @@ d.When a resource is CREATED, don't send SUCCESS, send CREATED back.
 e.When a ESOURCE NOT FOUND, don't send the SERVER ERROR
 f.Use /users/1 not /user/1
 
+
+
+..........................
+Ques: produces and consumes in spring boot?
+
+@RequestMapping(value = "/foo", method = RequestMethod.POST,
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)

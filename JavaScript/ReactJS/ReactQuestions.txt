@@ -10,3 +10,50 @@ Ques : What is Babel ?   //a transpiler and compiler
 Ques : Webpack dev server default port //8080
 
 Ques : How many stages are there in React js life cycle   //React Js lifecycle have three stages named Mounting , Updating and Unmounting
+
+Ques: React DOM?     // to render app to the dom
+
+
+
+...................Topic:React Router............................
+
+Ques: this.props.history.push({pathname:'/checkout'});
+Ans : It is used to go on certain page "/checkout" using routing
+
+Ques: const queryParam = new URLSearchParams(this.props.location.search);  ? What is this.props.location.search
+It contains the query param which should be parsed
+
+Ques: this.props.match.path    
+It stores the current path till now
+
+Ques: In <Route component={Contact} />  if you want to pass some w=argument with it how do u do that?
+<Route render={()=>(<Contact ingr={this.state.ingredients}/>} />
+
+Ques: event.preventDefault();
+when we click on any item like in form it does go to hit a request. and if we dont want that we can use preventDefault
+         
+Ques:What is this.props.history ?
+https://stackoverflow.com/questions/44121069/how-to-pass-params-with-history-push-link-redirect-in-react-router-v4
+        
+         
+         
+         
+.......................Topic: React Hooks.......................      
+Ques: How to reduce rerender cycle in React?
+wrapp your function which is responsible to rerender in useCallback
+
+Ques: How to create Custom hooks?    //asked in ExpressAnalytics
+
+
+
+
+
+
+.......................Topic: React General Questions.......................      
+
+Ques1: What is the algorithm used in virtual dom?
+Reconcilliation diff algorithm
+
+Ques : What is Reconcilliation?
+Reconciliation is the process through which React updates the DOM. When a component's state changes, React has to calculate if it is necessary to update the DOM. It does this by creating a virtual DOM and comparing it with the current DOM. In this context, the virtual DOM will contain the new state of the component.
+

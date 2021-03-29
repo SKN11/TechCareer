@@ -1,0 +1,256 @@
+................Topic: Design Pattern................React
+
+Ques1 : Higher-Order Component (or HOC) is essentially a design pattern, also known as a Decorator Pattern.
+
+
+................Topic: Data Structure................React
+
+Helper Method recursion
+create recursive function in a function which is not recursive 
+
+
+
+................Topic: Design Pattern................Java
+
+Ques : Why we use Design P? //to improve performance and memory utilization and security
+
+[Singleton Pattern]  design pattern
+  done from notes
+  private constructor   //so that no base class can be created
+  public factorymethod
+  private static Object Variable   //can it be access using ClassName ? no coz that member is private not visible to other class. u need to create 					public get method to get this value
+
+
+[IOC]  design pattern  //It is a Design pattern which is used to remove dependency (or Tight Coupling)from the programming code
+	class Employee{  
+	Address address;  
+	Employee(){  
+	address=new Address();  
+	}  
+	}
+	
+	class Employee{  
+	Address address;  
+	Employee(Address address){  
+	this.address=address;  
+	}  
+	}
+	
+
+[Model-View-Controller]  design pattern
+
+
+[SOA]    (Service Oriented Pattern) designpattern 
+
+
+CREATIONAL DESIGN PATTERNS....
+
+[Factory Method Pattern]    //also known as virtual constructor
+Just define an interface or abstract class for creating an object but let the subclasses decide which class to instantiate
+
+When a class doesn't know what sub-classes will be required to create
+When a class wants that its sub-classes specify the objects to be created.
+Refer:Javatpoint for code
+
+Ex: if we talk to hdfc_private_ltmd(impl class) for banking operation
+............
+[Abstart Factory Pattern]   //also known as "Kit"
+Abstract Factory Pattern is one level higher than the Factory Pattern.
+just create interface or abstract in between all the impl and let client talk only to interfaces or abstract
+
+
+define an interface or abstract class for creating families of related (or dependent) objects but without specifying their concrete sub-classes
+Concrete Class -HDFC_private_ltmd
+Interface or abstract class -hdfc
+this means we get our object by just giving name as hdfc (interface name) not impl class name(HDFC_private_ltmd)
+
+When you want to provide a library of objects that does not show implementations and only reveals interfaces
+
+Every object creation is done via interfaces
+
+Ex:Customer can opt any Bank for loan and balance everything via Interface and Factory only
+Ex:Regulation can be assigned by RBI but we get this info from respective bank interface
+...................
+[Prototype Design Pattern]
+Prototype Pattern says that cloning of an existing object instead of creating new one
+and also can also be customized as per the requirement
+if the cost of creating a new object is expensive and resource intensive
+
+It  hides complexities of creating objects.
+Just call getclone method it will give you the object
+....................
+[Object Pool Pattern]
+Object Pool Pattern says that " to reuse the object that are expensive to create".
+Objects in the pool have a lifecycle: creation, validation and destroy.
+
+When an object is taken from the "Object pool", it is not available in the pool until it is put back
+Ex: Thread Pools etc
+................
+
+[Builder Design Pattern]
+construct a complex object from simple objects using step-by-step approach
+
+
+
+
+
+
+
+STRUCTURAL DESIGN PATTERN.......
+
+[Adapter Design Pattern]
+It is a dp in which implementation of the interface is done by some adapter by extending another preimplemented adapter class
+
+Ex:
+public class BankCustomer extends BankDetails implements CreditCard { }
+
+CreditCard is TargetInterface to implement
+BankDetails is adaptee class which already implemented
+BankCustomer is an adapter class uses BankDetails to implement Target Interface
+ 
+................ 
+[Bridge Design Pattern]
+decouple implementation class with client which uses interface
+
+implementation class--interface-- bridge class
+in your main code create interface objecte data variable and assign it with implementation class object 
+
+Ex: To book ticket client go on booking portal(interface) which is implemented by airlines(impl class) and provided by paytm having instance of interface and reference of implementation class object
+
+....................
+[Facade Pattern]
+interface of interfaces
+hiding subsystem of interfaces from the client
+facade Pattern describes a higher-level interface that makes the sub-system easier to use.
+
+Practically, every Abstract Factory is a type of Facade.
+
+................
+[Proxy Pattern]    // also known as Surrogate or Placeholder.
+proxy means an object representing another object.
+provides the control for accessing the original object   //It just provide some validation on proxy object to create real object
+
+for example: Monalisa Painting. Original Painting is hided and proxy painting displays to the viewrs representing the same painting
+
+Example: https://www.javatpoint.com/proxy-pattern
+
+
+...................
+[Composite Design Pattern]
+It is a pattern in which an object represent multiple object
+Employee(Interface) repsent HR,Developer,Tester(Impl Classes) etc
+
+
+-------------------
+[Decorator Pattern]
+When you want to transparently and dynamically add responsibilities to objects without affecting other objects.
+
+Ex: just make abstract class of that interface and introduce some more responsibilties apart from interface and thus you get decorated object.
+
+food + nonveg
+food + chinese
+food + madrasi etc
+
+
+....................
+
+[FlyWeight Design Pattern]
+To reuse already existing similar kind of objects by storing them and create new object when no matching object is found
+
+For ex : In Java String Constant pool it creates new object if that object is not present
+
+........................
+
+
+
+
+BEHAVIORAL DESIGN PATTERN.......
+
+[Chain Of responsibilty Pattern]
+normally each receiver contains reference of another receiver. If one object cannot handle the request then it passes the same to the next receiver and so on.
+
+For example: an ATM uses the Chain of Responsibility design pattern in money giving process.(if one service down it goes to another consecutive service
+e
+.........
+[Iterator Pattern]
+
+same as iterator in collection
+String is not itearave while list is
+
+.......
+
+[Interpreter Pattern]
+
+Converting one type of commands by interpreting implicitly to another type command 
+ex: infix to postfix 
+
+.........
+
+[Mediator Pattern]
+When we begin with development, we have a few classes and these classes interact with each other producing results. Now, consider slowly, the logic becomes more complex when functionality increases. Then what happens? We add more classes and they still interact with each other but it gets really difficult to maintain this code now. So, Mediator pattern takes care of this problem.
+
+
+ex: Chatroom example......
+We create chatroom (interface+Impl class)
+Create User.....each user has the chatroom instance when we initialize , so when we send any message it calls internally show message of chatrooom
+which prints message and yes everybody can see the message, in the chat.
+
+.........
+
+[ Memento Pattern ]    //also known as token
+A Memento Pattern says that "to restore the state of an object to its previous state".
+
+Ex: Undo operation in notepad , Ctrl Y,Ctrl Z
+
+.........
+[ Observer Pattern ]    //also known as Dependents or Publish-Subscribe.
+
+An Observer Pattern says that "just define a one-to-one dependency so that when one object changes state, all its dependents are notified and updated automatically".
+
+..........
+
+
+JEE PATTERN.................................
+
+[ Front Controller Pattern ]
+
+A Front Controller Pattern says that if you want to provide the centralized request handling mechanism so that all the requests will be handled by a single handler". 
+
+This handler can do the 
+authentication,
+authorization,
+logging,
+tracking of request 
+and then pass the requests to corresponding handlers.
+
+ex: dispatcher servlet.
+
+------
+
+[Intercepting Filter Pattern]
+
+An Intercepting Filter Pattern says that "if you want to intercept and manipulate a request and response before and after the request is processed".
+
+we can do 
+setAttribute
+setMaxInactiveInterval
+set cookie
+send redirect etc
+
+
+
+ 	HttpSession session = request.getSession();  
+            session.setAttribute("user", "ashwani");  
+              
+            //setting session to expire in 1 hour  
+            session.setMaxInactiveInterval(60*60);  
+              
+            Cookie userName = new Cookie("user", user);  
+            userName.setMaxAge(60*60);  
+            response.addCookie(userName);  
+            response.sendRedirect("LoginSuccess.jsp");  
+
+
+
+---------------
+

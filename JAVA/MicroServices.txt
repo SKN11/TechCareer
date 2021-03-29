@@ -1,0 +1,194 @@
+An API stands for Application Program Interface
+
+Ques: What is microservices?
+Definition: The microservice defines an approach to the architecture that divides an application into a pool of loosely coupled services that implements business requirements.
+
+In the microservice architecture, all the services communicate with each other.
+Each microservice runs its process and communicates with lightweight mechanisms, different Dtabase and business layer.
+
+Ex: It is like threads in java multithreading?   // obviously not sharing resources
+In Software dev different people are like microservice which accoplishishing Big Task(big sevice).
+
+Note:
+Microservices are platform agnostic.(means loosely coupled doesnt affect other service)
+
+-------
+Cons:
+Microservice architecture is more complex than the legacy system.
+team has to manage and support many moving parts
+Load balancing is needed
+Cyclic Depenedncy
+
+
+Pros:
+Microservices fits perfectly into the DevOps
+Dynamic Scaleup and down
+
+-----
+
+Ques: Monitor Microservice?
+Eureka admin dashboard
+Spring boot admin dashboard
+
+------
+
+Ques: To configure properties from properties file?
+
+@Component  
+@ConfigurationProperties("limits-service")  
+public class Configuration   
+{  
+private int maximum;  
+private int minimum; 
+
+}
+
+
+In application.properties
+
+limits-service.minimum=99  
+limits-service.maximum=9999  
+
+--------------
+
+
+Ques: To call aanother rest service in Rest Controller?
+use new RestTemplate().getForEntity method
+
+example:
+ResponseEntity<CurrencyConversionBean>responseEntity=new RestTemplate().getForEntity("http://localhost:8000/currency-exchange/from/{from}/to/{to}", CurrencyConversionBean.class, uriVariables);  
+
+
+
+--------
+
+@EnableConfigServer in the SpringCloudConfigServerApplication.java file.
+
+
+------ Creating Microservice---------
+1. Create simple microservice that has max and minimum service
+2. Create SpringCloudConfig server 
+3. Connect ur local repo with spring config
+4. Override some properties file some microservice if u want
+
+Ques: To not use the new property use the default one only
+introduction-to-currency-conversion-and-currency-exchange-servicelimits-service.maximum=111   ... it will mark it as like comment
+
+----------------------Topic: Feign Rest Client---------------------
+
+Use for service invocation
+It is one of the popular Spring Cloud Component
+It is use as an alternative to RestTemplate().getForEnity()
+reduces lot of boiler plate code
+developed by Netflix
+
+To Enable it
+@SpringBootApplication  
+@EnableFeignClients("com.javatpoint.microservices.currencyconversionservice")  
+public class CurrencyConversionServiceApplication   
+{  
+public static void main(String[] args)   
+{  
+SpringApplication.run(CurrencyConversionServiceApplication.class, args);  
+}  
+}  
+
+
+Annotate mapping method with
+@FeignClient(name="currency-exchange-service", url="localhost:8000")
+
+@Autowired  
+private CurrencyExchangeServiceProxy proxy;  
+
+start exchange then currency to avoid whitelabelerror
+
+
+Ques: While using Feign how do u do loadbalancing?
+By Using Ribbon by Netflix
+
+Ribbon.............
+
+features
+1.Load balancing
+2.Fault tolerance
+3.Multiple protocol support in Asynchronous model
+4.Caching and batching
+
+
+Ques:load balancing?
+
+two types of load balancing
+
+Server Side Load Balancing: It accepts incoming network, application traffic, and distributes the traffic across the multiple backend servers by using various methods. The middle component is responsible for distributing the client requests to the server.
+
+Client-Side Load Balancing: The client holds the list of server’s IPs so that it can deliver the requests. The client selects an IP from the list, randomly, and forwards the request to the server.
+
+
+Ribbon helps to distribute the request with differnet available server
+
+Ribbon Properties file
+spring.application.name=currency-conversion-service  
+server.port=8100  
+currency-exchange-service.ribbon.listOfServers=http://localhost:8000, http://localhost:8001  
+
+-------------------Topic:Eureka Naming Server--------------------
+
+All the instances of all microservices will be register with the Eureka naming server.
+
+We have another load balancer application, which is known as AWS Cloud. Because of its inherent nature, server ups and down. There is no middle-tier load balancer. Eureka naming server fills the gap between the client and the middle tier load balancer.
+
+Eureka naming server is a REST-based server that is used in the AWS Cloud services for load balancing and failover of middle-tier services.
+
+The registration of microservice with the naming server is called Service Registration.
+
+The process of providing instances to other services is called Service Discovery.
+
+@EnableEurekaServer  
+
+@EnableFeignClients("com.javatpoint.microservices.currencyconversionservice")  
+@EnableDiscoveryClient  
+
+
+
+-----------------Topic: API Gateway-----------------
+
+The API Gateway is a server. It is a single entry point into a system
+It also translates between two protocols, such as HTTP, WebSockets etc
+All the requests made by the client go through the API Gateway. After that, the API Gateway routes requests to the appropriate microservice
+
+For ex: Netflixapi form mobile tv laptop
+
+An API Gateway includes:
+
+Security
+Caching
+Logging
+API composition and processing
+Managing access quotas
+API health monitoring
+Versioning
+Routing
+
+
+
+API Gateway handles the request in one of the two ways:
+1. It routed or proxied the requests to the appropriate service.
+2. Fanning out (spread) a request to multiple services.
+
+
+................Topic: Zuul server-----------------
+Zuul server is the Api Gateway avialable in market
+
+
+@EnableZuulProxy  in springbootmain application
+
+Zuul Server is an API Gateway application.
+It handles all the requests and performs the dynamic routing of microservice applications.
+It works as a front door for all the requests. It is also known as Edge Server.
+
+
+
+
+
+
+

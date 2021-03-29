@@ -1,0 +1,15 @@
+
+.....................Nagarro..............................
+Ques: Convert javaVariableto python variabele and python variable to javaVariable
+javaVariable - thisIsJavaVariable
+pythonVariable = this_is_java_variable
+
+
+Ques:Find First NonRepeatedCharacter in a String?
+
+
+Ques:Find MaxOccurences in a string?  maxoccurence is > n/2
+
+
+Ques:
+

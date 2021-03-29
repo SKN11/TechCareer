@@ -125,7 +125,7 @@ example : put this annotation on answer list type variable i.e many object(Answe
 @OrderColumn(name="type")  
 private List<Answer> answers; 
 
-Note: no need to pu anything in answer class just create it like a normal class. but
+Note: no need to put anything in answer class just create it like a normal class. but
 to making this a bidirectional relationship put @ManyToOne on on Question Data reference in Answer (remembr it's optional)
 ---
 
@@ -149,6 +149,28 @@ example: Put this annotation on Set project variable in EMployee Class
     	@ManyToMany(mappedBy = "projects")
         private Set<Employee> employees = new HashSet<>();
     
+
+3.One toOne
+ex: every employee has one home address only and one address belongs to that employee only
+
+In empployee class....
+@OneToOne(targetEntity=Address.class,cascade=CascadeType.ALL)  
+private Address address;    
+
+In Address class.....
+@OneToOne(targetEntity=Employee.class)  
+private Employee employee;
+
+4.ManyToOne
+ex: every employee has one company address only and one address belongs to many employees  
+
+In empployee class....
+@ManyToOne(cascade=CascadeType.ALL)  
+private Address address;  
+
+
+@OneToOne(cascade=CascadeType.ALL)  
+    private Employee employee;  
 
 Note : Try creating many to many exam	ple in eclipse
 
@@ -345,7 +367,7 @@ Transaction 			Transaction t = session.beginTransaction();
 Query
 Criteria
 
-Ques: Can we generate Standard SQL query in hibernate ?
+Ques: Can we generate Standard SQL query in hibernate ?  //very important
 Session.createSQLQuery
 
 
@@ -396,3 +418,26 @@ update() should be used if the session doesn't contain an already   ||   merge()
  persistent state with the same id. It means an update should be         means you want to make the modification at any time. 
  used inside the session only. After closing the session, it will
   throw the error.	
+  
+  
+  
+...........................Topic:Hibernate Interview Question............................
+
+Ques: How do you write verycomplexquery in hibernate?
+with sqlquery exapmle :
+
+String sql = "SELECT * FROM EMPLOYEE WHERE id = :employee_id";
+SQLQuery query = session.createSQLQuery(sql);
+query.addEntity(Employee.class);
+query.setParameter("employee_id", 10);
+List results = query.list();
+
+
+
+  
+  
+  
+  Pending...........
+  
+  create projects of hibernate relationship in eclipse
+  whta is mappedByattribute

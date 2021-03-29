@@ -23,15 +23,32 @@ Ques : System.out.println(10  +  20 + "GeeksQuiz");  //30GeeksQuiz
        System.out.println("GeeksQuiz" + 10 + 20);   //GeeksQuiz1020
        
 Ques : String intern() method //returns string from SCP
+Strin s1="abc";
+String s2=s1.intern(); //"abc"
 
-String Buffer is synchronized and hence thread-safe. 
-String Builder is not synchronized or thread safe
+String Buffer is synchronized and hence thread-safe.   //also it is not comaparable
+String Builder is not synchronized or not thread safe
+
+Ques : trim() vs strip() ?
+Both are used to remove leading and trailing whitespaces.
+
+strip() method  
+It was added to the String class in Java 11. However, the strip() method uses Character.isWhitespace() method to check if the character is a whitespace. This method uses Unicode code points.
+whereas the trim() method identifies any character having codepoint value less than or equal to ‘U+0020’ as a whitespace character.
+
+Ques : which is recommended ? 
+The strip() method is the recommended way to remove whitespaces because it uses the Unicode standard.
+
+Ques: StringBuffer ensureCapacity() ?
+increase the capacity of String buffer(old+new = new capacity)
+
+Ques: str.substrng(i,j)?
+ gives string start from i to j-1 
 
 
+...............Topic: Threading.................
 
-
-...............Thread.................
-Ques 1:What start() method does? //instantiate,allocates CPU
+Ques 1:What start() method does? //instantiate,register thread to ThreadSchedular
 
 Ques 2:What is Thread Scheduler?  // allocates CPU
 
@@ -42,14 +59,92 @@ Ques 4:Which method is useful to create Thread, extending thread or implementing
 Ques 5:Thread Deadlock startegy?   //Thread.currentThread().join() or put join on each other thread
 
 Ques 6: How Synchronized Block is better approach then Synchronised Method? // The main advantage of synchronized block over synchronized method is it reduces waiting time of Thread and improves performance of the system
+
 Ques 7:Draw Full Thread Life cycle?
 
 Ques : why wait,notify,notifyall present in object class if it is specific to thread.why not it in thread class?
-coz thread applies these methods on objects 
+coz thread applies lock on these methods on objects 
 ex: locking concept
 
 Ques: Thread uses what scheduling?
 Premptive - high priority executes first      //in tim slicing thread exexutes for some time and go in ready state again
+
+Ques: Semaphores in Java?
+A semaphore controls access to a shared resource through the use of a counter. If the counter is greater than zero, then access is allowed. If it is zero, then access is denied
+to access the resource, a thread must be granted a permit from the semaphore.
+We can use a semaphore to lock access to a resource, each thread that wants to use that resource must first call acquire( ) before accessing the resource to acquire the lock. When the thread is done with the resource, it must call release( ) to release lock.
+
+More On Semaphores - https://www.geeksforgeeks.org/semaphore-in-java/
+
+Que: If you have one thread printing even number anotherthread printing odd number how can u print 1,2,3,4,5.....?
+Using wait notify concept
+
+--------
+Ques: Thread Pool?
+It is a group of worker threads that are waiting for the job and reuse many times.
+Advantage //no need to create thread i.e no need to focus on creating threads and saves time
+
+Ex: Tomcat container uses thread pool
+https://www.javatpoint.com/java-thread-pool
+
+ExecutorService executor = Executors.newFixedThreadPool(5);			//creating a pool of 5 threads  
+for (int i = 0; i < 10; i++) {  
+            Runnable worker = new WorkerThread("" + i);  
+            executor.execute(worker);						//calling execute method of ExecutorService  
+}  
+executor.shutdown(); 
+
+Runtime.....
+Ques : How will you invoke any external process in Java?     //to perform native operation of platform
+Runtime.getRuntime().exec("notepad");//will open a new notepad  
+Note: to learn full force of Runtime refer = https://www.javatpoint.com/java-runtime-class
+
+Ques : What is shutdown hook?   //The shutdown hook is a thread that is invoked implicitly before JVM shuts down
+Runtime r=Runtime.getRuntime();   
+r.addShutdownHook(new MyThread());    //registershutdownhook is used add shutdownhook on The IOC container
+
+Use:To notify user that program is completed or if u want to do some task after method completed (for ex cleanup activities)
+ 
+Ques: Thread Group in java?
+ThreadGroup represents a set of threads.
+A thread group can also include the other thread group
+Advantage - we can suspend, resume or interrupt group of threads by a single method call.
+
+ThreadGroup tg1 = new ThreadGroup("Group A");   
+Thread t1 = new Thread(tg1,new MyRunnable(),"one");      //new MyRunnable is the one which implemented run() method
+Thread t2 = new Thread(tg1,new MyRunnable(),"two");      //(arg1=thread gp, arg2=run impl, arg3=thread name
+Thread t3 = new Thread(tg1,new MyRunnable(),"three");
+
+To interrupt t1,t2,t3 in one time Thread.currentThread().getThreadGroup().interrupt(); 
+
+Ques: Is thread share callstack?
+They share same address space but Each thread run in a separate callstack.
+
+
+Ques: What is Thread Safety How can u achieve it?
+When a thread is already working on an object and preventing another thread on working on the same object, this process is called Thread-Safety
+
+There are four ways to achieve Thread Safety in Java. These are:
+Using Synchronization.
+Using Volatile Keyword.   static volatile int a = 0, b = 0;    //by making the variable used in method volatile provides thread safety
+Using Atomic Variable.	    AtomicInteger count= new AtomicInteger();      //this ensures count is thread safe which inturns thread safe method 											where it is used
+Using Final Keyword	//but it will give compiler error if thread modifies it
+
+Note:Refer this https://www.geeksforgeeks.org/thread-safety-and-how-to-achieve-it-in-java/
+https://www.journaldev.com/1061/thread-safety-in-java
+
+Ques: Thread Safety Using concurrent.lock ? 
+
+Ques: what is diff b/w Runnable and callable?
+https://www.baeldung.com/java-runnable-callable
+Please Summarise it Later
+
+Ques:What is work-stealing algorithm?
+Fork Pool 
+
+Ques?What is JMM ? and it's use?
+Java Memory Model : It specifies how multiple threads access common memory in a concurrent Java application
+helps a programmer to write multithreaded code that is stable and portable between various architectures.
 
 
 
@@ -60,7 +155,7 @@ Iterator on ArrayList, HashMap classes
 
 Non fail-fast iterators (Fail Safe) 
 iterators don’t throw any exceptions
-CopyOnWriteArrayList, ConcurrentHashMap classes are examples of fail-safe Iterator
+Iterator on CopyOnWriteArrayList, ConcurrentHashMap classes are examples of fail-safe Iterator
 
 Ques : Concurrent Modification ?
  Concurrent Modification in programming means to modify an object concurrently when another task is already running over it.
@@ -73,13 +168,41 @@ Serialixable : to transfer over network
 Ques : ArrayList Read-only?
  by calling the Collections.unmodifiableCollection() method. 
 
+Ques: Concurrent HashMap?
+It is thread safe and many thread can access it how?
+
+In ConcurrentHashMap, at a time any number of threads can perform retrieval operation but for updation in the object, the thread must lock the particular segment in which the thread wants to operate. This type of locking mechanism is known as Segment locking or bucket locking. Hence at a time, 16 update operations can be performed by threads
+
+Ques:ensureCapacity()
+use for manually increasing the size of array List
+ex: arrlist.ensureCapacity(5000);   //it gives the array list which can store 5000 objects
+
+Ques: Treeset datastructure? //Balance Tree
+Ques: TreeMap datastructure? //Red BLack Tree
+Ques: Hashtable default capacity? //11
+
+Ques: How to check element u are adding in Set Colllection is duplicate?
+when u add it if it is already there it simply return false.
+
+Ques: Sort HashMap based on keys?   //also value    //very important
+BYKEY
+use treemap.putAll(hm);    //if it is employee type it must implements Comparable Interface
+
+BYVALUE
+Take all entries into LinedList type Collection
+then sort it Collections.sort(list,comparator)
+Iterate over list and put it into New Hashmap and return that map
+
+
+
+
 
 ............Java8Features..........
 Ques 1:What is Lambda Expression? 
 ()-> {}
-use to implement functional interface And Less Code(ex apllying for each on list etc)
-list.forEach(   (n)->System.out.println(n)  );  
-Runnable r2=()->{   System.out.println("Thread2 is running...");   };  
+use to implement functional interface  				//list.forEach(   (n)->System.out.println(n)  );  
+And Less Code(ex apllying for each on list etc), iterate over list   //Runnable r2=()->{   System.out.println("Thread2 is running...");   };  
+
 -------
 Ques 2:What is Method Reference
 Ans : By Static =  ClassName::MethodName;
@@ -88,77 +211,113 @@ By Constructor = className::new;
 ------
 Ques 3:What is Functional Interface 
 
-which only has one abstract method
+which only has one abstract method , can have any number of default and static methods
 can have object class method
 can have default mathod and static method
 @FunctionalInterface
+
+can also have methods of object class why?
+how many default and static method
+
+
+Ques: why default method introduced in interface?
+In java8 if any implemenation class dont know how to implement the method default method can be used.
+
 ------
 Ques 4: Java Stream
-It is functional in nature and lazy and evaluates code when only it requires
 It simply conveys elements from a source such as a data structure, an array, or an I/O channel, through a pipeline of computational operations.
+It is functional in nature
+It is lazily loaded and evaluates code when only it requires
 
-Ex: Tea net in kitchens
+Simple Definition: a stream is an iterator whose role is to accept a set of actions to apply on each of the elements it contains
+
+Real life Ex: Tea net in kitchens
 
 List<Float> productPriceList2 =productsList.stream()  
                                      .filter(p -> p.price > 30000)// filtering data..  using lambda expr
                                      .map(p->p.price)        // fetching price only from p object
                                      .collect(Collectors.toList()); // collecting as list  
                                      
-Stream.iterate(1, element->element+1)  
+Stream.iterate(1, element->element+1)
+.filter(element -> ele%5==0).limit(5).forEach(System.out::println)    //5 10 15 20 25
 
 long count = productsList.stream()  
                     .filter(product->product.price<30000)  
                     .count();       //.forEach(product -> System.out.println(product.name));  to print name
                     
-collect() method - convert Set To List
- 		   .collect(Collectors.toSet());
+collect() method - convert Set To List.....
+ 		   productsList.stream().collect(Collectors.toSet());
 		
-		convert List Into Map
-		productsList.stream().collect(Collectors.toMap(p->p.id, p->p.name)); 
+		    convert List Into Map...
+		    productsList.stream().collect(Collectors.toMap(p->p.id, p->p.name)); 
 		
 reduce() method - accumate results
-		.reduce(0.0f,(sum, price)->sum+price);   // accumulating price  
+		productsList.stream().map(p->p.price).reduce(0.0f,(sum, price)->sum+price);   // accumulating price  
         	System.out.println(totalPrice);  
+  
+Ques: What is diff b/w filter() and map()?
+filter method just compares returns in true or false while map method transform the data and return it for ex: 
+1.  you can conevert String list into uppercase string list.
+2.  .map(i -> i * 3)
+
+Ques: what is the diff b/w flatMap() and map() ?
+flat map() basically flattens up the values into one entity while map() just transform value and structure remains same
+Without flat map => [1,2],[1,1] => [[1,2],[1,1]] 
+With flat map => [1,2],[1,1] => [1,2,1,1]
+ref https://stackoverflow.com/questions/37154380/difference-between-map-and-filter-on-a-java-collection-stream  
+
+Ques:min max in stream?
+.min(comparator)  it returns min value as optional using comparator // sam for max()
         	                        
 --------
 Ques 5:what is Base64 Encoding and Decoding?
-Ans : Use to encode decode message url etc.
+Ans : Use to encode decode message, url etc.
 uses the Base64 alphabet as specified in RFC 2045 for encoding and decoding operations
 
 Ex: It is used when u want to share cryptic data or url
 MIME uses this technique
+MIME-Multipurpose Internet Mail Extensions
+
 -----
 
 Ques 6: Default method in interface
 Ans :  yes we can create default method in a java8 interface also we can make static method in an interface
 but still abstarct class and interface are diffrent as we can not create constructor in an interface whereas we can make that in abstarct class
 
-why it is made? //to give default implementation , you can override it to create your implementation
+why it is made? //to give default implementation , you can override it to create your implementation //It can be of any number
 
-You can also define static methods inside the interface. Static methods are used to define utility methods. 
+You can also define static methods inside the interface. Static methods are used to define utility methods. //It can be of any number
 -----
 
 Ques 7: StringJoiner
-StringJoiner joinNames = new StringJoiner(",", "[", "]");   // passing comma(,) and square-brackets as delimiter   
+StringJoiner joinNames = new StringJoiner(",");   // passing comma(,) and square-brackets as delimiter   
         joinNames.add("Rahul");  
         joinNames.add("Raju");  
         joinNames.add("Peter");  
         joinNames.add("Raheem");  
-        System.out.println(joinNames);   // [Rahul,Raju,Peter,Raheem]
+        System.out.println(joinNames);   // Rahul,Raju,Peter,Raheem
+
+StringJoiner joinNames = new StringJoiner(",", "[", "]");   // [Rahul,Raju,Peter,Raheem]
+
+joinNames.setEmptyValue("Empty Value");;  /// use to get default value of string i.e no chance of NullPointerException
+
 ------
 Ques 8: For Each in java8
  gamesList.forEach(games -> System.out.println(games)); 
+    or
+  gamesList.forEach(System.out::println); 
+    
 
 
 Ques : Java Collectors?
 
 Collectors is a final class that extends Object class.
 It provides reduction operations, such as accumulating elements into collection
-Collectors.toList())
-Collectors.toSet())
+collect(Collectors.toList())
+collect(Collectors.toSet())
 collect(Collectors.summingDouble(x->x.price));  // productsList.stream().collect(Collectors.summingInt(x->x.id));  
-Collectors.counting())
-Collectors.Map(p.id,p.name)
+collect(Collectors.counting())
+collect(Collectors.Map(p.id,p.name)
 
 
 
@@ -177,6 +336,8 @@ Optional<String> checkNull = Optional.ofNullable(str[5]);
  Optional<String> checkNull = Optional.ofNullable(str[5]);  
         checkNull.ifPresent(System.out::println);   // printing value by using method reference  
         System.out.println(checkNull.get());    // printing value by using get method  
+        
+Optional.empty() //to check is Optional empty (alternative to null)
         
 -----------------      
 QUes10: Parallersort in array
@@ -205,8 +366,64 @@ add int a int b	//add int arg0 int arg1
 Ques 11. What is Type Annotation? 
 @NonNull String str;  
 @Encrypted File file  
-hrows @ZeroDivisor ArithmeticException
+public void methodName() throws @ZeroDivisor ArithmeticException
+
+all such annotation is used for stronger type checkings
+
+Note:Learn Repaeatable Annotation
+
+-----
+Ques: Java 8 Date Time?
+
+older java.util.Date and java.util.Calendar are not thread safe and dont have much utilities to date object.
+In java8 java.time package like LocalDate, LocalTime, LocalDateTime, ZonedDateTime, Period, Duration and their supported APIs.
+
+Adavtage : java 8 Date has ZonedDate Time functionality
+
+1. LoacaleDate & LocalTime
+LocalDate localDate = LocalDate.now();
+LocalDate.of(2015, 02, 20);
+LocalDate.parse("2015-02-20");
+boolean leapYear = LocalDate.now().isLeapYear();
+
+same for LocalTime
+
+2.LocalDateTime
+LocalDateTime.now();
+LocalDateTime.of(2015, Month.FEBRUARY, 20, 06, 30);
+LocalDateTime.parse("2015-02-20T06:30:00");
+
+3. ZonedDateTime
+ZoneId zoneId = ZoneId.of("Europe/Paris");
+
+Ques: convert localDatetime into specif zone ex paris.
+ZonedDateTime zonedDateTime = ZonedDateTime.of(localDateTime, zoneId);
+
+Ques :Period And Duration also very importantutility for date and time how?
+ex: int five = Period.between(initialDate, finalDate).getDays();
+
+LocalDate initialDate = LocalDate.parse("2007-05-10");
+LocalDate finalDate = initialDate.plus(Period.ofDays(5));
+
+
+
+
+
+
+
+
         
+............Topic : Generics........
+
+Ques: What will you do if you want type safety only for number or its child component?
+Use < ? extends Number>
+
+Ques: You need to bound only for read no write
+methodOne(ArrayList<?> l):
+
+Ques: ArrayList<Integer> list = new ArrayList<>();
+
+
 
 
 ............General Question........
@@ -289,32 +506,120 @@ final String PAN_CARD_NUMBER;  //can be initiliase by constructor
 
 
 
-Ques : How will you invoke any external process in Java?
-Runtime.getRuntime().exec("notepad");//will open a new notepad  
-
-Ques : What is shutdown hook?   //The shutdown hook is a thread that is invoked implicitly before JVM shuts down
-Runtime r=Runtime.getRuntime();  
-r.addShutdownHook(new MyThread());  
 
 
 Ques : Marshalling is the process of writing Java objects to XML file.
 Unmarshalling is the process of converting XML content to Java objects
 
 
+Ques:what are the default imported package in java?
+The Java compiler automatically imports two entire packages for each source file: (1) the java. lang package and (2) the current package (the package for the current file).
 
 
 
+Ques: how to not execute finally block?
+System.exit()
+Thread stopped using the stop() 
+Note:It's also worth noting that, since any return statement in the finally block will override any returns or exception throws in the try/catch blocks,
+with interrupt() //finally executes
+
+
+Ques:System.err.println("text") ? //print 'text' in red color
+
+Ques: If two interfaces has same default method and a class implements these two interfaces?
+It gives compiler error saying the default method is amgious.
+
+
+
+Ques:SQL Excetion is checked or unchecked? //checked
+
+
+Ques: CustomAnnotation in java?
+
+[Class Level annotation]
+
+Step 1: The first step toward creating a custom annotation is to declare it using the @interface keyword
+public @interface JsonSerializable {
+}
+
+Step2: to add meta-annotations to specify the scope and the target of our custom annotation:
+
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.Type)
+public @interface JsonSerializable {
+}
+
+--
+
+[Field Level annotation]
+
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.FIELD)
+public @interface JsonElement {
+    public String key() default "";
+}
+
+
+[Method Level Annotation ]
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.METHOD)
+public @interface Init {
+}
+
+
+Create Json String...
+String jsonString = jsonElementsMap.entrySet()
+        .stream()
+        .map(entry -> "\"" + entry.getKey() + "\":\"" 
+          + entry.getValue() + "\"")
+        .collect(Collectors.joining(","));
+    
+    return "{" + jsonString + "}";
+
+
+.................
+
+Ques : what is System.arraycopy() in Java?
+
+use to copy some element from source to destination array
+System.arraycopy(source_arr, sourcePos, dest_arr, destPos, len);
+
+source_array : 10 20 30 40 50 60 70 80 90 100 
+sourcePos : 3
+dest_array : 15 25 35 45 55 65 75 85 95 105 
+destPos : 5
+len : 4
+final dest_array will become : 15 25 35 45 55 40 50 60 70 105 
+
+
+Ques: scp in java created in which memory?
+In Heap
+
+Ques: primitive variable stores in ? 
+Instance level variables(can also be primitives) are part of instances (objects). So, they will be allocated on the heap (as part of the object.) Method level / Local variables : Stack (for Primitives
+
+
+Ques: Create custom immutable class in java?  //revise it
+To create an immutable class in Java, you have to do the following steps.
+
+1. Declare the class as final so it can’t be extended.
+2. Make all fields private so that direct access is not allowed.
+3. Don’t provide setter methods for variables.
+4. Make all mutable fields final so that its value can be assigned only once.
+5. Initialize all the fields via a constructor performing deep copy.
+6. Perform cloning of objects in the getter methods to return a copy rather than returning the actual object reference.
+
+refer for coed:  https://www.journaldev.com/129/how-to-create-immutable-class-in-java
+
+Ques: String equalsIgnoreCase() method ?
+We can validate username,email(not password) by using .equalsIgnoreCase() method
 
 ....Some Code to remember.....
 
-Math.abs(-1) // it will become 1
+ Math.abs(-1) // it will become 1
 
 
 
-
-Nagarro Process
-do gfg question for nagarro
-revise eclipse Problem solve question
 
 
 
