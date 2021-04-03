@@ -165,8 +165,16 @@ Preorder - when u want to flatten it or remake it to tree [root left right root 
 
 
 
+...Heap
+https://cs.slides.com/colt_steele/heaps
 
+MaxHeap MinHeap
 
+Heap Using Array/List
+child 2n+1,2n+2
+parent floored ((n-1)/2)
+
+To make heap correct use Bubbling up
 
 
 

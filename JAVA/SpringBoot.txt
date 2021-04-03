@@ -711,7 +711,7 @@ scope = profile , username
 clientid=
 clientsecret =
 
-register google cloud, login it, go in apia7services -> go in oauth tab->give ur app name->provide scope(information to show)
+register google cloud, login it, go in api services -> go in oauth tab->give ur app name->provide scope(information to show)
 then save
 create oauth client id
 give url of your application from where access needed

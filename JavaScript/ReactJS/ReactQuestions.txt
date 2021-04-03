@@ -44,7 +44,17 @@ wrapp your function which is responsible to rerender in useCallback
 
 Ques: How to create Custom hooks?    //asked in ExpressAnalytics
 
+Ques: React updates state(setState) in batches? Justify
+means react.setState works asynchronlously
+ex: setError()  state
+    setLoading() state
 
+if written together will execute in synchronlously and thus only one render cycle
+
+
+.......................Topic: Export Import.......................      
+Ques: what is named Export
+import {Login} from './login/Login'
 
 
 
@@ -56,4 +66,24 @@ Reconcilliation diff algorithm
 
 Ques : What is Reconcilliation?
 Reconciliation is the process through which React updates the DOM. When a component's state changes, React has to calculate if it is necessary to update the DOM. It does this by creating a virtual DOM and comparing it with the current DOM. In this context, the virtual DOM will contain the new state of the component.
+
+Ques: If you want to pass some data from child componenet to parent ?
+<li key={ig.id} onClick={props.onRemoveItem.bind(this, ig.id)}>
+
+Ques: What is event.preventDefault(); does ?
+When u submit form or click any button it goes to hit http request by default to stop that behavior we use this.
+OR 
+any default action normally taken by the implementation as a result of the event will not occur
+
+
+Ques: React.memo and useMemo ?
+First is use to memoize component and second is react hooks use to memoize functional component 
+
+Ques: {props.loading && <LoadingIndicator/>} is same as  {props.loading ? <LoadingIndicator/> : null}
+YEs
+
+
+
+Ques: fetch() :- It is a browser functions which sents request
+
 

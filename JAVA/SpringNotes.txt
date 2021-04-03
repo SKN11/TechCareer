@@ -60,6 +60,7 @@ Ques: BeanFactory vs Application COntext?
 It is spring COntainer 		||    It is also a spring container
 It is lazy loading the bean		||	It eagerly loads the bean
 It doesnt support I18N			||	It supports I18N
+It doesnt support AOP			||	It supoorts AOP
 
 
 ..........Topic : Spring Containers...............
@@ -326,7 +327,7 @@ limits-service.maximum=9999
 ----------------------
 
 Ques: To call aanother rest service in Rest Controller?
-use new RestTemplate().getForEntity method
+use new RestTemplate().getForEntity(endpoint) method
 
 example:
 ResponseEntity<CurrencyConversionBean>responseEntity=new RestTemplate().getForEntity("http://localhost:8000/currency-exchange/from/{from}/to/{to}", CurrencyConversionBean.class, uriVariables);  

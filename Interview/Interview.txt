@@ -1,11 +1,13 @@
-My name is Sameer Khan.
-My names meaning is cool breeze. I belong to meerut which is a sport city of India.
-I am certified in AdvancedComputing from CDAC ACTS Pune.
-Currently I am working as a Full Stack Software Developer at Dassault Systemes Pune and acquuantied over 3 years of development experience.
+Ques : Tell me about yourself ?
 
-Well my hobby are reading ,sketching and love to do morning jog.
+My name is Sameer Khan. My names meaning is cool breeze. 
+I belong to meerut which is a sport city of India.
+Currently I am working in  Dassault Systemes as a R&D Full Stack Software Developer Pune and acquantied over 3 years of professional experience.
+I am also certified in AdvancedComputing from CDAC ACTS Pune.
 
-I am also a good team event organiser held lot of events at dassault systemes and also in college.
+My hobbies are reading ,sketching and love to do morning jog.
+
+I am also a team event organiser. Held lot of events at dassault systemes and also in college.
 (ex Shayari Event , BollyWood Quiz Event, World Map and Cuntry event, Fresher Skit Event, 3Dverve volunteering  and lot more.
 
 
@@ -15,8 +17,7 @@ I do have 2 younger brother as well. One of them is persuing his bachelor degree
 one is in High School. We are a small family with full chaos & laughter.
 
 
-
-How Reader?
+...How Reader?
 I do read daily. Fiction fascinates me a lot and non fiction is something that I can't avoid as it is 
 like getting ornaments of knowledge. 
 By the way Batman is my favourite superhero why? despite of having no super power he save
@@ -27,30 +28,25 @@ Robin S Sharma (A monk who sold his ferrari)
 Paulo Coelho (Alchemist,adultrist)
 Varsha Dixit(Right fit wrong shoe)
 MK Gandhi (An Autobigraphy)
+Robert Kiyos	aki(Rich Dad Poor Dad)
 
 
-About CDAC
+...About CDAC
 Well cdac is an Institutes governed by Indian goverment ministry of electronics and IT. It gives 6 months of
 rigorous training in Advanced Computing. It's a great institute where the teach us
 learn by doing and learn by concept.Well they teach students More than 12 hours in a day which really pushes them a lot.
 I can say CDAC is a great place to do Software Development training. It's like a sprint course in IT training in India.
 
-
+-------------------
 What is Your Personal Goal?
 Utilise my potential as much as I can
 
 How do seee yourself in 5 years?
 Well I pray to god have mercy on us and have a good and healthy life.
 
-
-
-
- 
-
-careers@tcs.com      
-indiatag.sourcing@tcs.com
  
  
+Ques: Give me introduction what you do? 
  I am R &D Software Developer responsible for full stack development of a service named as ServiceLifecycleManagement. Th Technology I have been working on since the inception of employment are ReactJS,Javascript,Java,Hibernate SpringBoot
  
 www.linkedin.com/in/sameer-khan-ec
@@ -58,10 +54,11 @@ www.linkedin.com/in/sameer-khan-ec
 
 
 
-How you can manage team?
+Ques :How you can manage team?
 Currently I am training two fresher in my team
 also organised various events in Dassault systemes
-Voluteered our 3dVerve for two conesecutive years (In that i have responsibility to see anybody who may overdring so have to ready for any medical emergency and transport urgency)
+Voluteered our 3dVerve for two conesecutive years (In that I have responsibility for medical emergency and transport urgency)
+
 -----
 How you start if we give you team for a project?
 I will tell them how fascinating it is when we code and work on actual implementation. By diligently working on project.
@@ -76,14 +73,8 @@ later join a very good organisation Dassault Systemes as a java developer. Excel
 learned javascript Reactjs css html hibernate spring spring boot also some cloud concept
 ----
 Ques: Which blog u follow to be updated ? 
-mostly anything on google,  JRebel , Youtube etc. 
-
+mostly anything on google,  JRebel , Youtube,Linked in Post etc,Stackoverflow. 
 -----
-
-Ques: About Citiustech?
-Citius Tech is a company which provide  IT Solutions for Healthcare Industry. It was founded in 2005. And the current CEO is Mr. Rizwan Koita
-Citius Tech headquartered at Princton,NewJersey,USA. Currently u are 4000plus strenth of people.
-
 
 
 
@@ -102,7 +93,8 @@ www -worldwideweb
 
 
 front end
-service layer or controller layer
+controller layer
+service layer
 persistent
 db layer
 
@@ -120,4 +112,53 @@ instantiate all class with log4j
 
 
 all service has common 
+
+
+Manegrial Question 
+
+Ques: What is Coding Standard you follow while cdoeing in ReactjS?
+
+
+
+Ques: How Api you create can  be resuse for multiple argument?
+
+
+Ques: How can you increae web page performance?
+react js
+by seeing what part of the page is purecomponent. I will use react.memo & react Callbacks to reduce load time
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Ques:About Deloitte?
+Deloitte is Anglo-American Company.
+Its CEO is Mr. Punit Renjen and
+it is founded in 1845,London by Mr. William Deloitte .
+It has good a network of employees near about 3.3lakh.
+It is one of the BIG4 accounting company.
+
+
+Ques: About Citiustech?
+Citius Tech is a company which provide  IT Solutions for Healthcare Industry. It was founded in 2005. And the current CEO is Mr. Rizwan Koita
+Citius Tech headquartered at Princton,NewJersey,USA. Currently u are 4000plus strenth of people.
+
+
 

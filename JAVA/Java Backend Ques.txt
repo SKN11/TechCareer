@@ -3,33 +3,16 @@
 Ques: What is lifecycle of spring ?
 
 Ques: What is csrf.disable() ?
-
-Ques: Diff b/w stateless and stateful?
+Our recommendation is to use CSRF protection for any request that could be processed by a browser by normal users. If you are only creating a service that is used by non-browser clients, you will likely want to disable CSRF protection. 
 
 Ques: What is Scalability in Application?
 A scalable web application is a website that is able to handle an increase in users and load, whether in terms of a gradual or abrupt surge, without disrupting end-users' activities.
 
 
 
-Ques: Can 2 different objects created in Java are same(have same this) when their hashcode is same?
-No
-2 diferent objects can for sure have the same hashcode and they dont need to be equal...
-ex:2person can have same birth date but they dont need to be equal right.
-
-
 Ques: How to thread safe a method without using synchronization keyword?
 1. by making a method mutable
 
-
-Ques: How to create class Immutable in java?
-declare class final    //so that nobody can extend
-datamemember private and final    //so that nobody can access or change
-no setter		//so that nobody can access for change
-parametrized contructor to initiliaze all the fields                          //note finaldata varibale can be initiliazed only by constrcutor
-
-
-Ques: Can Functional Interface has default methods. If it is then how many can we create?  //also for static methods
-Yes multiple default methods and multiple static methods
 
 Ques: Latest SpringBoot Version u used?
 we are using 2.4.3
@@ -49,4 +32,21 @@ In another way, Consistency ensures that we execute all the data changes while m
 Isolation: Isolation ensures that we keep the intermediate states of a transaction invisible to other transactions.
 
 Durability: Durability ensures that when a transaction completes, we persist changes to the data
+
+
+Ques: What is stateless and statefull server? //Rest is stateless
+
+In Stateless, server is not needed to keep the server information or session details to itself.
+
+In stateful, a server is required to maintain the current state and session information.
+
+Ques: What is weaving?
+Weaving is a process of linking aspect with other application.
+
+
+Ques: SPring IOC Shutdown hook ? //registershutdownhook is used add shutdownhook on The IOC container
+
+
+
+
 

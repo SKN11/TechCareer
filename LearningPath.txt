@@ -1,9 +1,10 @@
 ................Topic : Data Structures.........
 
 Design Patterns - https://github.com/fbeline/design-patterns-JS
-
 jwasham - https://github.com/jwasham/coding-interview-university#about-video-resources
 yangshun - https://github.com/yangshun/tech-interview-handbook
+
+
 
 ................Topic : Core Java.........
 
@@ -21,6 +22,7 @@ Declaration & AcceessModifier -  done    //from copy
 Listeners In java -
 Enums-
 Languagefundamentals-done   //from orange copy
+java.lang.package-
 JUNIT-
 
 
@@ -36,14 +38,15 @@ https://www.geeksforgeeks.org/java-multiple-choice-questions/   //coreJava total
 https://tutorialsinhand.com/aptitudes/java-aptitude/java-string-mcq/java-string-mcq-set-2.aspx
 
 
-Advanced Java........
+................Topic : Advanced Java........
 
+...HIBERNATE
 Hibernate- done(mapping left)
 Hibernate Mapping or jPaMapping - undergoing
 SpringAndRestApp from lynda(project name cnm)
 URI
 
-................Topic : Spring..........
+...SPRING FRAMEWORK
 IOC -done
 AOP -done
 SpringORM -done
@@ -51,6 +54,10 @@ SPEL -done
 Restful Services from Javatpoint -done
 CrossOriginConcepts - 
 
+
+Interview Questions
+https://www.javatpoint.com/spring-interview-questions
+https://www.educative.io/blog/40-spring-interview-questions?aid=5082902844932096&utm_source=google&utm_medium=cpc&utm_campaign=blog-dynamic&gclid=CjwKCAjw3pWDBhB3EiwAV1c5rMVmpIdkLrtzFQl2D7hnk39RGmMDcUxZAr1H1I-4pEY6-cAXo0XsVRoCkJQQAvD_BwE
 
 MCQ (Spring+Spring MVC)
 https://tutorialsinhand.com/aptitudes/spring-aptitude/spring-mcq-aptitude/spring-mcq-1.aspx

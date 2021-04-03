@@ -1,11 +1,19 @@
 
 ...........OOPS...................
 Ques 1 : What is Automatic Promotion in Java Overloading?
+
 Ques 2 : When to use has a and is a functionality in java?
+
 Ques 3 : Differnce between upcasting(Parent p = new Child();right) and downcasting( Child c = new Parent;wrong) ? 
+
 Ques 4 : What is covariance in java? is it applicable to primitive type?
+covariant return type- if parent mathod return Object then when u override this method u have to return either Object or its child type.
+Only for object type not for primitive type
+
 Ques 5 : Can we override private method and final mehod?
+
 Ques 6 : What is difference between Object Based or Object-Oriented prog languages?
+
 Ques 7 : How to Call Garbage Collector?    //System.gc();
 
 
@@ -26,7 +34,7 @@ Ques : String intern() method //returns string from SCP
 Strin s1="abc";
 String s2=s1.intern(); //"abc"
 
-String Buffer is synchronized and hence thread-safe.   //also it is not comaparable
+String Buffer is synchronized and hence thread-safe.   //also it is not comaparable   //also it is not immutable
 String Builder is not synchronized or not thread safe
 
 Ques : trim() vs strip() ?
@@ -52,7 +60,7 @@ Ques 1:What start() method does? //instantiate,register thread to ThreadSchedula
 
 Ques 2:What is Thread Scheduler?  // allocates CPU
 
-Ques 3:Does run method of thread class can have arguments?  //public void run(){}
+Ques 3:Does run method of thread class can have arguments?  //public void run(){}  but callable has
 
 Ques 4:Which method is useful to create Thread, extending thread or implementing runnable interface?   //implementing runnable
 
@@ -67,7 +75,7 @@ coz thread applies lock on these methods on objects
 ex: locking concept
 
 Ques: Thread uses what scheduling?
-Premptive - high priority executes first      //in tim slicing thread exexutes for some time and go in ready state again
+Premptive - high priority executes first      //in time slicing thread exexutes for some time and go in ready state again
 
 Ques: Semaphores in Java?
 A semaphore controls access to a shared resource through the use of a counter. If the counter is greater than zero, then access is allowed. If it is zero, then access is denied
@@ -133,9 +141,18 @@ Using Final Keyword	//but it will give compiler error if thread modifies it
 Note:Refer this https://www.geeksforgeeks.org/thread-safety-and-how-to-achieve-it-in-java/
 https://www.journaldev.com/1061/thread-safety-in-java
 
-Ques: Thread Safety Using concurrent.lock ? 
+
+Ques: can volatile be use with reference in java
+Yes
+
+Ques: Thread Safety Using concurrent.lock ?
+Unlike their synchronized counterparts, concurrent collections achieve thread-safety by dividing their data into segments. In a ConcurrentHashMap, for instance, several threads can acquire locks on different map segments, so multiple threads can access the Map at the same time 
 
 Ques: what is diff b/w Runnable and callable?
+callable return value in FutureObject
+	Future<Integer> future = executorService.submit(task);
+	Integer result = future.get().intValue();
+	
 https://www.baeldung.com/java-runnable-callable
 Please Summarise it Later
 
@@ -523,6 +540,23 @@ Thread stopped using the stop()
 Note:It's also worth noting that, since any return statement in the finally block will override any returns or exception throws in the try/catch blocks,
 with interrupt() //finally executes
 
+Ques : whT this snippet will return?
+
+	public static int checkFinally() {
+		
+		try {
+			System.out.println("in try");
+			//return 0;
+		throw new NullPointerException();
+		}catch(Exception e) {
+			return 1;
+			
+		}finally {
+			return 2;
+		}
+		
+	}
+Ans: 2
 
 Ques:System.err.println("text") ? //print 'text' in red color
 
@@ -613,6 +647,17 @@ refer for coed:  https://www.journaldev.com/129/how-to-create-immutable-class-in
 
 Ques: String equalsIgnoreCase() method ?
 We can validate username,email(not password) by using .equalsIgnoreCase() method
+
+
+Ques: Can 2 different objects created in Java are same(have same this) when their hashcode is same?
+No
+2 diferent objects can for sure have the same hashcode and they dont need to be equal...
+ex:2person can have same birth date but they dont need to be equal right.
+
+
+Ques: how do u create json object in java?
+
+
 
 ....Some Code to remember.....
 

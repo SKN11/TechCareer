@@ -49,7 +49,7 @@ XML :- <generator class="increment"></generator>
 Annotaion :- @GeneratedValue(strategy=GenerationType.AUTO)  
 
 Ques : MYSQL Dialect?
-org.hibernate.dialect.MySQLDialect
+org.hibernate.dialect.MySQL5Dialect
 ----------
 
 Ques:Hibernate Logging?
@@ -196,7 +196,7 @@ CascaseType.DETACH - the child entity will also get removed from the persistent 
 
 CascadeType.LOCK (hibernate specific)- re-attaches the entity and its associated child entity with the persistent context again.
 
-CascadeType REFRESH(hibernate specific) -  the child entity also gets reloaded from the database whenever the parent entity is refreshed.
+CascadeType.REFRESH(hibernate specific) -  the child entity also gets reloaded from the database whenever the parent entity is refreshed.
 
 CascadeType.REPLICATE() -The replicate operation is used when we have more than one data source, and we want the data in sync. With 				CascadeType.REPLICATE, a sync operation also propagates to child entities whenever performed on the parent entity.
 
@@ -290,7 +290,7 @@ Select
 	List list = query.list();
 
 Update
-	Query q=session.createQuery("update User set name=:n where id=:i");  
+	Query q = session.createQuery("update User set name=:n where id=:i");  
 	q.setParameter("n","Sky Cutie");  
 	q.setParameter("i",111);  
 	int status=q.executeUpdate();  
@@ -434,9 +434,30 @@ List results = query.list();
 
 
 
+Ques: What is @Immutable in Hibernate?
+
+if you insert new object @Immutable doesnt do anything new with @Immutanle but,  //also if we do delete same thing will happend
+if you update an object due  to @Immutable hibernate simply ignores the update operation
+Example :
+@Entity
+@Immutable
+@Table(name = "events_generated")
+public class EventGeneratedId {
   
-  
-  
+} 
+
+
+
+Ques: What is automatic dirty checking in hibernate?
+Automatic dirty checking feature of Hibernate, calls update statement automatically on the objects that are modified in a transaction.
+Read Ques 25 on this page - https://www.javatpoint.com/hibernate-interview-questions
+
+
+
+
+
+
+ 
   Pending...........
   
   create projects of hibernate relationship in eclipse
