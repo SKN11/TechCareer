@@ -46,6 +46,15 @@ Weaving is a process of linking aspect with other application.
 
 Ques: SPring IOC Shutdown hook ? //registershutdownhook is used add shutdownhook on The IOC container
 
+Ques: Whhere to store password in character[] or String?
+Strings are immutable there is no way the contents of Strings can be changed because any change will produce a new String, while if you use a char[] you can still set all the elements as blank or zero. So storing a password in a character array clearly mitigates the security risk of stealing a password.
+
+Refernce: https://stackoverflow.com/questions/8881291/why-is-char-preferred-over-string-for-passwords#:~:text=Since%20Strings%20are%20immutable%20there,risk%20of%20stealing%20a%20password.
+
+Ques: If you dont want to give spring implemenation without @Qualifier what will u use?
+
+
+
 
 
 

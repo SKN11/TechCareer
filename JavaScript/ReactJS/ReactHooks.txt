@@ -106,7 +106,7 @@ see Video Udemy 447 to learn to increase efficiency and reduce rerender cycle or
 
 ..............useRef()..............
 
-const inputRef = useRef(); // strating of the component
+const inputRef = useRef(); // starting of the component
 
 <input ref={inputRef} type="text" value={enteredFilter} onChange={event=>handleSearch(event)}/>
 

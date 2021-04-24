@@ -31,7 +31,7 @@ collections - https://www.javatpoint.com/java-collections-interview-questions   
 Thread - https://www.baeldung.com/java-concurrency-interview-questions
 top 50 java Interview - https://www.journaldev.com/370/java-programming-interview-questions
 Java - 300javatpoint interview question
-
+JavaStream - https://www.java67.com/2018/10/java-8-stream-and-functional-programming-interview-questions-answers.html
 
 MCQ
 https://www.geeksforgeeks.org/java-multiple-choice-questions/   //coreJava total set 31

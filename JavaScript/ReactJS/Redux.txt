@@ -36,10 +36,10 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-pass this disoatch const to connect method second arg
+pass this dispatch const to connect method second arg
 
 
-comibineReducer //to combine diff reducer
+combineReducer //to combine diff reducer
 
 Middleware .....
 It gives inside of our store but only we dispatch any action
@@ -47,7 +47,7 @@ act as middle person between action dispatcher and reducer
 
 const logger = store => {
     return next => {
-        return action => {    //it is ismple middleware
+        return action => {    //it is simple middleware
             console.log('[Middleware] Dispatching',action);
             const result = next(action);   // now redux takes these action to reducer
             //this is the middleware part

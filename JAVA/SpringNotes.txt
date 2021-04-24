@@ -54,6 +54,10 @@ Ans : built on top of the BeanFactory interface
       application layer specific context (e.g. WebApplicationContext) for web application
 
 
+Ques: What is Event Propagation?
+Spring’s eventing mechanism is designed for simple communication between Spring beans within the same application context.
+ContextRefreshedEvent
+ContextClosedEvent etc
 
 Ques: BeanFactory vs Application COntext?
 
@@ -274,6 +278,10 @@ the websocket scope creates it for a particular WebSocket session.
 @Scope(scopeName = "websocket", proxyMode = ScopedProxyMode.TARGET_CLASS)
 
 
+Ques: If we create prototype in Singleton or viceversa ?
+
+
+
 ----------------
 Ques:What's the difference between @Component, @Repository & @Service annotations in Spring?
 
@@ -292,6 +300,8 @@ authenticaion  //to know who is the user
 authorization   //to give permission
 
 OAuth 2.0 Login //facility to the user to login into the application by using their existing account at GitHub or Google.
+
+Ques: How did you achieve Authentication And Authorzation in your peoject?
 
 ...............Topic : Spring Vikas Codes........................
 
@@ -390,7 +400,8 @@ What is service?
 A service is a well-defined, self-contained logical function that represents a unit of functionality.
 For ex: TCS tcs is a compony that provides services to their clients also interact with other Companies(other service) to get the task done
 
- 
+ Ques: What http method is idempotent?
+ Idempotency means that multiple identical requests will have the same outcome. So it does not matter if a request is sent once or multiple times. The following HTTP methods are idempotent: GET, HEAD, OPTIONS, TRACE, PUT and DELETE.
  
  
 Ques: How to upload file using spring boot?

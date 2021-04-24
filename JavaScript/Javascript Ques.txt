@@ -197,10 +197,19 @@ promise.then(
 );
 
 
+Ques: What is Javascript Pure Function?
+A function is only pure if, given the same input, it will always produce the same output.
+
+Ex: Math.random() is impure new Date().toLocaleTimeString() is pure
+
+Referenece: https://medium.com/javascript-scene/master-the-javascript-interview-what-is-a-pure-function-d1c076bec976
 
 
+Ques: What is Callbacks?
 
+Ques: What is Array.prototype?
 
+Ques:How Arrow function solve closures problem?
 
 
 
@@ -229,7 +238,7 @@ arr.map(
 console.log(arr2);
 
 
-Note: Array.isArray
+Note: Array.isArray & spread operator
 -------------------
 Ques : find the maximum occurerence of words in the given string?
 

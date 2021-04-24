@@ -14,13 +14,13 @@ Ques 5 : Can we override private method and final mehod?
 
 Ques 6 : What is difference between Object Based or Object-Oriented prog languages?
 
-Ques 7 : How to Call Garbage Collector?    //System.gc();
+Ques 7 : How to Call Garbage Collector?    //System.gc(); and garbage collector calls finalize() to clean up object resources before destroying
 
 
 
 
 ............String................
-Ques : What happen if you pass string as parameter to method which changes the sring?
+Ques : What happen if you pass string as parameter to method which changes the string?
 Refer -> https://theopentutorials.com/tutorials/java/strings/passing-string-as-parameter-to-a-method/
 
 Ques : String s1 = "geeksquiz";
@@ -52,6 +52,8 @@ increase the capacity of String buffer(old+new = new capacity)
 
 Ques: str.substrng(i,j)?
  gives string start from i to j-1 
+ 
+Ques: What is the diff b/w String s="sam" & String s = new String("sam");
 
 
 ...............Topic: Threading.................
@@ -102,14 +104,29 @@ for (int i = 0; i < 10; i++) {
 }  
 executor.shutdown(); 
 
-Runtime.....
+Ques: How to make sure all threads in executor is executed or not?
+we can shut down Executor by calling the shutdown() or shutdownNow() methods But Waiting for existing threads to complete their execution can be achieved by using the awaitTermination() method.
+
+or just wait for other thread to execute.
+
+    try {
+        if (!threadPool.awaitTermination(60, TimeUnit.SECONDS)) {
+            threadPool.shutdownNow();
+        }
+    } catch (InterruptedException ex) {
+        threadPool.shutdownNow();
+        Thread.currentThread().interrupt();
+    }
+
+
+...Runtime
 Ques : How will you invoke any external process in Java?     //to perform native operation of platform
 Runtime.getRuntime().exec("notepad");//will open a new notepad  
 Note: to learn full force of Runtime refer = https://www.javatpoint.com/java-runtime-class
 
 Ques : What is shutdown hook?   //The shutdown hook is a thread that is invoked implicitly before JVM shuts down
 Runtime r=Runtime.getRuntime();   
-r.addShutdownHook(new MyThread());    //registershutdownhook is used add shutdownhook on The IOC container
+r.addShutdownHook(new MyThread());    //registershutdownhook is used as addshutdownhook on The IOC container
 
 Use:To notify user that program is completed or if u want to do some task after method completed (for ex cleanup activities)
  
@@ -164,8 +181,29 @@ Java Memory Model : It specifies how multiple threads access common memory in a 
 helps a programmer to write multithreaded code that is stable and portable between various architectures.
 
 
+Ques: To create custom Threads Pool?
+ForkJoinPool customThreadPool = new ForkJoinPool(4);
 
-..............Collection.............
+Study ForkJoinPool
+In short, the main difference between the Executor framework and ForkJoinPool is that the former provides a general-purpose thread pool, while the latter provides a special implementation that uses a work-stealing pattern for efficient processing of ForkJoinTask.
+https://www.javatpoint.com/java-forkjoinpool
+
+----------
+Ques: How in Multithreading handles Long, double variable?   //Long and Double values are not Atomic.Justify?
+
+It splits it into 32+32bits and writes it with difeerent thread so they arenot thread safe.
+
+So point is, in Java, long and double aren’t thread safe. When multiple threads are going to access a long or a double value without synchronization, it can cause problems. To ensure atomic/thread safety, it is essential to use volatile to ensure changes made by one thread are visible to other threads. That’s how we can ensure the read/write is atomic and thread safe.
+use: volatile double num;
+volatile Long num;
+
+However, if all reads and writes of 64-bit long and double values occur within a synchronized block, the atomicity of the read/write is guaranteed.
+
+Reference: https://dzone.com/articles/longdouble-are-not-atomic-in-java
+------------
+
+
+...........................Topic: Collection.............
 Ques : Fail Fast and Fail Safe Iterators in Java
 Fail-Fast iterators immediately throw ConcurrentModificationException if there is structural modification of the collection.
 Iterator on ArrayList, HashMap classes
@@ -177,7 +215,7 @@ Iterator on CopyOnWriteArrayList, ConcurrentHashMap classes are examples of fail
 Ques : Concurrent Modification ?
  Concurrent Modification in programming means to modify an object concurrently when another task is already running over it.
  
-Ques: COllection extends ?
+Ques: COllection implements ?
 Iterable : to iterate over its element
 Cloneable : to clone it
 Serialixable : to transfer over network
@@ -210,7 +248,22 @@ Take all entries into LinedList type Collection
 then sort it Collections.sort(list,comparator)
 Iterate over list and put it into New Hashmap and return that map
 
+Ques: How Hashset find values are duplicate?
+When you put an object into a Hashset it uses the object's hashcode value to determine where to put the object in the Set. But it also compares the object's hashcode to the hashcode of all the other objects in the Hash Set, and if there's no matching hashcode,the HashSet assumes that this new object is not a duplicate. HashSet finds a matching hashcode for two objects. one you're inserting and one already in the set-the HashSet will then call one of the object's equals() methods to see if these hashcode-matched objects really are equal. And if they're equal, the HashSet knows that the object you're attempting to add is a duplicate of something in the Set, so the add doesn't happen.
 
+Override this equals method to check for equality of object along with hashcode. public boolean equals(Object o)
+
+Ques:
+
+
+...........................Topic: Array.............
+Ques: Creation of array?
+int[] x= new int[3]; //capacity 3
+
+or int[] x = {1,2,3,4};      //also int[][] x = {{10,20},{30,40}};   [[10,20] ,[30,40]]
+
+Ques: Create Anonymous Array?
+new int[]{1,2,3,4};
 
 
 
@@ -233,12 +286,40 @@ can have object class method
 can have default mathod and static method
 @FunctionalInterface
 
+Ques : What is the advantage of Functional Interface?
+We can use lambda expressions to instantiate them and avoid using bulky anonymous class implementation.
+
+ex: implement runnable interface
+Runnable r2=()->{  
+                System.out.println("Thread2 is running...");  
+        };  
+        
+ without lambda
+ Runnable d=new Runnable(){  
+            public void run(){System.out.println("Run method of runnable ");}  
+        }; 
+        Thread t = new Thread(d); 
+        t.start();   //it calls the run method
+
+
 can also have methods of object class why?
 how many default and static method
 
 
 Ques: why default method introduced in interface?
 In java8 if any implemenation class dont know how to implement the method default method can be used.
+
+Functional Interface In java
+Runnable 
+Callable
+Comparator
+Comparable
+
+Supplier 
+Consumer
+Predicate
+
+Note Interview QUes: https://www.java67.com/2018/10/java-8-stream-and-functional-programming-interview-questions-answers.html
 
 ------
 Ques 4: Java Stream
@@ -285,6 +366,62 @@ ref https://stackoverflow.com/questions/37154380/difference-between-map-and-filt
 
 Ques:min max in stream?
 .min(comparator)  it returns min value as optional using comparator // sam for max()
+
+
+Ques: How to find the first element greater than 5 from a list prime no. from a Stream with filter?
+We have a list of prime numbers in the increasing order e.g. 2, 3, 5, 7, 11, 13 and we need to find the first prime number which is greater than 5 i.e. our code should return 7.
+
+list.stream()
+	.filter(num -> num>5)
+	.findFirst()     	//if list is sorted   //it returns optional that's why .get() is rquired
+	.get();
+	
+	
+list.stream().filter(num -> num>5).findAny().get();   //if list is not sorted
+
+Stream Terminal Method
+findFirst()
+forEach()
+
+
+Ques: What is peek() method?
+to see what list is doing intermidiately
+filter takes predicate to filter data. predicate is a functional interface which checks and returns either true or false.
+
+Ques: convert an array to Stream?
+String[] languages = {"Java", "Python", "JavaScript"};
+Stream numbers = Stream.of(languages);
+numbers.forEach(System.out::println);
+
+
+Ques: What is the diff b/w stream() & paraallelStream()?when to use what?
+paraallelStream() is good for large data as it produces threads internally while stream is good for small data where no new thread created and process is lightweight.
+Both can be used in differenet scenario
+paraallelStream - large dataset (stream performance will be low)    //It also supoorts concurrency
+Stream - small dataset (parallelstream performance will be low)
+
+https://stackoverflow.com/questions/20375176/should-i-always-use-a-parallel-stream-when-possible
+
+In short, the parallel Stream can paralyze execution, but, as Cay S. Horstman mentioned in Core Java S.E. 9 for the Impatient, there is significant overhead or parallelism, which only pays off if you are doing bulk data operation.
+
+Read more: https://www.java67.com/2018/10/java-8-stream-and-functional-programming-interview-questions-answers.html#ixzz6qaSwfawy
+
+
+Ques: optimise parallelStream Overhead?
+The default processing that occurs in such a Stream uses the ForkJoinPool.commonPool(), a thread pool shared by the entire application.
+We can actually pass a custom ThreadPool when processing the stream. to not use commponpool to increase efficiency or OutOfMemoryError
+Note: when u create customPool please close it when u are done with it otherwise MemoryLeak will occur.
+
+
+Reference-https://www.baeldung.com/java-8-parallel-streams-custom-threadpool
+
+
+
+
+
+
+
+
         	                        
 --------
 Ques 5:what is Base64 Encoding and Decoding?
@@ -510,7 +647,7 @@ factorymethod   Runtime r = Runtime.getRuntime();
 
 Note:
 final variable is already serializable i.e no effect of transient keyword
-
+The transient keyword in Java is used to avoid serialization. 
 
 Ques :final blank variable?
 class Student{  
@@ -540,7 +677,7 @@ Thread stopped using the stop()
 Note:It's also worth noting that, since any return statement in the finally block will override any returns or exception throws in the try/catch blocks,
 with interrupt() //finally executes
 
-Ques : whT this snippet will return?
+Ques : whT this snippet will return? //important
 
 	public static int checkFinally() {
 		
@@ -601,14 +738,6 @@ public @interface Init {
 }
 
 
-Create Json String...
-String jsonString = jsonElementsMap.entrySet()
-        .stream()
-        .map(entry -> "\"" + entry.getKey() + "\":\"" 
-          + entry.getValue() + "\"")
-        .collect(Collectors.joining(","));
-    
-    return "{" + jsonString + "}";
 
 
 .................
@@ -643,7 +772,7 @@ To create an immutable class in Java, you have to do the following steps.
 5. Initialize all the fields via a constructor performing deep copy.
 6. Perform cloning of objects in the getter methods to return a copy rather than returning the actual object reference.
 
-refer for coed:  https://www.journaldev.com/129/how-to-create-immutable-class-in-java
+refer for code:  https://www.journaldev.com/129/how-to-create-immutable-class-in-java
 
 Ques: String equalsIgnoreCase() method ?
 We can validate username,email(not password) by using .equalsIgnoreCase() method
@@ -656,6 +785,25 @@ ex:2person can have same birth date but they dont need to be equal right.
 
 
 Ques: how do u create json object in java?
+
+Create Json String...
+String jsonString = jsonElementsMap.entrySet()
+        .stream()
+        .map(entry -> "\"" + entry.getKey() + "\":\"" 
+          + entry.getValue() + "\"")
+        .collect(Collectors.joining(","));
+    
+    return "{" + jsonString + "}";
+
+
+
+Ques: What is the differenece b/w = & +=
+
+Ques: What is the diff b/w b+1 &b++?
+b+1  //may be loss of prcision
+b++ //no loss of precision (type of b)(n+1);
+
+Ques
 
 
 

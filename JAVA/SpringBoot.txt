@@ -1,7 +1,8 @@
 
 ........Topic :Spring Boot..................
 
-Spring Boot is a Spring module that provides the RAD (Rapid Application Development) feature to the Spring framework.
+Spring Boot is a Spring module that provides the RAD (Rapid Application 
+) feature to the Spring framework.
 
 
 Annotations   //Spring Boot Annotations is a form of metadata that provides data about a program

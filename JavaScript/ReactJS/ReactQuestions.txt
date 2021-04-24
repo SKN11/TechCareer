@@ -87,3 +87,12 @@ YEs
 Ques: fetch() :- It is a browser functions which sents request
 
 
+Ques: Dependencies u added in package.json
+react-redux
+redux-dev-tools
+react-router
+enzyme
+react-test-render
+enzyme-adapter-react-16
+axios
+

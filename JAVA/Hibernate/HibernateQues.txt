@@ -1,5 +1,5 @@
 
-Ques : What is HIbernate?
+Ques : What is Hibernate?
 It is an implementation of the specifications of JPA (Java Persistence API) for data persistence.
 
 Ques : What is jpa? //Map application classes to database table
@@ -299,6 +299,11 @@ Delete
 
 	Query query=session.createQuery("delete from Emp where id=100");  //specifying class name (Emp) not tablename  
 	query.executeUpdate();  
+
+Note: In HQL, only the INSERT INTO … SELECT … is supported; there is no INSERT INTO … VALUES. HQL only support insert from another table.
+Query query = session.createQuery("insert into Stock(stock_code, stock_name)" +
+                "select stock_code, stock_name from backup_stock");
+int result = query.executeUpdate();	
 	
 
 Hibernate HCQL....
@@ -453,8 +458,24 @@ Automatic dirty checking feature of Hibernate, calls update statement automatica
 Read Ques 25 on this page - https://www.javatpoint.com/hibernate-interview-questions
 
 
+Ques: How to make sure Tha object in cache is updated or not?
+Hibernate manages the cache himself, so when you update some entity thru hibernate Session it will invalidate cache entry assocciated with this entity - so cache is always fresh.
+
+If you use EhCache cache provider you can provide such configuration:
+<cache name="com.my.company.Entity" 
+   maxElementsInMemory="1000" 
+   eternal="false" 
+   timeToIdleSeconds="7200" 
+   timeToLiveSeconds="7200" 
+   overflowToDisk="false" 
+   memoryStoreEvictionPolicy="LRU"/>
+   
+   
+Ques: Hibernate Flyweight configuration?
 
 
+Note: session clear() method to clear the cache
+ession contains() method to check if an object is present in the hibernate cache or not
 
 
  

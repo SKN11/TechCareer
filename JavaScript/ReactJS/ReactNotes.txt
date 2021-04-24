@@ -193,7 +193,7 @@ react-test-render - depenedncy that enzyme needed
 enzyme-adapter-react-16 - t connect enzyme with react app
 
 describe()-defines test suites
-it() defines individual test for a componenet in react
+it() defines individual test for a component in react
 
 
 
@@ -229,7 +229,7 @@ devtool:'cheap-module-eval-source-map' - use for debugging the original code rat
 
 --------
 mode:"developement" or mode: "production"
-It tells server wheather apply some optimization or not for ex in decelopment mode it applies less shrinking which helps to debug
+It tells server wheather apply some optimization or not for ex in development mode it applies less shrinking which helps to debug
 but apply more optimization and shrinking for production
 
 Read webpack.config to understand full use of webpack in project
