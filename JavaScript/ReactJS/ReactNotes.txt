@@ -1,3 +1,4 @@
+ReactJS Documentation
 https://reactjs.org/tutorial/tutorial.html
 
 node -v //node version
@@ -17,6 +18,24 @@ npm install --save prop-types //install proptypes
 npm install axios --save  //install axios for ajax calls
 
 
+Yarn Commands
+yarn start  	  // to start yarn server
+yarn add redux   // to add any library in Reactjs project
+
+
+
+
+Ques: What version of the react you are using?
+16.8
+
+Ques: Dependencies u added in package.json
+react-redux
+redux-dev-tools
+react-router
+enzyme
+react-test-render
+enzyme-adapter-react-16
+axios
 
 
 ReactDom.render 

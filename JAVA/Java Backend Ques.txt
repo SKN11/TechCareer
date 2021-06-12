@@ -1,19 +1,5 @@
 
 ...........................Spring & Spring Boot.................................
-Ques: What is lifecycle of spring ?
-
-Ques: What is csrf.disable() ?
-Our recommendation is to use CSRF protection for any request that could be processed by a browser by normal users. If you are only creating a service that is used by non-browser clients, you will likely want to disable CSRF protection. 
-
-Ques: What is Scalability in Application?
-A scalable web application is a website that is able to handle an increase in users and load, whether in terms of a gradual or abrupt surge, without disrupting end-users' activities.
-
-
-
-Ques: How to thread safe a method without using synchronization keyword?
-1. by making a method mutable
-
-
 Ques: Latest SpringBoot Version u used?
 we are using 2.4.3
 
@@ -21,17 +7,38 @@ but latest is 2.5.0
 Latest Spring version is 5.3.1
 
 
+Ques: What is lifecycle of spring ?
+Container Started -> Bean Instantiated -> Dependncies INjectcted -> init()method ->custom methods-> destroy method->
+
+
+Ques: What is csrf.disable() ?   //Cross Site Request Forgery
+Our recommendation is to use CSRF protection for any request that could be processed by a browser by normal users. If you are only creating a service that is used by non-browser clients, you will likely want to disable CSRF protection. 
+
+Ques: What is csrf token?
+When a CSRF token is generated, it should be stored server-side within the user's session data. When a subsequent request is received that requires validation, the server-side application should verify that the request includes a token which matches the value that was stored in the user's session. This validation must be performed regardless of the HTTP method or content type of the request. If the request does not contain any token at all, it should be rejected in the same way as when an invalid token is present.
+
+
+Ques: What is Scalability in Application?
+A scalable web application is a website that is able to handle an increase in users and load, whether in terms of a gradual or abrupt surge, without disrupting end-users' activities.
+
+Ques: What is loadbalancing?
+Load balancing refers to efficiently distributing incoming network traffic across a group of backend servers 
+
+Ques: How to thread safe a method without using synchronization keyword?
+1. by making a method mutable
+
+
 Ques: Explain ACID ?
 
-Atomicity: It defined all work in unit time .This effectively means that either we perform all the changes or none of them.
+	Atomicity: It defined all work in unit time .This effectively means that either we perform all the changes or none of them.
 
-Consistency: Whatever changes we want to do has to be done before transaction starts.
+	Consistency: Whatever changes we want to do has to be done before transaction starts.
 
-In another way, Consistency ensures that we execute all the data changes while maintaining a consistent state at the start and the end of a transaction. 
+	In another way, Consistency ensures that we execute all the data changes while maintaining a consistent state at the start and the end of 	a transaction. 
 
-Isolation: Isolation ensures that we keep the intermediate states of a transaction invisible to other transactions.
+	Isolation: Isolation ensures that we keep the intermediate states of a transaction invisible to other transactions.
 
-Durability: Durability ensures that when a transaction completes, we persist changes to the data
+	Durability: Durability ensures that when a transaction completes, we persist changes to the data
 
 
 Ques: What is stateless and statefull server? //Rest is stateless
@@ -44,15 +51,83 @@ Ques: What is weaving?
 Weaving is a process of linking aspect with other application.
 
 
-Ques: SPring IOC Shutdown hook ? //registershutdownhook is used add shutdownhook on The IOC container
+Ques: Spring IOC Shutdown hook ? //registershutdownhook is used as addshutdownhook(Java Runtime Method) on The IOC container
 
-Ques: Whhere to store password in character[] or String?
+Ques: Where to store password in character[] or String?
 Strings are immutable there is no way the contents of Strings can be changed because any change will produce a new String, while if you use a char[] you can still set all the elements as blank or zero. So storing a password in a character array clearly mitigates the security risk of stealing a password.
+
+String stays in the string pool until the garbage is collected anyone having the memory-dump can extract the password as clear text.
+Using CharArray allows us to set it to blank whenever we are done with the password.
 
 Refernce: https://stackoverflow.com/questions/8881291/why-is-char-preferred-over-string-for-passwords#:~:text=Since%20Strings%20are%20immutable%20there,risk%20of%20stealing%20a%20password.
 
-Ques: If you dont want to give spring implemenation without @Qualifier what will u use?
+Ques: If you dont want to give spring implementation without @Qualifier what will u use?
 
+Ques: If you Spring application, How wil you convert it to SpringBoot?
+
+
+Ques: What are the dependencies u have added into your .pom file?
+Please see SpringBoot.txt for answer.
+
+
+Ques: What is the diff b/w @Controller & @ControllerAdvice?
+
+@Controller:-
+requesthandler method
+
+@ControllerAdvice:-
+Specialization of @Component for classes that declare @ExceptionHandler, @InitBinder, or @ModelAttribute methods to be shared across multiple @Controller classes.
+
+
+
+Ques: What is diff b/w spring singleton and java singleton?  //important
+https://dzone.com/articles/an-interview-question-on-spring-singletons#:~:text=So%2C%20for%20a%20given%20key%2C%20it%20maintains%20a%20Singleton.&text=In%20summation%2C%20Spring%20guarantees%20exactly,ever%20be%20created%20per%20ClassLoader.
+
+Ques: when u do deserialization how u can handle singleton object coz deserialization create new instance of object?
+readResolve is used for replacing the object read from the stream. The only use I've ever seen for this is enforcing singletons; when an object is read, replace it with the singleton instance. This ensures that nobody can create another instance by serializing and deserializing the singleton.
+
+
+Ques: where have u used protoptype in your program?
+
+Ques: Learn springsecurity?
+
+
+Ques: Can u create cutomised exception basis on checked exception? Scenario when u need to handle client to handle our own exception explicitly then u have to create it using CheckedException.
+
+Ques: What is IOC ?Give answer apart from dependencyInjection?
+
+Ques: Learn Serialization& Deserialization ?
+
+
+Ques: What are the spring core component you used?
+Beans
+Context
+AOP
+ExpressionLanguage
+ORM etc
+
+
+
+Ques: How did you intercept the request in your application?
+
+To work with interceptor, you need to create @Component class that supports it and it should implement the HandlerInterceptor interface.
+
+preHandle() method − This is used to perform operations before sending the request to the controller.
+
+postHandle() method − This is used to perform operations before sending the response to the client.
+
+afterCompletion() method − This is used to perform operations after completing the request and response
+
+
+Ques: how do u make sure that you mock correct method in spring application?
+
+
+
+
+
+...................Hibernate Questions....................
+Ques: In hibernate when lazy proxy object gets initilized?
+ A lazy-loaded entity or a collection is substituted by a Proxy prior to fetching the entity or the collection. The Proxy can be initialized by accessing any entity property or collection element or by using the Hibernate
 
 
 

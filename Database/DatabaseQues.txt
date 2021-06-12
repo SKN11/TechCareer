@@ -226,14 +226,23 @@ Ques: see table schema
 desc table_name;
 
 
-.....................Topic : DB Interview Question.......................
+.....................Topic : DB In	terview Question.......................
+
+https://www.java67.com/2013/04/10-frequently-asked-sql-query-interview-questions-answers-database.html
 
 Ques:create query which fetches employee count based on country ?
 select city,count(id) from employee group by city
 
+Ques: If you want to get first 5 employee from table?
+SELECT * FROM Customers LIMIT 5
 
-    
-    
+Ques: Based on department give employee name and max salary in each department?
+select name,max(salary) from employee group by deptId
+
+Ques: Select second max salary?
+SELECT max(salary) FROM Employee WHERE salary < (SELECT max(salary) FROM Employee);
+
+
 
 
 

@@ -99,4 +99,52 @@ traverse through LL & store index to each to LL
 if lastindex-n is 0 , head to head.next & assign arr[1].next to null;
 assing lastindex - n next to lastindex-n next.next
  
-
+==============================================
+Merge two sorted List
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} l1
+ * @param {ListNode} l2
+ * @return {ListNode}
+ */
+var mergeTwoLists = function(l1, l2) {
+    let result=new ListNode(0,null);
+    let res=result;
+    if(!l1 || !l2) return result;
+    
+    let temp1=l1;
+    let temp2=l2;
+    
+    while(temp1)
+        {
+            //console.log(temp1.val);
+            res.next = new ListNode(temp1.val,null);
+            res=res.next;
+            while(temp2)
+                {
+                if(temp1.val===temp2.val)
+                {
+                    res.next = new ListNode(temp2.val,null);
+                    res=res.next;
+                    temp2=temp2.next;  
+                }
+                    else if(temp1.val>temp2.val)
+                        {
+                            res.next = new ListNode(temp2.val,null);
+                            res=res.next;
+                            temp2=temp2.next;
+                        }
+                   else break; 
+                }
+            temp1=temp1.next;
+        }
+    
+    return result.next;
+    
+};

@@ -45,7 +45,11 @@ for(var i=1;i<Math.min(5,n);i++){ }
 
 Ques: If you have lot of space but very less time?  //Recursion can be good in that case
 
-   
+Ques: How O(logn) is very less ?
+O(logn) roughly gives no of times divide by 2.
+
+
+
 .......................Topic : Problems Solving Approach.....................
 
 slides   
@@ -58,15 +62,14 @@ Multiple PointerPattern - use 2 or more pointer to traverse through array or lin
 			   for minimal space complexity
 Siding Window - just slide and remove start and add end (ex- count sum of consective n digit no.)
 Divide&Conquer - split code in small pieces (ex- binary search half the search array on each iteration)
-DynamicProgramming - 
+DynamicProgramming - you can use an array which stores repetitive computation
 Greedy Algorithm -
 Backtracking -
 
-
-
+Note: Check empty And Invalid Inputs while u solve algorithmic questions...
 
 pending -:
-find longest substring question
+find longest substring question -revise
 
 
 .......................Topic : Recursion.....................
@@ -76,20 +79,20 @@ slides - https://cs.slides.com/colt_steele/searching-algorithms-22
 boy dragon story of recursion
 
 
-.......................Topic : Searching......................
+.......................Topic : Searching & Sorting......................
 slides - 
 https://cs.slides.com/colt_steele/tries-21
 
-LINEAR SEARCH
+...LINEAR SEARCH
 use when data is not sorted
 O(n)
 
-BINARYSEARCH
+...BINARYSEARCH
 use only when data is sorted
 O(logn)
    
-   
-.......................Topic : Sorting......................
+...KMP Algo
+https://www.youtube.com/watch?v=V5-7GzOfADQ
 
 ...BUBBLE SORT
 slides-
@@ -111,19 +114,43 @@ Use when u dont want much swap otherwise use bubblesort which is more efficient 
 
 O(n2)
 
-...MERGESORT
+...MERGESORT     //It is Comparison Sort
 slide
 https://cs.slides.com/colt_steele/intermediate-sorting-algorithms  //notes slide
 
 
 
 
-...QuickSort
-worst case when array is already sorted
+...QuickSort     //It is Comparison Sort
+worst case when array is already sorted [1,2,3,4,5,6,7,8];
 find a pivot which reduces the execution time(use median,or any random pivot)
 
 O(n2) - when array is already sorted
 Otherwise O(nlogn)
+
+Ques: Quicksort vs MergeSort
+	QuickSort		||		MergeSort
+1.No auxillary Space Needed		1.Auxilliary space is needed
+2.worst case could be O(n2)		2.Worst case remains same as Averagecase o(nlogn)
+3.Not work good with large datset	3.can work good on large datasets
+4.Work better than Merge on small	4.Work less better than quicksort on smalldataset
+  datasets
+5.Quicksort exhibits good cache	5.It occuppies extra space so not good for virtual memory environment
+ locality and this makes quicksort	   i.e why good for linked list(extra memory head)
+ faster than merge sort
+ (in many cases like in virtual 
+ memory environment).	
+ i.e why good for arrays(no extra 
+ memory head)
+
+https://www.geeksforgeeks.org/quick-sort-vs-merge-sort/#:~:text=Merge%20sort%20is%20more%20efficient,larger%20array%20size%20or%20datasets.&text=Quick%20sort%20is%20more%20efficient,smaller%20array%20size%20or%20datasets.
+
+...RadixSort  
+
+It is not a comparison sort
+It is only for number
+
+
 
 
 .......................Topic : Data Structures Intro......................
@@ -146,7 +173,7 @@ https://cs.slides.com/colt_steele/doubly-linked-lists
 https://cs.slides.com/colt_steele/stacks
 https://cs.slides.com/colt_steele/queues
 
-Ques: which is best to create stack from javascript shift unshift or push pop ?
+Ques: which is best to create stack from javascript shift unshift or push pop in Array Impl?
 Ans: Push pop why? coz no shifting or no reindexing
 
 
@@ -165,6 +192,8 @@ frisking in airport and Metro
 Array Stack impl - push(O1) & pop (O1)  || unshift(On) & shift (On)
 Array Queue impl - push & shift  || unshift & pop (Both r not ideal as shift and unshift are not O1)
 
+
+Pending stack and queue impl using array
 
 ...Trees
 https://cs.slides.com/colt_steele/trees
@@ -212,9 +241,6 @@ https://cs.slides.com/colt_steele/dynamic-programming
 
 
 
-KMP
-https://www.youtube.com/watch?v=V5-7GzOfADQ
-https://www.youtube.com/watch?v=cH-5KcgUcOE&feature=youtu.be
 
 
 

@@ -1,73 +1,68 @@
-Ques 1:
-var x=5;
-var y=6;
-var res=eval("x*y"); 
-document.write(res);
-Ans 1: 30 , eval evaluates the expression
+........
+Ques: JS Best practices while coding?
+use arrow function
+use first class functions
 
 
+
+.........................Topic : Array Questions......................
 
 Ques : push & concat difference?   //[Array 
 (return same array with pushing it i.e mutated obj) and concat (add item and return copy of the array i.e immutable array obj)
 
+Ques: What is Array.prototype?
 
-?
-function insertItem(array, action) {
-    let newArray = array.slice();   //gives copy of the array , [Array slice]Method
-    newArray.splice(action.index, 0, action.item);
-    return newArray;
-}
+Ques:Array Initiliase
+var arrayname=[value1,value2.....valueN];  //first
 
-? 
-function removeItem(array, action) {
-    let newArray = array.slice();
-    newArray.splice(action.index, 1);
-    return newArray;
-}
+var emp = new Array();   //second
+emp[0] = "Arun";  
+emp[1] = "Varun";  
 
-[Array Fill] Method   //mutable method
-var ingr = [1,2,3,4,5];
-ingr.fill(9);   //  [9, 9, 9, 9, 9]
-
-[Array Filter] Method
-Ques : provide new immutable array and removing element where condition matches 
-var ingr = [1,2,3,4,5];
-const removedIdIngre = prevIngredients.filter(ingr => ingr !== 2)
-o/p = [1,3,4,5]
-
-[Array slice()]  //gives theshalow copy
-const animals = ['ant', 'bison', 'camel', 'duck', 'elephant'];
-console.log(animals.slice(2));   // expected output: Array ["camel", "duck", "elephant"]
-console.log(animals.slice(2, 4));  // expected output: Array ["camel", "duck"]
-console.log(animals.slice(1, 5));  // expected output: Array ["bison", "camel", "duck", "elephant"]
-
-[Array splice ] //removes or adds the array
-const months = ['Jan', 'March', 'April', 'June'];
-months.splice(1, 0, 'Feb'); //add
-// inserts at index 1 , Array ["Jan", "Feb", "March", "April", "June"]
-
-months.splice(4, 1, 'May');   //removes
-// replaces 1 element at index 4 , ["Jan", "Feb", "March", "April", "May"]
+var emp= new Array("Jai","Vijay","Smith");   //third
 
 
+Ques: What is the diff b/w forEach and map method?
+map:     If you plan to change, alternate, or use the data, you should pick map(), because it returns a new array with the transformed data.
+forEach: This iterates over a list and applies some operation with side effects to each list member
+
+Ques: construct it different way let buckets = [[],[],[],[],[],[],[],[],[],[]];
+Array.from({length:10},()=>[]);
+
+Ques:  arr = [].concat(...buckets);
+copying from buckets [[1,2],[4],[5,6,7,7]]
+arr is now = [1,2,4,5,6,7,7]
 
 
+.........................Topic : ES6 Questions......................
+
+Ques: When to use arrow function?       //How Arrow function solve closures problem?
+It is easy to write
+less verbose
+solves closure problem
+bind this automatically    
+
+(we have to bind this explicitly)
+var obj = {
+  id: 42,
+  counter: function counter() {
+    setTimeout(function() {
+      console.log(this.id);
+    }.bind(this), 1000);
+  }
+};
 
 
+with arrow function
+var obj = {
+  id: 42,
+  counter: function counter() {
+    setTimeout(() => {
+      console.log(this.id);
+    }, 1000);
+  }
+};
 
-
-Ques : What is the use of useStrict in  javascript?  
- It is not a statement, but a literal expression
- With strict mode, you can not, for example, use undeclared variables.
-eliminates silent errors
-instead throws them so that the code won't run with errors in the code
- 
-Ques :Is javscript multithreaded ? It is single threaded //it is also disadvanatage of java
-
-Ques : Why arrow function is better than normal function?
-Arrow syntax automatically binds this to the surrounding code's context.
-arrow functions are less verbose
-closure problem solved
 
 Ques : Array & Object Destructuring?
 const array = [1, 2, 3];
@@ -79,6 +74,45 @@ const myObj = {
  }
 const {name} = myObj;
 console.log(name); //'Max'
+
+Note: name property must be same
+
+
+.........................Topic : Code Structural Questions......................
+Ques: What is the use of useStrict in  javascript?  
+ It is not a statement, but a literal expression
+ With strict mode, you can not, for example, 
+ 1.use undeclared variables.
+2.eliminates silent errors
+3.instead throws them so that the code won't run with errors in the code
+
+Ques: what happen if you write script in head ?
+If you write <script> in head it will through error as it has not loaded the html body tag. It should be written after body element.
+
+Recommended:write js or src after body is executed;
+
+Ques: How to make it More Modular?   //Put it js code in separate .js files
+
+
+Ques: How should you import an external JavaScript and execute it only after everything else is loaded?
+	
+	<script src ="script.js" async></script>
+	HTML parsing and JS download downloaded at the same time....Render blocking executed when script is fully loaded. (Attach picture from 		video)
+
+<script src ="script1.js" async></script>
+<script src ="script1.js" async></script>
+Both script downloaded asynchronously
+
+<script src ="script1.js" defer></script>
+<script src ="script1.js" defer></script>
+script1 downloaded first and script2 afterwards 
+---------------
+
+
+ 
+Ques :Is javscript multithreaded ? It is single threaded //it is also disadvanatage of javascript
+
+
  
 -----------------
 Ques:What is First Class Function?
@@ -106,12 +140,13 @@ var add = function() {
 };
 
 
-
+.........................Topic : Event in JS................
 Ques : How to add event listener on element?
 element.addEventListener("click",function name without paranthesis, false);
 
 what is that third argument? 
 It is "useCapture" in the specification allows the programmer to specify which phase they want to use capture phase and bubbling phase events
+
 capturephase & bubblephase 
 ex: when click on a element
 html (capture phase)
@@ -120,6 +155,16 @@ a (capture phase)
 a (bubbling phase)
 body (bubbing phase)
 html (bubbling phase)
+
+
+Ques: How to stop bubbling in javascript?
+event.stopPropagation() stops the move upwards, but on the current element all other handlers will run.
+
+To stop the bubbling and prevent handlers on the current element from running, there’s a method " event.stopImmediatePropagation(). " After it no other handlers execute.
+
+Note:Don’t stop bubbling without a need!
+
+reference: https://javascript.info/bubbling-and-capturing#:~:text=To%20stop%20the%20bubbling%20and,it%20no%20other%20handlers%20execute.
 
 
 
@@ -136,14 +181,7 @@ alert , confirm , prompt
 Ques: How can we detect OS of the client machine using JavaScript?
 navigator.appVersion
 
-Ques:Array Initiliase
-var arrayname=[value1,value2.....valueN];  
 
-var emp = new Array();  
-emp[0] = "Arun";  
-emp[1] = "Varun";  
-
-var emp= new Array("Jai","Vijay","Smith");  
 
 Ques:Does fetch work in IE?   //No
 
@@ -154,8 +192,7 @@ Ques:Does fetch work in IE?   //No
 https://javascript.info/async
 
 Ques: what is CallBacks?
-Ex if you want to load a script and call a func that script has in it. If we call after load scriot it will throw error as may be script is not loaded
-instead we use callbacks to call that function
+Ex if you want to load a script and call a func that script has in it. If we call after load script it will throw error as may be script is not loaded  instead we use callbacks to call that function
 
 ...For Error handling
 function loadScript(src, callback) {
@@ -175,6 +212,7 @@ loadScript('/my/script.js', function(error, script) {  //error-first callback”
     // script loaded successfully
   }
 });
+
 
 Ques 2: What is Pyramid of doom in Javascript?
 callbacks in callbacks........
@@ -197,6 +235,38 @@ promise.then(
 );
 
 
+
+Ques: Async await?
+
+If u write async before any function it will return response as a promise.
+
+
+async function f() {
+
+  let promise = new Promise((resolve, reject) => {
+    setTimeout(() => resolve("done!"), 1000)
+  });
+
+  let result = await promise; // wait until the promise resolves (*)
+
+  alert(result); // "done!"
+}
+
+f();
+
+await - The function execution “pauses” at the line (*) and resumes when the promise settles, with result becoming its result. So the code above shows “done!” in one second.
+
+Note: If we try to use await in a non-async function, there would be a syntax error:
+	function f() {
+	  let promise = Promise.resolve(1);
+	  let result = await promise; // Syntax error
+	}
+We may get this error if we forget to put async before a function. As stated earlier, await only works inside an async function.
+
+
+
+
+
 Ques: What is Javascript Pure Function?
 A function is only pure if, given the same input, it will always produce the same output.
 
@@ -204,16 +274,86 @@ Ex: Math.random() is impure new Date().toLocaleTimeString() is pure
 
 Referenece: https://medium.com/javascript-scene/master-the-javascript-interview-what-is-a-pure-function-d1c076bec976
 
-
-Ques: What is Callbacks?
-
+......................Prototype...................
 Ques: What is Array.prototype?
 
-Ques:How Arrow function solve closures problem?
+Ques: Write any prototype in javascript?
+let obj1={name:'first'};
+let obj2={last:'second'};
+
+obj2.__proto__ = obj1;
+
+obj2.name //first   Explanation:It is same thing like inheritance in java if u set __proto__ u acquired all the proprty of that particular object
+
+Note: Alternatove Syntax Object.getPrototypeOf/Object.setPrototypeOf
+
+Ques: What is cyclic proto error in javascript object?   
+//same as java multiple inheritance and cyclic inheritance is not allowed
+
+obj.__proto__=obj2;
+obj2.__proto__=obj;
+
+..........................Asynchrous programming...........
+Ques: What is event loop?
+When the execution stack is cleared it says I need to do something else. The event loop tells the execution stack that there is a function waiting on the function queue then puts one on the stack
+
+Ques: Javascript Asynchrous handling ?
+https://codinglead.github.io/javascript/is-javascript-synchronous-async-or-single-threaded#:~:text=Javascript%20is%20a%20single%2Dthreaded,on%20at%20a%20single%20time.
+
+JavaScript is a singled threaded synchronous language with capability to do asynchronous calls.
+
+..............Callbacks......................
+
+Ques: What is callbacks ?
+ A function that does something asynchronously should provide a callback argument where we put the function to run after it’s complete.
+example:
+function loadScript(src, callback) {
+  let script = document.createElement('script');
+  script.src = src;
+  script.onload = () => callback(script);
+  document.head.append(script);
+}
+
+loadScript('https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.2.0/lodash.js', script => {
+  alert(`Cool, the script ${script.src} is loaded`);
+  alert( _ ); // function declared in the loaded script
+});
 
 
+Ques: What is error-first callback?
+
+function loadScript(src, callback) {
+  let script = document.createElement('script');
+  script.src = src;
+
+  script.onload = () => callback(null, script);
+  script.onerror = () => callback(new Error(`Script load error for ${src}`));
+
+  document.head.append(script);
+}
+It calls callback(null, script) for successful load and callback(error) otherwise.
+
+The usage:
+loadScript('/my/script.js', function(error, script) {
+  if (error) {
+    // handle error
+  } else {
+    // script loaded successfully
+  }
+});
 
 
+Ques: What is the diff b/w let and var?
+var gives global scope let gives local scope with in the curly braces only.
+
+Ques: What is Deepcopy & shallowcopy?
+A deep copy means that all of the values of the new variable are copied and disconnected from the original variable. A shallow copy means that certain (sub-)values are still connected to the original variable.
+
+but if u copy nested object isnig spreadoperator it is shallow copy
+to prevent it
+1.override that key explicitly
+2.convert it into string then to json(if object is too much nested )
+https://www.freecodecamp.org/news/copying-stuff-in-javascript-how-to-differentiate-between-deep-and-shallow-copies-b6d8c1ef09cd/#:~:text=A%20deep%20copy%20means%20that,into%20how%20JavaScript%20stores%20values.
 
 =================================================Pseudo Coding Problems=======================================================
 
@@ -227,7 +367,7 @@ let newrr=arr.map(a => a.split("").reverse().join(""));
 console.log(newrr);
 
 ---------------------
-Ques:if input is [1,10,[20,30],90], output should be  [1,10,20,30,90]
+Ques:if input is [1,10,[20,30],90]	, output should be  [1,10,20,30,90]
 
 const arr=[1,10,[20,30],90];
 console.log(arr);
@@ -292,8 +432,57 @@ Ques: Copy one obj in another obj?
 var obj1={k:v,k2:v2}
 var obj2={k3:v3,k4:v4}  
 
-var obj3 ={...obj1,...obj2};  //keys must be different;
+var obj3 ={...obj1,...obj2};  //keys must be different;  if same key is presents it just ignores
 
-Ques : 
+Ques : insertItem in js array?
+function insertItem(array, action) {
+    let newArray = array.slice();   //gives copy of the array , [Array slice]Method
+    newArray.splice(action.index, 0, action.item);
+    return newArray;
+}
+
+Ques : removeItem in js array?
+function removeItem(array, action) {
+    let newArray = array.slice();
+    newArray.splice(action.index, 1);
+    return newArray;
+}
+
+Ques: 
+var a=4;
+var b="5";
+var b1=5:
+var sum=a+b; 
+sum=45
+a+b1=9
+
+a-b console o/p = Nan , Not a Number as a is number b1 is string
 
 
+Ques 1:
+	var x=5;
+	var y=6;
+	var res=eval("x*y"); 
+	document.write(res);
+	Ans 1: 30 , eval evaluates the expression
+
+
+
+
+LinkedIn POST
+1.how asynchronous runs
+2.Tom and Jerry narrating technical stuff
+
+
+
+
+
+
+
+
+
+
+
+
+Pending
+Ques: What are polyfills

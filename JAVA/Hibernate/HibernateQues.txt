@@ -1,4 +1,7 @@
 
+Ques: Hibernate version u used?
+hibernate version 5.4.23
+
 Ques : What is Hibernate?
 It is an implementation of the specifications of JPA (Java Persistence API) for data persistence.
 
@@ -112,7 +115,7 @@ put this annotation in top of child class to create column foreignkey column
 -------------------------------------------------------------------
 Ques : Hibernate Mapping
 
-1. One to Many      //one-to-many mapping means that one row in a table is mapped to multiple rows in another table.
+[1.] One to Many      //one-to-many mapping means that one row in a table is mapped to multiple rows in another table.
 ex:one question has many answer
 one airport has multiple airlines
 one cart has multiple items
@@ -127,9 +130,9 @@ private List<Answer> answers;
 
 Note: no need to put anything in answer class just create it like a normal class. but
 to making this a bidirectional relationship put @ManyToOne on on Question Data reference in Answer (remembr it's optional)
----
+-------------------------------------------
 
-2. Many to Many Annotation
+[2.] Many to Many Annotation
 ex: question has many answer or answer has many questions
     any given employee can be assigned to multiple projects and a project may have multiple employees working for it.
 
@@ -172,7 +175,7 @@ private Address address;
 @OneToOne(cascade=CascadeType.ALL)  
     private Employee employee;  
 
-Note : Try creating many to many exam	ple in eclipse
+Note : Try creating many to many example in eclipse
 
 
 ----------------------------------------------------------------------------------------------------------------------------
@@ -474,9 +477,12 @@ If you use EhCache cache provider you can provide such configuration:
 Ques: Hibernate Flyweight configuration?
 
 
-Note: session clear() method to clear the cache
-ession contains() method to check if an object is present in the hibernate cache or not
+Note: 
+session clear()     - method to clear the cache
+session contains()  - method to check if an object is present in the hibernate cache or not
 
+Ques: What is unique=true in @Column(name="CMP_CodeHRIS",unique=true)?
+It is a uniqueconstraint which tells hibernate that this column value must always be unique.
 
  
   Pending...........

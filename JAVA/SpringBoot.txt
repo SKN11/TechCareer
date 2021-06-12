@@ -1,5 +1,22 @@
 
 ........Topic :Spring Boot..................
+Ques: Whatt version of spring u are using?
+2.4.5
+
+Ques: What are the dependencies u added in .pom file?
+spring-boot-starter-parent
+spring-boot-starter-data-jpa
+spring-boot-starter-data-rest
+mysql-connector-java
+validation-api
+spring-boot-starter-test
+spring-boot-devtools
+spring-boot-starter-hateoas
+swagger
+spring-boot-maven-plugin
+spring-boot-starter-security
+
+
 
 Spring Boot is a Spring module that provides the RAD (Rapid Application 
 ) feature to the Spring framework.
@@ -18,7 +35,7 @@ YAML Properties File //The Yaml file works because the Snake YAML jar is present
 
 --------------------------------------------------------
 Spring Boot Starter..
-spring-boot-starter-*,  in pom.xml   // spring-boot-starter-data-jpa
+spring-boot-starter-*,  in pom.xml   // ex: 	spring-boot-starter-data-jpa
 To add jars in the classpath. 
 
 For ex:
@@ -30,18 +47,22 @@ For ex:
 
 Spring Boot Starter Parent...
 1. It provides default configurations for our applications. 
-2. It is used internally by all dependencies. 
+2. It builds dependnecy tree in springboot application.
+3. It is used internally by all dependencies. 
+4. These have the advantage that you no longer need to specify a version for each dependency
 
 All Spring Boot projects use spring-boot-starter-parent as a parent in pom.xml file.
 
 <parent>  
 	<groupId>org.springframework.boot</groupId>  
 		<artifactId>spring-boot-starter-parent</artifactId>  
-	<version>1.4.0.RELEASE</version>  
+	<version>2.4.0</version>  
 </parent>  
 -------------------------------------------------------------
 
-Spring Data JPA...
+
+
+..............................Topic: Spring Data JPA......................
 adds a layer on the top of JPA.
 Spring Data JPA adds its own features such as the no-code implementation of the repository 
 creation of database queries from the method name.   //also creation of pattern 
@@ -69,13 +90,13 @@ Criteria API: It defines a Java-based API to execute searches against the databa
 Note: Spring internally generates a JPQL (Java Persistence Query Language) query based on the method name. 
 
 
------------------Topic : @QUery In JPA......................
+........@QUery In JPA......................
 
 Ques: write native sql query in jparepository?
 @Query(
   value = "SELECT * FROM USERS u WHERE u.status = 1", 
   nativeQuery = true)
-Collection<User> findAllActiveUsersNative();    //nOte we cannot pass sort object to this method as it is not supported , it throws 							Invalidjpaquerymethodexception
+Collection<User> findAllActiveUsersNative();    //Note we cannot pass sort object to this method as it is not supported , it throws 							Invalidjpaquerymethodexception
 
 
 
@@ -142,6 +163,77 @@ Ref---https://www.baeldung.com/spring-data-jpa-query
 http://localhost:8080/h2-console
 username : sa
 password : 
+
+
+Ques: Spring Boot repositries predefinedmethod
+userRepository.findAll();     //list of users
+userRepository.findById(id);   //return specific user with id and it is a Optional<User> and we can get the user using .get() method
+userRepository.deleteById(id);  //delete user with id   .... return nothing
+User sevedUser=userRepository.save(user); //to save new user  (by post method)
+
+fetch=FetchType.LAZY  //It tells to lazily load child component
+			The reason we explicitly set the fetch attribute to FetchType.LAZY is because, by default, all @ManyToOne and @OneToOne 				associations are fetched eagerly, which can cause N+1 query issues.
+
+
+
+[  @OnetoMany  & @ManytoOne ].........................
+Refer this
+https://stackoverflow.com/questions/11938253/whats-the-difference-between-joincolumn-and-mappedby-when-using-a-jpa-onetoma
+
+Real Life Example : A user can have multiple post
+Foriegn Key Concept use in this mapping
+
+1.Unidirectional 
+2.Bidirectional
+
+1.Unidirectional
+If you use the @OneToMany annotation with @JoinColumn in User List<Post> post,and nothing in the post then you have a unidirectional association.
+put this only in the user...
+@OneToMany(cascade = CascadeType.ALL)
+@JoinColumn(name = "user_id")
+private List<Post> comments = new ArrayList<>();
+
+2.Bidirectional
+If you use the @ManytoOne with the mappedBy attribute set, you have a bidirectional association
+In our case, both the User entity has a collection of post child entities, and the child post entity has a reference back to the parent User
+
+put this in the user...
+@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+private List<Post> comments = new ArrayList<>();
+
+put this in the post..
+@ManyToOne(fetch = FetchType.LAZY)
+private User user;
+
+Note: The reason we explicitly set the fetch attribute to FetchType.LAZY is because, by default, all @ManyToOne and @OneToOne 		         associations are fetched eagerly, which can cause N+1 query issues.
+
+
+Ques:what is the use of mappedBy?    //very Important question
+The mappedBy attribute of the @OneToMany annotation references the user property in the child post entity, and, this way, Hibernate knows that the bidirectional association is controlled by the @ManyToOne side.
+
+
+Ques: which is better Unidirectional or bidirectional?
+The unidirectional @OneToMany association does not perform very well, so you should avoid it.
+You are better off using the bidirectional @OneToMany which is more efficient.
+
+
+Note:For a bidirectional association, you also need to have two utility methods, like addPost and removePost in User POJO Class
+public void addPost(Post post) {
+    posts.add(comment);
+    post.setUser(this);  //set User to the User property in Post POJO Class
+}
+
+public void removePost(Post post) {
+    posts.remove(comment);
+    post.setUser(null);  //nullify User to the User property in Post POJO Class as it is removed from the post lists in User POJO Class
+}
+
+Note: For other mapping refer HIbernateQues.txt
+
+Some Mapping Question........................
+Ques : orphanRemoval=true
+orphanRemoval is an entirely ORM-specific thing. It marks "child" entity to be removed when it's no longer referenced from the "parent" entity, e.g. when you remove the post from the corresponding collection of the User entity.
+
 
 
 
@@ -244,18 +336,25 @@ HTTP also defines the following standard status code:
 200: SUCCESS                //HttpStatus.
 201: CREATED		//HttpStatus.CREATED
 
-404: RESOURCE NOT FOUND      //HttpStatus.NOT_FOUND
+301: MOVED PERMANANETLY
+308: PERMANENT REDIRECT
+
+
 400:Bad Request		//HttpStatus.BAD_REQUEST
 401: UNAUTHORIZED	//HttpStatus.UNAUTHORIZED
+404: RESOURCE NOT FOUND      //HttpStatus.NOT_FOUND
 406:Not acceptable
 
 500: SERVER ERROR	//HttpStatus.INTERNAL_SERVER_ERROR
 
 
-GET: It reads a resource.
-PUT: It updates an existing resource.
+GET: It reads a resource. 
+PUT: It updates an existing resource.  
 POST: It creates a new resource.
 DELETE: It deletes the resource.
+
+POST is NOT idempotent.
+GET, PUT, DELETE, HEAD, OPTIONS and TRACE are idempotent.
 
 Ques :Can we exclude some files from autoconfiguration in spring boot ?
 @SpringBootApplication (exclude={JacksonAutoConfiguration.class, JmxAutoConfiguration.class})  
@@ -282,8 +381,7 @@ user can use it to know the location where his data stored in the server by read
 
 location- http://localhost:8080/api/users/6
 
-Ques :What is ResponseEntityExceptionHandler class.
- It is an abstract and base class for the exceptions that provide centralized exception handling across all the different exception handler methods
+
  
 Ques :if the date is displaying in the default timestamp format?
 spring.jackson.serialization.write-dates-as-timestamps=false   // in application.properties file
@@ -305,7 +403,6 @@ DataSourceAutoConfiguration (hibernate)
 JacksonAutoConfiguration (rest services)
 ErrorMvcAutoConfiguration (#basicErrorController)
 
-Ques: WHen WhiteLabelError comes   //when there is no error handling in the app . It is default error handler in spring app
 
 Ques: HelloWorld bean returns response in which format?   //json( all data member in the class)
 
@@ -313,8 +410,12 @@ Ques: HelloWorld bean returns response in which format?   //json( all data membe
  
 
 ...........................Topic:ExceptionHandling in SPringBooot.................
+ Ques: WHen WhiteLabelError comes   //when there is no error handling in the app . It is default error handler in spring app
+
+Ques :What is ResponseEntityExceptionHandler class.
+ It is an abstract and base class for the exceptions that provide centralized exception handling across all the different exception handler methods
+
 ResponseEntityExceptionHandler  //default exception handler
-It is an abstract and base class for the exceptions that provide centralized exception handling across all the different exception handler methods.
 
 
 	@ExceptionHandler(Exception.class) //override method of ResponseEntityExceptionHandler class  
@@ -404,88 +505,6 @@ etc.
 
 HTTP header ACCEPT    //It is used to determine what type of representation is desired at the client-side.
 Accept: application/json  
-
-........................Topic : SpringBoot JPA......................
-
-userRepository.findAll();     //list of users
-userRepository.findById(id);   //return specific user with id and it is a Optional<User> and we can get the user using .get() method
-userRepository.deleteById(id);  //delete user with id   .... return nothing
-User sevedUser=userRepository.save(user); //to save new user  (by post method)
-
-fetch=FetchType.LAZY  //It tells to lazily load child component
-			The reason we explicitly set the fetch attribute to FetchType.LAZY is because, by default, all @ManyToOne and @OneToOne 				associations are fetched eagerly, which can cause N+1 query issues.
-
-
-
-[  @OnetoMany  & @ManytoOne ].........................
-Refer this
-https://stackoverflow.com/questions/11938253/whats-the-difference-between-joincolumn-and-mappedby-when-using-a-jpa-onetoma
-
-Real Life Example : A user can have multiple post
-Foriegn Key Concept use in this mapping
-
-1.Unidirectional 
-2.Bidirectional
-
-1.Unidirectional
-If you use the @OneToMany annotation with @JoinColumn in User List<Post> post,and nothing in the post then you have a unidirectional association.
-put this only in the user...
-@OneToMany(cascade = CascadeType.ALL)
-@JoinColumn(name = "user_id")
-private List<Post> comments = new ArrayList<>();
-
-2.Bidirectional
-If you use the @OneToMany with the mappedBy attribute set, you have a bidirectional association
-In our case, both the User entity has a collection of post child entities, and the child post entity has a reference back to the parent User
-
-put this in the user...
-@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-private List<Post> comments = new ArrayList<>();
-
-put this in the post..
-@ManyToOne(fetch = FetchType.LAZY)
-private User user;
-
-Note: The reason we explicitly set the fetch attribute to FetchType.LAZY is because, by default, all @ManyToOne and @OneToOne 		         associations are fetched eagerly, which can cause N+1 query issues.
-
-
-Ques:what is the use of mappedBy?    //very Important question
-The mappedBy attribute of the @OneToMany annotation references the user property in the child post entity, and, this way, Hibernate knows that the bidirectional association is controlled by the @ManyToOne side.
-
-
-Ques: which is better Unidirectional or bidirectional?
-The unidirectional @OneToMany association does not perform very well, so you should avoid it.
-You are better off using the bidirectional @OneToMany which is more efficient.
-
-
-Note:For a bidirectional association, you also need to have two utility methods, like addPost and removePost in User POJO Class
-public void addPost(Post post) {
-    posts.add(comment);
-    post.setPost(this);  //set User to the User property in Post POJO Class
-}
-
-public void removePost(Post post) {
-    posts.remove(comment);
-    post.setPost(null);  //nullify User to the User property in Post POJO Class as it is removed from the post lists in User POJO Class
-}
-
-
-[  @OnetoOne  & @ManytoOne ].........................
-Real Life Example : A user can have one address(or mailing address) and that address belongs to one user only
-
-
-
-
-
-
-
-
-
-
-
-Some Mapping Question........................
-Ques : orphanRemoval=true
-orphanRemoval is an entirely ORM-specific thing. It marks "child" entity to be removed when it's no longer referenced from the "parent" entity, e.g. when you remove the post from the corresponding collection of the User entity.
 
 
 
@@ -702,13 +721,13 @@ OAUTH 2 via springboot.....
 @EnableOauth2sso     //put it on class,it specifies we are enabling oauth2
 
 
-Override WebSecurityConfigureAdapter  method configure(HttpSecurity security)
+Override WebSecurityConfigureAdapter's  method configure(HttpSecurity security)
 
 To specify to authenticate via google put some oath property in properties file
 
 oath acccess tokenuri = "some googleauthenticateurl"
 tokenName =oath_token
-scope = profile , username
+scope = profile , username     //tells what acces need application can provide
 clientid=
 clientsecret =
 
@@ -751,3 +770,11 @@ Ques: produces and consumes in spring boot?
 @RequestMapping(value = "/foo", method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
+            
+            
+            
+            
+            
+Spring jwt
+https://www.springboottutorial.com/spring-boot-react-full-stack-with-spring-security-basic-and-jwt-authentication
+

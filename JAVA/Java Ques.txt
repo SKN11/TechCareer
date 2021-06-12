@@ -1,4 +1,9 @@
 
+Ques: Java version u used ?
+1.8
+Ques: What version of JUnit you are using ?
+version using junit4
+
 ...........OOPS...................
 Ques 1 : What is Automatic Promotion in Java Overloading?
 
@@ -16,7 +21,8 @@ Ques 6 : What is difference between Object Based or Object-Oriented prog languag
 
 Ques 7 : How to Call Garbage Collector?    //System.gc(); and garbage collector calls finalize() to clean up object resources before destroying
 
-
+Ques 8 : When method resolution took place in Overloading and Overriding?
+In Overloading decision of which method to be called is resolved at compile time only by compiler. In Overriding it is done on runtime by jvm.
 
 
 ............String................
@@ -25,7 +31,8 @@ Refer -> https://theopentutorials.com/tutorials/java/strings/passing-string-as-p
 
 Ques : String s1 = "geeksquiz";
        String s2 = "geeksquiz";
-       System.out.println("s1 == s2 is:" + s1 == s2);  //+ is more precednce than == o/p is "s1 == s2 is: + geeksquiz == geeksquiz"
+       System.out.println("s1 == s2 is:" + s1 == s2);  //+ is more precednce than == o/p is calculated "s1 == s2 is: + geeksquiz" == "geeksquiz"
+       which is false.
         
 Ques : System.out.println(10  +  20 + "GeeksQuiz");  //30GeeksQuiz
        System.out.println("GeeksQuiz" + 10 + 20);   //GeeksQuiz1020
@@ -54,6 +61,14 @@ Ques: str.substrng(i,j)?
  gives string start from i to j-1 
  
 Ques: What is the diff b/w String s="sam" & String s = new String("sam");
+When you use a string literal the string can be interned, but when you use a new String("...") you get a new string object. In general, you should use the string literal notation when possible. It is easier to read and it gives the compiler a chance to optimize your code.
+
+Ques: String vs StringBuffer vs StringBuilder :
+1. If the content is fixed and won't change frequently then we should go for String.
+2. If the content will change frequently but Thread safety is required then we
+should go for StringBuffer.
+3. If the content will change frequently and Thread safety is not required then we
+should go for StringBuilder
 
 
 ...............Topic: Threading.................
@@ -75,6 +90,9 @@ Ques 7:Draw Full Thread Life cycle?
 Ques : why wait,notify,notifyall present in object class if it is specific to thread.why not it in thread class?
 coz thread applies lock on these methods on objects 
 ex: locking concept
+
+Ques: What is diff b/w class level lock and object level lock?
+https://www.tutorialspoint.com/difference-between-object-level-lock-and-class-level-lock-in-java#:~:text=Object%20Level%20Locks%20%E2%88%92%20It%20can,all%20available%20instances%20on%20runtime.
 
 Ques: Thread uses what scheduling?
 Premptive - high priority executes first      //in time slicing thread exexutes for some time and go in ready state again
@@ -165,7 +183,7 @@ Yes
 Ques: Thread Safety Using concurrent.lock ?
 Unlike their synchronized counterparts, concurrent collections achieve thread-safety by dividing their data into segments. In a ConcurrentHashMap, for instance, several threads can acquire locks on different map segments, so multiple threads can access the Map at the same time 
 
-Ques: what is diff b/w Runnable and callable?
+Ques: what is diff b/w Runnable(public void run()) and callable(public Future call())?
 callable return value in FutureObject
 	Future<Integer> future = executorService.submit(task);
 	Integer result = future.get().intValue();
@@ -201,6 +219,10 @@ However, if all reads and writes of 64-bit long and double values occur within a
 
 Reference: https://dzone.com/articles/longdouble-are-not-atomic-in-java
 ------------
+Ques: withoud using synchronization or wait notify can u achieve concurrency?
+Yes we can leverage it by using BlockingQueue Collection
+
+
 
 
 ...........................Topic: Collection.............
@@ -221,7 +243,7 @@ Cloneable : to clone it
 Serialixable : to transfer over network
 
 Ques : ArrayList Read-only?
- by calling the Collections.unmodifiableCollection() method. 
+ by calling the Collections.unmodifiableList() method. (others unmodifiableSet,unmodifiableCollection) 
 
 Ques: Concurrent HashMap?
 It is thread safe and many thread can access it how?
@@ -253,7 +275,77 @@ When you put an object into a Hashset it uses the object's hashcode value to det
 
 Override this equals method to check for equality of object along with hashcode. public boolean equals(Object o)
 
-Ques:
+Ques:What is Rehashing in HashMap?
+It occurred when hashmap gets full and new hashmap allocate using the load factor.75? 
+
+Ques: Diff b/w Collections.sort() and TreeSet wrt Set.
+Collections.sort sorts list collection u need to convert set into list then u can apply sort.
+while Treaaet alwasy maintains some sorting order.
+
+Ques: What is CopyOnarrayList?
+It is a threadsafe version of ArrayList.
+Interanlly when modification is done on the list it clones the list and does the changes so that while reading via iterator doesnt throw ConcurrentModificationException.
+
+Keep in mind that, when we create an iterator for the CopyOnWriteArrayList, we get an immutable snapshot of the data in the list at the time iterator() was called. so if anybody adds anything after list.iterator it wont get printed.
+
+Because of the copying mechanism, the remove(),add() and set() operation on the returned Iterator is not permitted – resulting with UnsupportedOperationException:
+ . Note iterator throws that exception
+
+Reference: https://www.baeldung.com/java-copy-on-write-arraylist
+
+Ques: Pass Array Object in arrayList?
+ArrayList<Integer> l = new ArrayList<Integer>(Arrays.asList(new Integer[] {1,2,4}));
+
+list.to Array  //coverts list to array
+Arrays.asList(array)   //converts array to list
+ 
+Ques: What is BlockingQueue?
+BlockingQueue is an interface which extends the Queue interface. It provides concurrency in the operations like retrieval, insertion, deletion. While retrieval of any element, it waits for the queue to be non-empty. While storing the elements, it waits for the available space. BlockingQueue cannot contain null elements, and implementation of BlockingQueue is thread-safe
+
+
+Ques: What is descingdingIterator()?
+LinkedList<Integer> list = new LinkedList<>();  list.add(1);list.add(2);list.add(3);
+list.descendingIterator()  //3,2,1
+
+
+Ques: If u have treemap and u have to store some userdefined class then how do u store it ?
+using comparator
+
+
+
+...........................Topic ExceptionHandling..............
+
+Ques: Multicatch block in Exception ?
+catch(Arithamticexception | IOException e)   //there should be any relationship b/w in exceptions in multicatchblock
+
+Ques: Can youwrite try without catch finally?
+try without catch or finally is invalid.
+
+Ques: how to not execute finally block?
+System.exit()
+Thread stopped using the stop() 
+Note:It's also worth noting that, since any return statement in the finally block will override any returns or exception throws in the try/catch blocks,
+with interrupt() //finally executes
+
+Ques : whT this snippet will return? //important
+
+	public static int checkFinally() {
+		
+		try {
+			System.out.println("in try");
+			//return 0;
+		throw new NullPointerException();
+		}catch(Exception e) {
+			return 1;
+			
+		}finally {
+			return 2;
+		}
+		
+	}
+Ans: 2
+
+Ques:SQL Excetion is checked or unchecked? //checked
 
 
 ...........................Topic: Array.............
@@ -414,10 +506,13 @@ Note: when u create customPool please close it when u are done with it otherwise
 
 
 Reference-https://www.baeldung.com/java-8-parallel-streams-custom-threadpool
+ForkJoinPool customThreadPool = new ForkJoinPool(4);
 
 
 
-
+sort list using stream();
+list.stream().sorted(Comparator.reverseOrder()).      //also .sorted()  for natural sorting
+                          forEach(System.out::println);
 
 
 
@@ -492,6 +587,9 @@ Optional<String> checkNull = Optional.ofNullable(str[5]);
         System.out.println(checkNull.get());    // printing value by using get method  
         
 Optional.empty() //to check is Optional empty (alternative to null)
+
+Ques: What is get method of Optional?
+The get() method of java.util.Optional class in Java is used to get the value of this Optional instance. If there is no value present in this Optional instance, then this method throws NullPointerException.
         
 -----------------      
 QUes10: Parallersort in array
@@ -561,11 +659,36 @@ LocalDate finalDate = initialDate.plus(Period.ofDays(5));
 
 
 
+................Topic Java 7 Features..............
 
+Ques :Features of java7?
 
+1.MultiCatch //refer exception handling topic
 
+2.Try WithResurces  //refer exception handling topic
 
+3.Switch in String?
+String game="String";
+switch(game){  
+        case "Hockey":  
+            System.out.println("Let's play Hockey");  
+            break;  
+            }
 
+4.Type Inference
+	In Java 7, Java provides improved compiler which is enough smart to infer the type of generic instance. Now, you can replace the type 		arguments with an empty set of type parameters (<>). This pair of angle brackets is informally called the diamond.
+	ArrayList<Integer> list = new ArrayList<Integer>(); //Java6
+	ArrayList<Integer> list = new ArrayList<>();  //Java7 no need to write Integer on Lefthand side
+	
+5.Binary Literal
+byte b1 = 0b101;    // Using b0, The b can be lower or upper case  byte b2 = 0B101;    // Using B0  
+System.out.println("b1 = "+b1);   //o/p 5  (5 in binary is 101)
+
+6.Number Literals 
+using underscore we can improve readablity of numbers in java
+ // Underscore in integral literal  
+        int a = 10_00000;  //10,00000
+          
         
 ............Topic : Generics........
 
@@ -575,7 +698,7 @@ Use < ? extends Number>
 Ques: You need to bound only for read no write
 methodOne(ArrayList<?> l):
 
-Ques: ArrayList<Integer> list = new ArrayList<>();
+Ques: ArrayList<Integer> list = new ArrayList<>();   //It is Type Inference
 
 
 
@@ -671,38 +794,13 @@ The Java compiler automatically imports two entire packages for each source file
 
 
 
-Ques: how to not execute finally block?
-System.exit()
-Thread stopped using the stop() 
-Note:It's also worth noting that, since any return statement in the finally block will override any returns or exception throws in the try/catch blocks,
-with interrupt() //finally executes
 
-Ques : whT this snippet will return? //important
-
-	public static int checkFinally() {
-		
-		try {
-			System.out.println("in try");
-			//return 0;
-		throw new NullPointerException();
-		}catch(Exception e) {
-			return 1;
-			
-		}finally {
-			return 2;
-		}
-		
-	}
-Ans: 2
 
 Ques:System.err.println("text") ? //print 'text' in red color
 
 Ques: If two interfaces has same default method and a class implements these two interfaces?
-It gives compiler error saying the default method is amgious.
+It gives compiler error saying the default method is amgbious.
 
-
-
-Ques:SQL Excetion is checked or unchecked? //checked
 
 
 Ques: CustomAnnotation in java?
@@ -800,10 +898,59 @@ String jsonString = jsonElementsMap.entrySet()
 Ques: What is the differenece b/w = & +=
 
 Ques: What is the diff b/w b+1 &b++?
-b+1  //may be loss of prcision
+b+1  //may be loss of precision
 b++ //no loss of precision (type of b)(n+1);
 
-Ques
+Ques: Rules for overriding equals method?
+If we are passing different type of objects (heterogeneous object) our
+.equals() method should return false but not ClassCastException i.e., we
+have to handle ClassCastException to return false
+
+If we are passing null argument our .equals() method should return false
+but not NullPointerException i.e., we have to handle
+NullPointerException to return false.
+
+Ques: What is the Contract between .equals() method and hashCode() method?
+
+equals() return true then hashcode is same
+equals return false then hashcode can be same or different
+
+hashCode() equal we cant predict that equals is true or false
+hashcode() not equal we can say that they are also not equals
+
+
+Ques: What is final blank Variable?   
+private final String PAN_CARD_NUMBER;  
+
+you can initiliase it only in constrcutor. It is once assigned will never reassigned.
+for ex PAN number of a user once created it will not be reassigned.
+objectInstance.PAN_CARD_NUMBER =200   //compiler error
+
+Ques: What is final static blank Variable? 
+private final static String UNIVERSITY_NAME;  
+
+you can initiliase it only in static block. It is once assigned will never reassigned.
+for ex - UNIVERSITY_NAME of a all student is same and never be changed.
+ClassName.UNIVERSITY_NAME = "AKTU"   //compiler error
+
+
+Ques: How to Make ReadOnlyClass in Java?  
+all fields must be private.
+no setters.    //for write only no getters
+
+
+Ques: Diff b/w System.out.println(1/0),  System.out.println(1.0/0.0);
+one give exception another one gives Infinity
+Note: An IEEE754 floating point double (used by Java) has a representation of infinity. ... In that sense, 1.0 / 0.0 is calculable since it takes place in floating point arithmetic. An integral type has no representation of infinity, so an exception is thrown. 1 / 0 is computed in integer arithmetic
+
+Ques: What is the diff b/w singleton and static method ?when to use what?
+Singleton can be eager or lazy but static is can only be eager
+No Inheritence and Polmorphism Benefit in Static method
+
+Reference- 
+https://javarevisited.blogspot.com/2013/03/difference-between-singleton-pattern-vs-static-class-java.html#axzz6ujFddOxp
+
+
 
 
 
@@ -812,6 +959,31 @@ Ques
  Math.abs(-1) // it will become 1
 
 
+
+.........................Topic :JUnit...................
+
+JUNIT testing is used for unit testing
+
+Ques: What version you are using ?
+version using junit4
+
+Ques: How do u handle exception using Junit?
+@Test(expected = ArithmeticException.class)
+
+Ques: What are the various JUNIT Annotations
+@Test annotation specifies that method is the test method.
+@Test(timeout=1000) annotation specifies that method will be failed if it takes longer than 1000 milliseconds (1 second).
+@BeforeClass annotation specifies that method will be invoked only once, before starting all the tests.
+@Before annotation specifies that method will be invoked before each test.
+@After annotation specifies that method will be invoked after each test.
+@AfterClass annotation specifies that method will be invoked only once, after finishing all the tests.
+
+
+Ques: What is the diff b/w BlackBox Testing and WhiteBox Testing?
+1.It is done by Testers		||		It is done by Developers
+2.implemenatation knowledge		||		Internal implementation knowledge is neeeded
+not needed
+3.ex-Regression Testing		||		Loop Testing,condition tetsiting,algo testing
 
 
 

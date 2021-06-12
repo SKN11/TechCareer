@@ -1,5 +1,8 @@
 ...........Topic1 : Spring..............
 
+Ques: Latest Spring version is?
+ 5.3.1
+
 Ques : Why Spring? F Lw Lc
 Well firstly it helps to do development faster,
 reduces boilet plate code and
@@ -169,6 +172,13 @@ Advice: what you need to do along joinpoint //@Before  , @After (before return) 
 	}
 
 Weaving : Process of linking aspect with other application types or objects to create an advised object
+
+
+Before Advice: it executes before a join point.
+After Returning Advice: it executes after a joint point completes normally.
+After Throwing Advice: it executes if method exits by throwing an exception.
+After (finally) Advice: it executes after a join point regardless of join point exit whether normally or exceptional return.
+Around Advice: It executes before and after a join point.
 
 ----------------
 Ques : Spring withORM?

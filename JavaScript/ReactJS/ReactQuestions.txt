@@ -51,12 +51,31 @@ ex: setError()  state
 
 if written together will execute in synchronlously and thus only one render cycle
 
+Ques: write React.memo syntax ?
+
+Ques: What is the diff between React.memo and useMemo?
+React.memo is a hoc 
+ex: export default React.memo(Count);
+
+useMemo is a react hook is basically used for to memoize used compenent within component or memoized any function 	
+
+Ques: What is the diff between useCallback and useMemo?
+The difference is that useCallback returns its function when the dependencies change while
+ useMemo calls its function and returns the result.
+ 
+.......................Topic: Redux.......................       
+
+Ques: What is the use of Middleware redux thunk?
+From action creator we usually return objects but we can also return some funcntion which is perfromaing some task.
+when this function gets action instead of object redux thunk recognizes it and dispatch this to the reducer.  
+ 
 
 .......................Topic: Export Import.......................      
 Ques: what is named Export
 import {Login} from './login/Login'
+or import * as namedExportObj from './login/Login'   and u can use it like namedExportObj.Login
 
-
+Ques: 
 
 
 .......................Topic: React General Questions.......................      
@@ -95,4 +114,65 @@ enzyme
 react-test-render
 enzyme-adapter-react-16
 axios
+
+
+Ques: What are the rules which is checked by ReactHook interally?(for predefined & custom both)
+Rule 1-
+Don’t call Hooks inside loops, conditions, or nested functions. Instead, always use Hooks at the top level of your React function
+But Why? It allows React to correctly preserve the state of Hooks between multiple useState and useEffect calls.
+
+Rule 2-
+Don’t call Hooks from regular JavaScript functions. Instead, you can:
+✅ Call Hooks from React function components.
+✅ Call Hooks from custom Hooks
+
+Ques: Rules for creating custom hooks?
+1. Always start it with useCustomHook.
+
+
+Ques:Linter you Used in your projects?
+1. eslint-plugin-react-hooks
+   Refrence: https://www.npmjs.com/package/eslint-plugin-react-hooks
+
+2. 
+
+
+Ques: What is Virtual Dom?
+
+Ques: What is ReactDom or ReactDOM.render?
+ReactDom is library of React which syncs your changes with virtualDom.
+
+
+Ques: What version of the react you are using?
+16.8
+
+Ques: What is React Fiber?
+Fiber is the new reconciliation engine in React 16
+
+Ques: Accessing React State right after setting it?
+openAddBoardModal() {
+        this.setState({ boardAddModalShow: true }); // set boardAddModalShow to true
+
+        /* After setting a new state it still returns a false value */
+        console.log(this.state.boardAddModalShow);   
+    }
+    
+Your state needs some time to mutate, and since console.log(this.state.boardAddModalShow) executes before the state mutates, you get the previous value as output. So you need to write the console in the callback to the setState function like below...
+
+openAddBoardModal() {
+  this.setState({ boardAddModalShow: true }, function () {
+    console.log(this.state.boardAddModalShow);
+  });
+}
+
+
+
+Ques: when you click on button how will u make sure that it updates the state and showed the correct counter value into the ui if u click very fats using that button?
+
+
+
+
+	
+Ques: how virtual dom works?
+
 

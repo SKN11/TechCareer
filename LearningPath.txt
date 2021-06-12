@@ -32,10 +32,17 @@ Thread - https://www.baeldung.com/java-concurrency-interview-questions
 top 50 java Interview - https://www.journaldev.com/370/java-programming-interview-questions
 Java - 300javatpoint interview question
 JavaStream - https://www.java67.com/2018/10/java-8-stream-and-functional-programming-interview-questions-answers.html
+JUNIT - https://www.javatpoint.com/junit-interview-questions
 
 MCQ
 https://www.geeksforgeeks.org/java-multiple-choice-questions/   //coreJava total set 31
 https://tutorialsinhand.com/aptitudes/java-aptitude/java-string-mcq/java-string-mcq-set-2.aspx
+
+.........................Topic :JavaCoding...................
+Top 50 Programming Intervew Question.
+https://www.journaldev.com/370/java-programming-interview-questions
+
+
 
 
 ................Topic : Advanced Java........
@@ -63,6 +70,10 @@ MCQ (Spring+Spring MVC)
 https://tutorialsinhand.com/aptitudes/spring-aptitude/spring-mcq-aptitude/spring-mcq-1.aspx
 https://www.tutorialspoint.com/spring/spring_online_quiz.htm
  
+...WEBSECURITY
+https://portswigger.net/web-security/csrf/tokens
+
+
  
 -----------------------------------------------------------------------FRONTEND------------------------------------------------------------
 Use JSBIN for online editor
@@ -74,7 +85,6 @@ JavascriptEssentialTrainingNotes.txt -done
 Javascript Ques.txt  -done
 nextgen js summary.pdf (UdemyMaxmillian) -done
 PromiseDemo.html -done
-ArrayMethods-
 w3schools tutorial  -
 
 MCQ
@@ -121,22 +131,6 @@ GraphQL is a query language for APIs   //developed by facebook
 .........................Topic:AWS.................
 
 
-
-
-
-
-
-.........................Topic :Django...........................................
-
-
-
-
-
-
-
-
-
-
 .........................Topic :SQL Database...........................................
 from w3schools
 SQL Tutorial  -  partial done
@@ -147,18 +141,12 @@ SQL Joins -done
 
 MCQ :
 https://tutorialsinhand.com/aptitudes/sql-aptitude/sql-mcq/sql-mcq-2.aspx
+INTERVIEW:
+https://www.java67.com/2013/04/10-frequently-asked-sql-query-interview-questions-answers-database.html
 .......................................................................................
 
 
-.........................Topic :JavaCoding...................
-https://www.journaldev.com/370/java-programming-interview-questions
 
-
-
-
-Things Todo
-
-WHy Leaving the company? or why switch?
 
 
 
