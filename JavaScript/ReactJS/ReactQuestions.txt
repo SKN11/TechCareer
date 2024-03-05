@@ -13,30 +13,12 @@ Ques : How many stages are there in React js life cycle   //React Js lifecycle h
 
 Ques: React DOM?     // to render app to the dom
 
+Ques: How to increase performance in react App
+1.) Use React.memo()
+2.) Use shouldComponentUpdate()
+3.) Use asyncCompnents   
+4.) use useCallback()
 
-
-...................Topic:React Router............................
-
-Ques: this.props.history.push({pathname:'/checkout'});
-Ans : It is used to go on certain page "/checkout" using routing
-
-Ques: const queryParam = new URLSearchParams(this.props.location.search);  ? What is this.props.location.search
-It contains the query param which should be parsed
-
-Ques: this.props.match.path    
-It stores the current path till now
-
-Ques: In <Route component={Contact} />  if you want to pass some w=argument with it how do u do that?
-<Route render={()=>(<Contact ingr={this.state.ingredients}/>} />
-
-Ques: event.preventDefault();
-when we click on any item like in form it does go to hit a request. and if we dont want that we can use preventDefault
-         
-Ques:What is this.props.history ?
-https://stackoverflow.com/questions/44121069/how-to-pass-params-with-history-push-link-redirect-in-react-router-v4
-        
-         
-         
          
 .......................Topic: React Hooks.......................      
 Ques: How to reduce rerender cycle in React?

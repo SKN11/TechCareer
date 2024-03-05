@@ -4,6 +4,7 @@ Ques: Java version u used ?
 Ques: What version of JUnit you are using ?
 version using junit4
 
+
 ...........OOPS...................
 Ques 1 : What is Automatic Promotion in Java Overloading?
 
@@ -22,7 +23,12 @@ Ques 6 : What is difference between Object Based or Object-Oriented prog languag
 Ques 7 : How to Call Garbage Collector?    //System.gc(); and garbage collector calls finalize() to clean up object resources before destroying
 
 Ques 8 : When method resolution took place in Overloading and Overriding?
-In Overloading decision of which method to be called is resolved at compile time only by compiler. In Overriding it is done on runtime by jvm.
+Overloading
+	-decision of which method to be called is resolved at compile time
+	-only by compiler.
+
+Overriding
+	-it is done on runtime by jvm.
 
 
 ............String................
@@ -41,14 +47,12 @@ Ques : String intern() method //returns string from SCP
 Strin s1="abc";
 String s2=s1.intern(); //"abc"
 
-String Buffer is synchronized and hence thread-safe.   //also it is not comaparable   //also it is not immutable
-String Builder is not synchronized or not thread safe
-
 Ques : trim() vs strip() ?
 Both are used to remove leading and trailing whitespaces.
 
 strip() method  
-It was added to the String class in Java 11. However, the strip() method uses Character.isWhitespace() method to check if the character is a whitespace. This method uses Unicode code points.
+It was added to the String class in Java 11. However, the strip() method uses Character.isWhitespace() method to check if the character is a whitespace.
+ This method uses Unicode code points.
 whereas the trim() method identifies any character having codepoint value less than or equal to ‘U+0020’ as a whitespace character.
 
 Ques : which is recommended ? 
@@ -61,17 +65,25 @@ Ques: str.substrng(i,j)?
  gives string start from i to j-1 
  
 Ques: What is the diff b/w String s="sam" & String s = new String("sam");
-When you use a string literal the string can be interned, but when you use a new String("...") you get a new string object. In general, you should use the string literal notation when possible. It is easier to read and it gives the compiler a chance to optimize your code.
+When you use a string literal the string can be interned,
+ but when you use a new String("...") you get a new string object.
+ In general, you should use the string literal notation when possible. It is easier to read and it gives the compiler a chance to optimize your code.
 
 Ques: String vs StringBuffer vs StringBuilder :
-1. If the content is fixed and won't change frequently then we should go for String.
-2. If the content will change frequently but Thread safety is required then we
+1. If the content is fixed and won't change frequently then we should go for String.   //it is comparable
+2. If the content will change frequently but Thread safety is required then we          //it is notcomparable 
 should go for StringBuffer.
-3. If the content will change frequently and Thread safety is not required then we
+3. If the content will change frequently and Thread safety is not required then we      //
 should go for StringBuilder
 
+QUes: Why Strings are immutable?
+In the String constant pool, a String object is likely to have one or many references. If several references point to the same String without even knowing it,
+ it would be bad if one of the references modified that String value. That's why String objects are immutable
 
 ...............Topic: Threading.................
+pending-> 
+create ProducerConsumer Prom=blem and wait notify code in eclipse
+create and learn BlockingQueue 
 
 Ques 1:What start() method does? //instantiate,register thread to ThreadSchedular
 
@@ -83,9 +95,23 @@ Ques 4:Which method is useful to create Thread, extending thread or implementing
 
 Ques 5:Thread Deadlock startegy?   //Thread.currentThread().join() or put join on each other thread
 
-Ques 6: How Synchronized Block is better approach then Synchronised Method? // The main advantage of synchronized block over synchronized method is it reduces waiting time of Thread and improves performance of the system
+Ques 6: How Synchronized Block is better approach then Synchronised Method? 
+// The main advantage of synchronized block over synchronized method is it reduces waiting time of Thread and improves performance of the system
 
 Ques 7:Draw Full Thread Life cycle?
+
+Ques: Does thread share heap or addressspace or callstack?
+same heap or addrssspace but
+diferent callstack
+
+Ques: How to stop thread?
+thread interrupt method.   //Note: stop suspend resume is deprecated methods
+
+Ques: What are Green Thread?
+Green threads are created and scheduled by Virtual machine without using OS libraries
+It is not used as of now
+Green thread are made where kernel doesn't provide supoort for multithreading.
+
 
 Ques : why wait,notify,notifyall present in object class if it is specific to thread.why not it in thread class?
 coz thread applies lock on these methods on objects 
@@ -98,14 +124,17 @@ Ques: Thread uses what scheduling?
 Premptive - high priority executes first      //in time slicing thread exexutes for some time and go in ready state again
 
 Ques: Semaphores in Java?
-A semaphore controls access to a shared resource through the use of a counter. If the counter is greater than zero, then access is allowed. If it is zero, then access is denied
-to access the resource, a thread must be granted a permit from the semaphore.
-We can use a semaphore to lock access to a resource, each thread that wants to use that resource must first call acquire( ) before accessing the resource to acquire the lock. When the thread is done with the resource, it must call release( ) to release lock.
+A semaphore controls access to a shared resource through the use of a counter.
+ If the counter is greater than zero, then access is allowed. If it is zero, 
+then access is denied to access the resource, a thread must be granted a permit from the semaphore.
+We can use a semaphore to lock access to a resource, each thread that wants to use that resource must first call acquire( ) before accessing the resource to
+acquire the lock. When the thread is done with the resource, it must call release( ) to release lock.
 
 More On Semaphores - https://www.geeksforgeeks.org/semaphore-in-java/
 
 Que: If you have one thread printing even number anotherthread printing odd number how can u print 1,2,3,4,5.....?
 Using wait notify concept
+https://www.geeksforgeeks.org/print-even-and-odd-numbers-in-increasing-order-using-two-threads-in-java/
 
 --------
 Ques: Thread Pool?
@@ -115,15 +144,20 @@ Advantage //no need to create thread i.e no need to focus on creating threads an
 Ex: Tomcat container uses thread pool
 https://www.javatpoint.com/java-thread-pool
 
-ExecutorService executor = Executors.newFixedThreadPool(5);			//creating a pool of 5 threads  
+Ques: Create Executor service using factory methods of the Executors class?
+
+ExecutorService executor = Executors.newFixedThreadPool(10);			//creating a pool of 5 threads  
 for (int i = 0; i < 10; i++) {  
             Runnable worker = new WorkerThread("" + i);  
             executor.execute(worker);						//calling execute method of ExecutorService  
 }  
 executor.shutdown(); 
 
+Reference : https://www.baeldung.com/java-executor-service-tutorial
+
 Ques: How to make sure all threads in executor is executed or not?
-we can shut down Executor by calling the shutdown() or shutdownNow() methods But Waiting for existing threads to complete their execution can be achieved by using the awaitTermination() method.
+we can shut down Executor by calling the shutdown() or shutdownNow() methods But Waiting for existing threads to complete their execution can be achieved
+ by using the awaitTermination() method.
 
 or just wait for other thread to execute.
 
@@ -136,7 +170,14 @@ or just wait for other thread to execute.
         Thread.currentThread().interrupt();
     }
 
+Ques: To create custom Threads Pool?
+ForkJoinPool customThreadPool = new ForkJoinPool(4);
 
+Study ForkJoinPool
+In short, the main difference between the Executor framework and ForkJoinPool is that the former provides a general-purpose thread pool,
+ while the latter provides a special implementation that uses a work-stealing pattern for efficient processing of ForkJoinTask.
+https://www.javatpoint.com/java-forkjoinpool
+------------------------
 ...Runtime
 Ques : How will you invoke any external process in Java?     //to perform native operation of platform
 Runtime.getRuntime().exec("notepad");//will open a new notepad  
@@ -144,8 +185,7 @@ Note: to learn full force of Runtime refer = https://www.javatpoint.com/java-run
 
 Ques : What is shutdown hook?   //The shutdown hook is a thread that is invoked implicitly before JVM shuts down
 Runtime r=Runtime.getRuntime();   
-r.addShutdownHook(new MyThread());    //registershutdownhook is used as addshutdownhook on The IOC container
-
+r.addShutdownHook(new MyThread());    // registershutdownhook is used as addshutdownhook on The IOC container
 Use:To notify user that program is completed or if u want to do some task after method completed (for ex cleanup activities)
  
 Ques: Thread Group in java?
@@ -158,9 +198,9 @@ Thread t1 = new Thread(tg1,new MyRunnable(),"one");      //new MyRunnable is the
 Thread t2 = new Thread(tg1,new MyRunnable(),"two");      //(arg1=thread gp, arg2=run impl, arg3=thread name
 Thread t3 = new Thread(tg1,new MyRunnable(),"three");
 
-To interrupt t1,t2,t3 in one time Thread.currentThread().getThreadGroup().interrupt(); 
+To interrupt t1,t2,t3 in one time Thread.currentThread().getThreadGroup().interrupt();   or tg1.interrupt or tg1.stop()
 
-Ques: Is thread share callstack?
+Ques: Is thread share callstack?   //important
 They share same address space but Each thread run in a separate callstack.
 
 
@@ -170,7 +210,7 @@ When a thread is already working on an object and preventing another thread on w
 There are four ways to achieve Thread Safety in Java. These are:
 Using Synchronization.
 Using Volatile Keyword.   static volatile int a = 0, b = 0;    //by making the variable used in method volatile provides thread safety
-Using Atomic Variable.	    AtomicInteger count= new AtomicInteger();      //this ensures count is thread safe which inturns thread safe method 											where it is used
+Using Atomic Variable.	    AtomicInteger count= new AtomicInteger();      //this ensures count is thread safe which in turns thread safe method 											where it is used
 Using Final Keyword	//but it will give compiler error if thread modifies it
 
 Note:Refer this https://www.geeksforgeeks.org/thread-safety-and-how-to-achieve-it-in-java/
@@ -181,9 +221,10 @@ Ques: can volatile be use with reference in java
 Yes
 
 Ques: Thread Safety Using concurrent.lock ?
-Unlike their synchronized counterparts, concurrent collections achieve thread-safety by dividing their data into segments. In a ConcurrentHashMap, for instance, several threads can acquire locks on different map segments, so multiple threads can access the Map at the same time 
+Unlike their synchronized counterparts, concurrent collections achieve thread-safety by dividing their data into segments. 
+In a ConcurrentHashMap, for instance, several threads can acquire locks on different map segments, so multiple threads can access the Map at the same time 
 
-Ques: what is diff b/w Runnable(public void run()) and callable(public Future call())?
+Ques: what is diff b/w Runnable(public void run()) and callable(public T call())?
 callable return value in FutureObject
 	Future<Integer> future = executorService.submit(task);
 	Integer result = future.get().intValue();
@@ -199,19 +240,16 @@ Java Memory Model : It specifies how multiple threads access common memory in a 
 helps a programmer to write multithreaded code that is stable and portable between various architectures.
 
 
-Ques: To create custom Threads Pool?
-ForkJoinPool customThreadPool = new ForkJoinPool(4);
 
-Study ForkJoinPool
-In short, the main difference between the Executor framework and ForkJoinPool is that the former provides a general-purpose thread pool, while the latter provides a special implementation that uses a work-stealing pattern for efficient processing of ForkJoinTask.
-https://www.javatpoint.com/java-forkjoinpool
 
 ----------
 Ques: How in Multithreading handles Long, double variable?   //Long and Double values are not Atomic.Justify?
 
-It splits it into 32+32bits and writes it with difeerent thread so they arenot thread safe.
+It splits it into 32+32bits and writes it with difeerent thread so they are not thread safe.
 
-So point is, in Java, long and double aren’t thread safe. When multiple threads are going to access a long or a double value without synchronization, it can cause problems. To ensure atomic/thread safety, it is essential to use volatile to ensure changes made by one thread are visible to other threads. That’s how we can ensure the read/write is atomic and thread safe.
+So point is, in Java, long and double aren’t thread safe. When multiple threads are going to access a long or a double value without synchronization,
+ it can cause problems. To ensure atomic/thread safety, it is essential to use volatile to ensure changes made by one thread are visible to other threads.
+ That’s how we can ensure the read/write is atomic and thread safe.
 use: volatile double num;
 volatile Long num;
 
@@ -248,7 +286,12 @@ Ques : ArrayList Read-only?
 Ques: Concurrent HashMap?
 It is thread safe and many thread can access it how?
 
-In ConcurrentHashMap, at a time any number of threads can perform retrieval operation but for updation in the object, the thread must lock the particular segment in which the thread wants to operate. This type of locking mechanism is known as Segment locking or bucket locking. Hence at a time, 16 update operations can be performed by threads
+In ConcurrentHashMap, at a time any number of threads can perform retrieval operation but for updation in the object, the thread must lock the particular
+ segment in which the thread wants to operate. This type of locking mechanism is known as Segment locking or bucket locking.
+ Hence at a time, 16 update operations can be performed by threads
+
+Ques: Internal working of COncurrentHashMap?
+https://medium.com/art-of-coding/hash-table-vs-concurrent-hashmap-and-its-internal-working-b28fc2725bdb 
 
 Ques:ensureCapacity()
 use for manually increasing the size of array List
@@ -266,29 +309,36 @@ BYKEY
 use treemap.putAll(hm);    //if it is employee type it must implements Comparable Interface
 
 BYVALUE
-Take all entries into LinedList type Collection
+Take all entries into LinkedList type Collection
 then sort it Collections.sort(list,comparator)
-Iterate over list and put it into New Hashmap and return that map
+Iterate over list and put it into New Linked Hashmap and return that map
 
 Ques: How Hashset find values are duplicate?
-When you put an object into a Hashset it uses the object's hashcode value to determine where to put the object in the Set. But it also compares the object's hashcode to the hashcode of all the other objects in the Hash Set, and if there's no matching hashcode,the HashSet assumes that this new object is not a duplicate. HashSet finds a matching hashcode for two objects. one you're inserting and one already in the set-the HashSet will then call one of the object's equals() methods to see if these hashcode-matched objects really are equal. And if they're equal, the HashSet knows that the object you're attempting to add is a duplicate of something in the Set, so the add doesn't happen.
+When you put an object into a Hashset it uses the object's hashcode value to determine where to put the object in the Set.
+ But it also compares the object's hashcode to the hashcode of all the other objects in the Hash Set, and if there's no matching hashcode,
+ the HashSet assumes that this new object is not a duplicate. HashSet finds a matching hashcode for two objects. one you're inserting and
+ one already in the set-the HashSet will then call one of the object's equals() methods to see if these hashcode-matched objects really are equal.
+ And if they're equal, the HashSet knows that the object you're attempting to add is a duplicate of something in the Set, so the add doesn't happen.
 
 Override this equals method to check for equality of object along with hashcode. public boolean equals(Object o)
 
 Ques:What is Rehashing in HashMap?
-It occurred when hashmap gets full and new hashmap allocate using the load factor.75? 
+It occurred when hashmap gets full and new hashmap allocate using the load factor(.75)? 
 
 Ques: Diff b/w Collections.sort() and TreeSet wrt Set.
-Collections.sort sorts list collection u need to convert set into list then u can apply sort.
-while Treaaet alwasy maintains some sorting order.
+Collections.sort sorts list collection  //Note: u need to convert set into list then u can apply sort.
+while Treeset alwasy maintains some sorting order.
 
 Ques: What is CopyOnarrayList?
 It is a threadsafe version of ArrayList.
-Interanlly when modification is done on the list it clones the list and does the changes so that while reading via iterator doesnt throw ConcurrentModificationException.
+Interanlly when modification is done on the list it clones the list and does the changes so that while reading via iterator doesnt 
+throw ConcurrentModificationException.
 
-Keep in mind that, when we create an iterator for the CopyOnWriteArrayList, we get an immutable snapshot of the data in the list at the time iterator() was called. so if anybody adds anything after list.iterator it wont get printed.
+Keep in mind that, when we create an iterator for the CopyOnWriteArrayList, we get an immutable snapshot of the data in the list at the time 
+iterator() was called. so if anybody adds anything after list.iterator it wont get printed.
 
-Because of the copying mechanism, the remove(),add() and set() operation on the returned Iterator is not permitted – resulting with UnsupportedOperationException:
+Because of the copying mechanism, the remove(),add() and set() operation on the returned Iterator is not permitted – resulting with
+ UnsupportedOperationException:
  . Note iterator throws that exception
 
 Reference: https://www.baeldung.com/java-copy-on-write-arraylist
@@ -296,11 +346,13 @@ Reference: https://www.baeldung.com/java-copy-on-write-arraylist
 Ques: Pass Array Object in arrayList?
 ArrayList<Integer> l = new ArrayList<Integer>(Arrays.asList(new Integer[] {1,2,4}));
 
-list.to Array  //coverts list to array
+list.toArray()  //coverts list to array
 Arrays.asList(array)   //converts array to list
  
 Ques: What is BlockingQueue?
-BlockingQueue is an interface which extends the Queue interface. It provides concurrency in the operations like retrieval, insertion, deletion. While retrieval of any element, it waits for the queue to be non-empty. While storing the elements, it waits for the available space. BlockingQueue cannot contain null elements, and implementation of BlockingQueue is thread-safe
+BlockingQueue is an interface which extends the Queue interface. It provides concurrency in the operations like retrieval, insertion, deletion. 
+While retrieval of any element, it waits for the queue to be non-empty. While storing the elements, it waits for the available space.
+BlockingQueue cannot contain null elements, and implementation of BlockingQueue is thread-safe
 
 
 Ques: What is descingdingIterator()?
@@ -316,16 +368,17 @@ using comparator
 ...........................Topic ExceptionHandling..............
 
 Ques: Multicatch block in Exception ?
-catch(Arithamticexception | IOException e)   //there should be any relationship b/w in exceptions in multicatchblock
+catch(Arithamticexception | IOException e)   //there should not be any relationship b/w in exceptions in multicatchblock
 
 Ques: Can youwrite try without catch finally?
 try without catch or finally is invalid.
 
 Ques: how to not execute finally block?
-System.exit()
-Thread stopped using the stop() 
+	-System.exit()
+	-Thread stopped using the stop() 
+	
 Note:It's also worth noting that, since any return statement in the finally block will override any returns or exception throws in the try/catch blocks,
-with interrupt() //finally executes
+	with interrupt() //finally executes
 
 Ques : whT this snippet will return? //important
 
@@ -343,7 +396,7 @@ Ques : whT this snippet will return? //important
 		}
 		
 	}
-Ans: 2
+Ans: 2   i.e finally executes but after finally nothing executes.
 
 Ques:SQL Excetion is checked or unchecked? //checked
 
@@ -404,14 +457,14 @@ In java8 if any implemenation class dont know how to implement the method defaul
 Functional Interface In java
 Runnable 
 Callable
-Comparator
-Comparable
+Comparator ? equals and compare
+Comparable  //compareTo
 
 Supplier 
 Consumer
 Predicate
 
-Note Interview QUes: https://www.java67.com/2018/10/java-8-stream-and-functional-programming-interview-questions-answers.html
+Note Inte0rview QUes: https://www.java67.com/2018/10/java-8-stream-and-functional-programming-interview-questions-answers.html
 
 ------
 Ques 4: Java Stream
@@ -440,40 +493,54 @@ collect() method - convert Set To List.....
 		
 		    convert List Into Map...
 		    productsList.stream().collect(Collectors.toMap(p->p.id, p->p.name)); 
+sorted() method - sort the list
+			List<Integer> list = Arrays.asList(new Integer[] {2,4,1,5,6});
+			System.out.println(list.stream().sorted().collect(Collectors.toList()));   //ascending
+			System.out.println(list.stream().sorted((a,b) -> b -a ).collect(Collectors.toList()));    //desccnding  ..... a-b then ascending
+			
+			sort list using stream sorted and Comparator;
+			list.stream().sorted(Comparator.reverseOrder()).      //also .sorted()  for natural sorting
+                          forEach(System.out::println);
+
 		
 reduce() method - accumate results
-		productsList.stream().map(p->p.price).reduce(0.0f,(sum, price)->sum+price);   // accumulating price  
-        	System.out.println(totalPrice);  
+		productsList.stream().map(p->p.price).reduce((sum, price)->sum+price);   // accumulating price   and return as optional;
+        	System.out.println(totalPrice);    //
+
+min() max() method -
+	.min(comparator)  it returns min value as optional using comparator // sam for max()
+		Ex: list.stream().max((a,b)->a-b);
+			list.stream().min((a,b)->a-b)
   
 Ques: What is diff b/w filter() and map()?
-filter method just compares returns in true or false while map method transform the data and return it for ex: 
-1.  you can conevert String list into uppercase string list.
-2.  .map(i -> i * 3)
+	filter method just compares returns in true or false while map method transform the data and return it for ex: 
+	1.  you can conevert String list into uppercase string list.
+	2.  .map(i -> i * 3)
 
 Ques: what is the diff b/w flatMap() and map() ?
-flat map() basically flattens up the values into one entity while map() just transform value and structure remains same
-Without flat map => [1,2],[1,1] => [[1,2],[1,1]] 
-With flat map => [1,2],[1,1] => [1,2,1,1]
-ref https://stackoverflow.com/questions/37154380/difference-between-map-and-filter-on-a-java-collection-stream  
-
-Ques:min max in stream?
-.min(comparator)  it returns min value as optional using comparator // sam for max()
+	flat map() basically flattens up the values into one entity while map() just transform value and structure remains same
+	Without flat map => [1,2],[1,1] => [[1,2],[1,1]] 
+	With flat map => [1,2],[1,1] => [1,2,1,1]
+	ref https://stackoverflow.com/questions/37154380/difference-between-map-and-filter-on-a-java-collection-stream  
 
 
 Ques: How to find the first element greater than 5 from a list prime no. from a Stream with filter?
-We have a list of prime numbers in the increasing order e.g. 2, 3, 5, 7, 11, 13 and we need to find the first prime number which is greater than 5 i.e. our code should return 7.
+		We have a list of prime numbers in the increasing order e.g. 2, 3, 5, 7, 11, 13 and we need to find the first prime number which is greater than 5 i.e. 
+		our code should return 7.
 
-list.stream()
-	.filter(num -> num>5)
-	.findFirst()     	//if list is sorted   //it returns optional that's why .get() is rquired
-	.get();
-	
-	
-list.stream().filter(num -> num>5).findAny().get();   //if list is not sorted
+		list.stream()
+			.filter(num -> num>5)
+			.findFirst()     	//if list is sorted   //it returns optional that's why .get() is rquired
+			.get();
+			
+			
+		list.stream().filter(num -> num>5).findAny().get();   //if list is not sorted
 
-Stream Terminal Method
-findFirst()
-forEach()
+Ques: What is terminal method in java Strems?
+	findFirst()
+	forEach()
+	findAny()
+	count()
 
 
 Ques: What is peek() method?
@@ -487,14 +554,15 @@ numbers.forEach(System.out::println);
 
 
 Ques: What is the diff b/w stream() & paraallelStream()?when to use what?
-paraallelStream() is good for large data as it produces threads internally while stream is good for small data where no new thread created and process is lightweight.
-Both can be used in differenet scenario
+paraallelStream() is good for large data as it produces threads internally while stream is good for small data where no new thread created and 
+process is lightweight. Both can be used in differenet scenario
 paraallelStream - large dataset (stream performance will be low)    //It also supoorts concurrency
 Stream - small dataset (parallelstream performance will be low)
 
 https://stackoverflow.com/questions/20375176/should-i-always-use-a-parallel-stream-when-possible
 
-In short, the parallel Stream can paralyze execution, but, as Cay S. Horstman mentioned in Core Java S.E. 9 for the Impatient, there is significant overhead or parallelism, which only pays off if you are doing bulk data operation.
+In short, the parallel Stream can paralyze execution, but, as Cay S. Horstman mentioned in Core Java S.E. 9 for the Impatient, there is significant overhead 
+or parallelism, which only pays off if you are doing bulk data operation.
 
 Read more: https://www.java67.com/2018/10/java-8-stream-and-functional-programming-interview-questions-answers.html#ixzz6qaSwfawy
 
@@ -507,12 +575,11 @@ Note: when u create customPool please close it when u are done with it otherwise
 
 Reference-https://www.baeldung.com/java-8-parallel-streams-custom-threadpool
 ForkJoinPool customThreadPool = new ForkJoinPool(4);
+    long actualTotal = customThreadPool.submit(
+      () -> aList.parallelStream().reduce(0L, Long::sum)).get();
 
 
 
-sort list using stream();
-list.stream().sorted(Comparator.reverseOrder()).      //also .sorted()  for natural sorting
-                          forEach(System.out::println);
 
 
 
@@ -527,6 +594,12 @@ Ex: It is used when u want to share cryptic data or url
 MIME uses this technique
 MIME-Multipurpose Internet Mail Extensions
 
+
+Ques:What is MD5 used for? 
+MD5 is primarily used to authenticate files. It's much easier to use the MD5 hash to check a copy of a file against an original 
+than to check bit by bit to see if the two copies match. MD5 was once used for data security and encryption, but these days 
+its primary use is authentication
+ 
 -----
 
 Ques 6: Default method in interface
@@ -589,7 +662,8 @@ Optional<String> checkNull = Optional.ofNullable(str[5]);
 Optional.empty() //to check is Optional empty (alternative to null)
 
 Ques: What is get method of Optional?
-The get() method of java.util.Optional class in Java is used to get the value of this Optional instance. If there is no value present in this Optional instance, then this method throws NullPointerException.
+The get() method of java.util.Optional class in Java is used to get the value of this Optional instance. If there is no value present in this Optional instance,
+then this method throws NullPointerException.
         
 -----------------      
 QUes10: Parallersort in array
@@ -651,7 +725,7 @@ ZoneId zoneId = ZoneId.of("Europe/Paris");
 Ques: convert localDatetime into specif zone ex paris.
 ZonedDateTime zonedDateTime = ZonedDateTime.of(localDateTime, zoneId);
 
-Ques :Period And Duration also very importantutility for date and time how?
+Ques :Period And Duration also very important utility for date and time how?
 ex: int five = Period.between(initialDate, finalDate).getDays();
 
 LocalDate initialDate = LocalDate.parse("2007-05-10");
@@ -676,7 +750,8 @@ switch(game){
             }
 
 4.Type Inference
-	In Java 7, Java provides improved compiler which is enough smart to infer the type of generic instance. Now, you can replace the type 		arguments with an empty set of type parameters (<>). This pair of angle brackets is informally called the diamond.
+	In Java 7, Java provides improved compiler which is enough smart to infer the type of generic instance. Now, you can replace the type
+	arguments with an empty set of type parameters (<>). This pair of angle brackets is informally called the diamond.
 	ArrayList<Integer> list = new ArrayList<Integer>(); //Java6
 	ArrayList<Integer> list = new ArrayList<>();  //Java7 no need to write Integer on Lefthand side
 	
@@ -690,7 +765,7 @@ using underscore we can improve readablity of numbers in java
         int a = 10_00000;  //10,00000
           
         
-............Topic : Generics........
+............Topic : Generics & serialization........
 
 Ques: What will you do if you want type safety only for number or its child component?
 Use < ? extends Number>
@@ -699,6 +774,28 @@ Ques: You need to bound only for read no write
 methodOne(ArrayList<?> l):
 
 Ques: ArrayList<Integer> list = new ArrayList<>();   //It is Type Inference
+
+Ques: Serilaization & Deserialization?
+	Dog d1=new Dog();
+	System.out.println("Serialization started");
+	FileOutputStream fos=new FileOutputStream("abc.ser");
+	ObjectOutputStream oos=new ObjectOutputStream(fos);
+	oos.writeObject(d1);
+	System.out.println("Serialization ended");
+
+	System.out.println("Deserialization started");
+	FileInputStreamfis=new FileInputStream("abc.ser");
+	ObjectInputStreamois=new ObjectInputStream(fis);
+	Dog d2=(Dog)ois.readObject();
+	System.out.println("Deserialization ended");
+	System.out.println(d2.i+"................"+d2.j);
+
+Output:
+Serialization started
+Serialization ended
+Deserialization started
+Deserialization ended
+10................20
 
 
 
@@ -745,7 +842,9 @@ Ques: class extends Object , interface what?
  Every public method in Object class, there is an implicit abstract and public method declared in every interface which does not have direct super interfaces.
  This is the standard Java Language Specification which states like this,
  
- "If an interface has no direct superinterfaces, then the interface implicitly declares a public abstract member method m with signature s, return type r, and throws clause tcorresponding to each public instance method m with signature s, return type r, and throws clause t declared in Object, unless a method with the same signature, same return type, and a compatible throws clause is explicitly declared by the interface.”
+ "If an interface has no direct superinterfaces, then the interface implicitly declares a public abstract member method m with signature s, return type r,
+ and throws clause tcorresponding to each public instance method m with signature s, return type r, and throws clause t declared in Object,
+ unless a method with the same signature, same return type, and a compatible throws clause is explicitly declared by the interface.”
 
 
 Ques : Object Class Methods?
@@ -757,13 +856,18 @@ wait , notify ,notifyall    //used by threads
 
 Ques : Is Object class Serializable by default? 
 no 
-The reason the java.lang.Object didnt implement Serializable is because, what if you do NOT want to make certain fields as Serializable and you my mistake missed to add transient to that field, then will be a havoc
+The reason the java.lang.Object didnt implement Serializable is because, what if you do NOT want to make certain fields as Serializable and you my
+ mistake missed to add transient to that field, then will be a havoc
 
 
 Ques : In how many ways we can create new object in java?   //refer black oops copy for detail
-newInstance()    Test t = (Test)Class.forName("Test").newInstance();
-clone()	Test t2 = (Test)t.clone();
-new		Test t = new Test();
+newInstance()   
+	- Test t = (Test)Class.forName("Test").newInstance();
+clone()	
+	- Test t2 = (Test)t.clone();
+new
+	- Test t = new Test();
+
 readObject()	Test t = objInputStream.readObject();
 factorymethod   Runtime r = Runtime.getRuntime();
 
@@ -790,7 +894,9 @@ Unmarshalling is the process of converting XML content to Java objects
 
 
 Ques:what are the default imported package in java?
-The Java compiler automatically imports two entire packages for each source file: (1) the java. lang package and (2) the current package (the package for the current file).
+The Java compiler automatically imports two entire packages for each source file: 
+(1) the java. lang package and 
+(2) the current package (the package for the current file).
 
 
 
@@ -853,11 +959,11 @@ len : 4
 final dest_array will become : 15 25 35 45 55 40 50 60 70 105 
 
 
-Ques: scp in java created in which memory?
-In Heap
+Ques: scp in java created in which memory?  //In Heap
 
 Ques: primitive variable stores in ? 
-Instance level variables(can also be primitives) are part of instances (objects). So, they will be allocated on the heap (as part of the object.) Method level / Local variables : Stack (for Primitives
+Instance level variables(can also be primitives) are part of instances (objects). So, they will be allocated on the heap (as part of the object.)
+ Method level / Local variables : Stack (for Primitives
 
 
 Ques: Create custom immutable class in java?  //revise it
@@ -915,8 +1021,8 @@ Ques: What is the Contract between .equals() method and hashCode() method?
 equals() return true then hashcode is same
 equals return false then hashcode can be same or different
 
-hashCode() equal we cant predict that equals is true or false
-hashcode() not equal we can say that they are also not equals
+hashCode() equal -       we cant predict that equals is true or false
+hashcode() not equal -   we can say that they are not equals
 
 
 Ques: What is final blank Variable?   
@@ -941,7 +1047,9 @@ no setters.    //for write only no getters
 
 Ques: Diff b/w System.out.println(1/0),  System.out.println(1.0/0.0);
 one give exception another one gives Infinity
-Note: An IEEE754 floating point double (used by Java) has a representation of infinity. ... In that sense, 1.0 / 0.0 is calculable since it takes place in floating point arithmetic. An integral type has no representation of infinity, so an exception is thrown. 1 / 0 is computed in integer arithmetic
+Note: An IEEE754 floating point double (used by Java) has a representation of infinity. ... In that sense, 1.0 / 0.0 is calculable since it takes place
+ in floating point arithmetic. An integral type has no representation of infinity, so an exception is thrown. 1 / 0 is computed in integer arithmetic
+ 
 
 Ques: What is the diff b/w singleton and static method ?when to use what?
 Singleton can be eager or lazy but static is can only be eager
@@ -950,7 +1058,11 @@ No Inheritence and Polmorphism Benefit in Static method
 Reference- 
 https://javarevisited.blogspot.com/2013/03/difference-between-singleton-pattern-vs-static-class-java.html#axzz6ujFddOxp
 
+Ques: How class Loads in Java?
+https://www.javatpoint.com/classloader-in-java
 
+Ques: Object Lifecycle in Java?
+creation and initialization, use, and destruction
 
 
 

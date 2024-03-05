@@ -1,5 +1,4 @@
 
-.....................Nagarro..............................
 Ques: Convert javaVariableto python variabele and python variable to javaVariable
 javaVariable - thisIsJavaVariable
 pythonVariable = this_is_java_variable
@@ -11,5 +10,7 @@ Ques:Find First NonRepeatedCharacter in a String?
 Ques:Find MaxOccurences in a string?  maxoccurence is > n/2
 
 
-Ques:
+Ques: {0,1,0,0,1,1,1,0} -> {0,0,0,0,1,1,1,1}
+
+Ques: Flate=ten the array [1,2,[3,4,[5,6,7],8],9] -> [1,2,3,4,5,6,7,8,9]
 

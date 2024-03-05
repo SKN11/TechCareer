@@ -84,7 +84,8 @@ Ques : Entity Manager:
 Once we define the mapping, it handles all the interactions with the database.
 
 Ques : JPQL (Java Persistence Query Language)
- It provides a way to write queries to execute searches against entities. It is different from the SQL queries. JPQL queries already understand the mapping that is defined between entities. We can add additional conditions if required.
+ It provides a way to write queries to execute searches against entities. It is different from the SQL queries. JPQL queries already understand
+ the mapping that is defined between entities. We can add additional conditions if required.
 Criteria API: It defines a Java-based API to execute searches against the database.
 
 Note: Spring internally generates a JPQL (Java Persistence Query Language) query based on the method name. 
@@ -96,7 +97,8 @@ Ques: write native sql query in jparepository?
 @Query(
   value = "SELECT * FROM USERS u WHERE u.status = 1", 
   nativeQuery = true)
-Collection<User> findAllActiveUsersNative();    //Note we cannot pass sort object to this method as it is not supported , it throws 							Invalidjpaquerymethodexception
+Collection<User> findAllActiveUsersNative();    //Note we cannot pass sort object to this method as it is not supported , it throws
+							Invalidjpaquerymethodexception
 
 
 
@@ -172,7 +174,8 @@ userRepository.deleteById(id);  //delete user with id   .... return nothing
 User sevedUser=userRepository.save(user); //to save new user  (by post method)
 
 fetch=FetchType.LAZY  //It tells to lazily load child component
-			The reason we explicitly set the fetch attribute to FetchType.LAZY is because, by default, all @ManyToOne and @OneToOne 				associations are fetched eagerly, which can cause N+1 query issues.
+			The reason we explicitly set the fetch attribute to FetchType.LAZY is because, by default, all @ManyToOne and @OneToOne 
+			associations are fetched eagerly, which can cause N+1 query issues.
 
 
 
@@ -205,11 +208,13 @@ put this in the post..
 @ManyToOne(fetch = FetchType.LAZY)
 private User user;
 
-Note: The reason we explicitly set the fetch attribute to FetchType.LAZY is because, by default, all @ManyToOne and @OneToOne 		         associations are fetched eagerly, which can cause N+1 query issues.
+Note: The reason we explicitly set the fetch attribute to FetchType.LAZY is because, by default, all @ManyToOne and @OneToOne
+ 		         associations are fetched eagerly, which can cause N+1 query issues.
 
 
 Ques:what is the use of mappedBy?    //very Important question
-The mappedBy attribute of the @OneToMany annotation references the user property in the child post entity, and, this way, Hibernate knows that the bidirectional association is controlled by the @ManyToOne side.
+The mappedBy attribute of the @OneToMany annotation references the user property in the child post entity, and, this way,
+ Hibernate knows that the bidirectional association is controlled by the @ManyToOne side.
 
 
 Ques: which is better Unidirectional or bidirectional?
@@ -232,7 +237,8 @@ Note: For other mapping refer HIbernateQues.txt
 
 Some Mapping Question........................
 Ques : orphanRemoval=true
-orphanRemoval is an entirely ORM-specific thing. It marks "child" entity to be removed when it's no longer referenced from the "parent" entity, e.g. when you remove the post from the corresponding collection of the User entity.
+orphanRemoval is an entirely ORM-specific thing. It marks "child" entity to be removed when it's no longer referenced from the "parent" entity,
+ e.g. when you remove the post from the corresponding collection of the User entity.
 
 
 
@@ -281,10 +287,12 @@ spring.devtools.livereload.enabled:false.
 
 ....................Topic: Spring Boot Multi Module Project................
 
-Nested maven projects is called multi module project
-the parent project works as a container for base maven configurations.
-Advantage - Easy to maintain or remove or add the sub applictation in big enterprise application
-For example, we are creating an EAR (Enterprise ARchive), WAR (Web ARchive), and JAR (Java ARchive) file. A JAR file is bundled into a war file that is bundled into an EAR file. The EAR file is the final package that is ready to deploy on the application server.
+1. Nested maven projects is called multi module project
+2. the parent project works as a container for base maven configurations.
+3. Advantage - Easy to maintain or remove or add the sub applictation in big enterprise application
+
+For example, we are creating an EAR (Enterprise ARchive), WAR (Web ARchive), and JAR (Java ARchive) file. A JAR file is bundled into
+ a war file that is bundled into an EAR file. The EAR file is the final package that is ready to deploy on the application server.
 
 
 Parent pom.xml 	// consists the list of all modules, common dependencies, and properties that are inherited by the child projects
@@ -310,7 +318,8 @@ The below two files(war,jar) are packaged as a JAR file with the .ear extension
  
 [War]
 WAR is a module that loads into a Web container of the Java Application Server
-Advantage- It can be deployed easily on the client machine in a Web server environment. To execute a WAR file, a Web server or Web container is required. For example, Tomcat, Weblogic, and Websphere.
+Advantage- It can be deployed easily on the client machine in a Web server environment. To execute a WAR file, a Web server
+ or Web container is required. For example, Tomcat, Weblogic, and Websphere.
 
 [Jar]
 A file that encapsulates one or more Java classes, a manifest, and descriptor is called JAR file
@@ -496,7 +505,8 @@ If we need to handle request via xml import jackson-dataformat-xml depenedncy in
 
 ........................Topic : HTTP Headers......................
 
-Content-type    //An incoming request may have an entity(User Object entity) attached to it. To determine the type of entity server uses the HTTP 		request header Content-Type
+Content-type    //An incoming request may have an entity(User Object entity) attached to it. To determine the type of entity server uses the HTTP
+				request header Content-Type
 Content-Type: application/json
 Content-Type: application/xml
 Content-Type: text/html
@@ -610,7 +620,8 @@ private Date dob;
 ----------------
 @RequestHeader //Annotation which indicates that a method parameter should be bound to a web request header
 
-@Configuration //Indicates that a class declares one or more @Bean methods and may be processed by the "Spring container" to generate bean 				definitions andservice requests for those beans at runtime, 
+@Configuration //Indicates that a class declares one or more @Bean methods and may be processed by the "Spring container" to generate bean
+ 				definitions andservice requests for those beans at runtime, 
 for ex: 
  @Configuration
  public class AppConfig {
@@ -728,7 +739,7 @@ To specify to authenticate via google put some oath property in properties file
 oath acccess tokenuri = "some googleauthenticateurl"
 tokenName =oath_token
 scope = profile , username     //tells what acces need application can provide
-clientid=
+clientid=	public unique identifier
 clientsecret =
 
 register google cloud, login it, go in api services -> go in oauth tab->give ur app name->provide scope(information to show)
@@ -756,10 +767,13 @@ Richardson Maturity Model grades API by their RESTful maturity
 .......................Topic: RestFulWebservices Best Practices..........
 
 a.The first and last best practice is the Consumer First.
+
 b.Use the right request method (GET, POST, PUT, and DELETE) 
+
 c.ensure that we are sending a proper response status back.
-d.When a resource is CREATED, don't send SUCCESS, send CREATED back.
-e.When a ESOURCE NOT FOUND, don't send the SERVER ERROR
+	-When a resource is CREATED, don't send SUCCESS, send CREATED back.
+	-When a ESOURCE NOT FOUND, don't send the SERVER ERROR
+
 f.Use /users/1 not /user/1
 
 
@@ -777,4 +791,12 @@ Ques: produces and consumes in spring boot?
             
 Spring jwt
 https://www.springboottutorial.com/spring-boot-react-full-stack-with-spring-security-basic-and-jwt-authentication
+
+
+Ques: WHat if you remove @SpingBootApplication?
+
+Ques: How to exclude a class in spring boot application
+
+
+
 

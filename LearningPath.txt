@@ -1,3 +1,51 @@
+RoadMap
+
+Data Structures	
+	- Basics Of DS
+	- Leetcode questions
+
+Javascript
+	-javascript-info
+	-js intervew questions
+
+React
+	-Maxmillian course
+	-Any project written by yourself
+	-hosted that project
+	
+Java
+	-basics Java
+	-MultiThreading
+	-Springboot
+	-Hibernate
+	-spring
+	-FTL templates
+	-Tomcat and Deployment
+	-CI/CD Concepts
+
+Database
+	-DatabseQUes.txt
+
+Communication
+	-Toastmaster Club
+	-Book Reading
+	-Newspaper Readinh
+	-WPME
+	-Better English
+	
+
+
+
+	
+
+
+
+
+How to stay Updated DS?
+1. Revise colt steele slides
+
+
+
 ................Topic : Data Structures.........
 
 Design Patterns - https://github.com/fbeline/design-patterns-JS
@@ -10,18 +58,19 @@ yangshun - https://github.com/yangshun/tech-interview-handbook
 
 Interface & Exception Handling-done
 Collection & Map- done
-MultiThreading - done
+MultiThreading1 - done
+MultiThreading2 -
 Java8 Feature & Java Design Pattern - done
-Generics & Constructor- done
-OOPS & RegularExpression- done
+Generics & Constructor- done & ?
+OOPS & RegularExpression- done & ?
 InnerClasses -
 File I/O- 
-Serialization- done (partially)
+Serialization- done
 JVM Architecture-
-Declaration & AcceessModifier -  done    //from copy
+Declaration & AcceessModifier -  
 Listeners In java -
 Enums-
-Languagefundamentals-done   //from orange copy
+Languagefundamentals-    //from orange copy
 java.lang.package-
 JUNIT-
 
@@ -42,7 +91,8 @@ https://tutorialsinhand.com/aptitudes/java-aptitude/java-string-mcq/java-string-
 Top 50 Programming Intervew Question.
 https://www.journaldev.com/370/java-programming-interview-questions
 
-
+.....................Topic: Database.............................
+DatabaseQues.txt  -done
 
 
 ................Topic : Advanced Java........
@@ -71,7 +121,7 @@ https://tutorialsinhand.com/aptitudes/spring-aptitude/spring-mcq-aptitude/spring
 https://www.tutorialspoint.com/spring/spring_online_quiz.htm
  
 ...WEBSECURITY
-https://portswigger.net/web-security/csrf/tokens
+CSRF - https://portswigger.net/web-security/csrf/tokens
 
 
  
@@ -81,7 +131,6 @@ https://jsbin.com/duzotenitu/edit?html,output
 
 
 ................Topic : Javascript..........
-JavascriptEssentialTrainingNotes.txt -done
 Javascript Ques.txt  -done
 nextgen js summary.pdf (UdemyMaxmillian) -done
 PromiseDemo.html -done

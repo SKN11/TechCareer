@@ -46,7 +46,8 @@ Ans : Bean Factory
       	
 
 Ques : What is application context?
-The Application Context is Spring's advanced container. Similar to BeanFactory, it can load bean definitions, wire beans together, and dispense beans upon request
+The Application Context is Spring's advanced container. Similar to BeanFactory, it can load bean definitions, wire beans together, 
+and dispense beans upon request
 
 
 Ques :  It is better to use ApplicationContext than BeanFactory why?
@@ -94,11 +95,11 @@ Ques:Constructor arg DI ?
 
 Ques: what is parent atrribute in bean ?
 
-It basically inherits all the property of bean 'e1' into the bean 'e2'
+	It basically inherits all the property of bean 'e1' into the bean 'e2'
 
-<bean id="e2" class="com.javatpoint.Employee" parent="e1">  
-<constructor-arg ref="address1"></constructor-arg>  
-</bean>
+	<bean id="e2" class="com.javatpoint.Employee" parent="e1">  
+	<constructor-arg ref="address1"></constructor-arg>  
+	</bean>
 
 
 Ques:Setter based DI ?
@@ -154,8 +155,9 @@ Non Static FM which gives instance of another class
 
 Ques :Aspect Oriented Programming (AOP) ?  //Implemented by "Spring AspectJ AOP"
 
-used to increase modularity by cross-cutting concerns.
-A cross-cutting concern is a concern that can affect the whole application and should be centralized in one location in code as possible, such as transaction management, authentication, logging, security etc
+used to increase MODULARITY by cross-cutting concerns.
+A cross-cutting concern is a concern that can affect the whole application and should be centralized in one location in code as possible,
+ such as transaction management, authentication, logging, security etc
 
 AOP Provides modularity ? How 
 By separaing concerns from actual application
@@ -222,12 +224,12 @@ String message = (String) exp.getValue(); 		//o/p HELLO SPEL
 Ques : Spring Scopes
 https://www.baeldung.com/spring-bean-scopes
 There are total 6 scopes
-singleton
-prototype
-request
-session
-application
-websocket
+	-singleton
+	-prototype
+	-request
+	-session
+	-application
+	-websocket
 
 
 Singleton -
@@ -264,7 +266,8 @@ public HelloMessageGenerator requestScopedBean() {
     return new HelloMessageGenerator();
 }
 
-The proxyMode attribute is necessary because, at the moment of the instantiation of the web application context, there is no active request. Spring will create a proxy to be injected as a dependency, and instantiate the target bean when it is needed in a request.
+The proxyMode attribute is necessary because, at the moment of the instantiation of the web application context, there is no active request.
+ Spring will create a proxy to be injected as a dependency, and instantiate the target bean when it is needed in a request.
 
 ---
 
@@ -411,7 +414,8 @@ A service is a well-defined, self-contained logical function that represents a u
 For ex: TCS tcs is a compony that provides services to their clients also interact with other Companies(other service) to get the task done
 
  Ques: What http method is idempotent?
- Idempotency means that multiple identical requests will have the same outcome. So it does not matter if a request is sent once or multiple times. The following HTTP methods are idempotent: GET, HEAD, OPTIONS, TRACE, PUT and DELETE.
+ Idempotency means that multiple identical requests will have the same outcome. So it does not matter if a request is sent once or multiple times.
+ The following HTTP methods are idempotent: GET, HEAD, OPTIONS, TRACE, PUT and DELETE.
  
  
 Ques: How to upload file using spring boot?

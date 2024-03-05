@@ -1,15 +1,156 @@
+
+Ques: What is React?  
+	-It is JS library for building User Interfaces
+	-Client side JS Library
+	-High reusablity of components
+	-Component Focussed approach
+	-SPA - single Page Application
+	-Virtual DOM
+	-State Management
+	-React is all about Component   -imp!!!!
+	-React Component = HTML + CSS + Javascript
+	-React is all about Composition
+	
+JS is used to manipulate DOM in HTML page
+
+JS code without React
+	-imperative code
+	-repetitive code
+	-line by line codeing
+
+“Academind Community” on Discord: https://academind.com/community/
+	
+Ques: React vs Vue vs Angular? (which to use when?)
+https://academind.com/tutorials/angular-vs-react-vs-vue-my-thoughts
+
+Angualar uses type script 
+It packed wit extra features. (what feautre?)
+Rely less on community? React More
+	
+
+
+Ques: Prettier & Formatting?
+     -using Prettier in vs code.
+	 -SHIFT+ALT+F
+	 
+	 
+Ques: What is JSX?
+	-Alternative to react.createElement
+	-easier to write
+	-same like HTML
+	-working as interface (no needed for impl)
+
 ReactJS Documentation
 https://reactjs.org/tutorial/tutorial.html
 
-node -v //node version
-npm -v //npm version
 
 
-npm install -g create-react-app //install create react app
+Ques:  create-react-app ?
+	It is tool used to create react project.
+	You can learn more about it by looking at create-react-app git project.
+	It opens app in localhost:3000 using npm start
 
-npx create-react-app hello-react --use-npm //create react project with node project
+	node -v //node version
+	npm -v //npm version
+	npx create-react-app react-complete-guide   
+	npm install  //download the package dependency in the package.json
+	npm start  //to start the project on local host 3000
+	
+Ques: All React.js code by MAXMILLIAN
+	https://github.com/academind/react-complete-guide-code/tree/03-react-basics-working-with-components/code
 
-npm start //React Server start
+
+
+Ques: 1. package.json  vs	2.package.lock.json
+
+	1.It contains information such as name, description, author, script, and dependencies.
+	2.It contains the name, dependencies, and locked version of the project.
+
+root div found in index.html
+Note: .css import require extension while .js not require
+
+
+
+Ques: What is JSX or javascript xml?
+It is same like HTML code but it is not. It is converted by react to React code then javascript code 
+	
+
+Ques: How React Works?
+JS is imperative while React is Declarative
+Separation of concern
+Reusablility
+
+
+Ques: what is the use of .toISOString()?
+to print string constant in jsx. ex: date.toISOString
+
+Ques: WHat is Props?
+props are similiar to the arguments that we pass in js function as attributes
+
+
+useState
+useState is seperated per component. for example it reloads the componsnet in which it is updated otherwise it wont
+
+
+Ques: Why it is better to update all the useState in a single state?
+	react update state one by one if you use more number of useState it will affect your execution efficience
+
+Ques: Which is better Approach1 or Approach2 ?
+Approach1:
+const [userInput, setUserInput] = useState({
+        enteredTitle:'',
+        enteredAmount:'',
+        enteredDate:''
+    });
+
+ const titleChangeHandler = (event) =>{
+        //setEnteredTitle(event.target.value);
+        setUserInput({
+            ...userInput,
+            enteredTitle:event.target.value
+        });
+       // console.log(enteredTitle);
+    }
+
+Approach2: 
+setUserInput((prevState) => {
+      return { ...prevState, enteredTitle: event.target.value };
+    });
+
+
+
+	Approach2 is better as it will give latest updated state
+
+
+
+Ques: How to pass data from Child to Parent in React component?
+by creating func handler in parent
+
+ControlledComponent - achieved by two way binding
+UnControlledComponent -
+
+
+
+Dynamic Expression can be done using {} in React
+
+
+Ques: How React keys helps in optimisation?
+	Ex if you rendering list and added one more item it adds Component(div) and then updates all other Comonent(div) (if key present then it updated the targeted one only)
+	ALso if any component is using state it may potentialy itroduced some bug if that happens
+	key basically determine which part of list is to be added/updated hence increase the performance
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 npm install --save radium //installing radium
 
@@ -41,8 +182,9 @@ axios
 ReactDom.render 
  --takes two arg(element want to create,root element or where to put the element)
  
-React.createElement(element in string ,element attribute,in text)
-Example: React.createElement("h1",{style:{color:"red"}},"Hello!" or React.createElement can be used)
+Ques: What is React.createElement?
+	-React.createElement(element in string ,element attributes, inside text or data)
+	-Example: React.createElement("h1",{style:{color:"red"}},"Hello!" or React.createElement can be used)
 
 
 
@@ -66,11 +208,17 @@ Ques 5: react is not inheritence type startegy it is composition type startegy
 Ques 6: What are pseudo selector?
 A CSS pseudo-class is a keyword added to a selector that specifies a special state of the selected element(s). For example,
  :hover can be used to change a button's color when the user's pointer hovers over it.
+
  https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes
+
+ /* Any button over which the user's pointer is hovering */
+button:hover {
+  color: blue;
+}
 
 Ques 6: //use this.setState only to change state if you use this.state.contact[0] ={} it wont work
 
-Ques 7: this.setState merges the state that you give useState doesn't i.e it replaces
+Ques 7: this.setState merges the state that you give whereas useState doesn't i.e it replaces
 
 you can have as many useState as you want it gives you freedom to split up your big state object to small pieces of object
 
@@ -78,9 +226,10 @@ Ques 8 : Stateless Component are also called Presentational component or dumb co
 
 Ques 9 : React Component Lifecycle hooks ( Nothing to do with react hooks)
 
-constructor
+1)Mounting
+constructor()
 \|/
-getDerivedStatefromProps //if props changes update state
+getDerivedStatefromProps()   //if props changes update state
 \|/
 render()
 \|/
@@ -90,7 +239,7 @@ componenrDidMount // call your setstate after completion of http call in CDM Com
 \|/
 
 
-Component Life - Update
+2)Component Life - Update
 
 getDerivedStatefromProps
 \|/
@@ -100,40 +249,95 @@ render()
 \|/
 UpdateChildComponent props
 \|/
-getSnapshotBeforeUpdate
+getSnapshotBeforeUpdate()
 \|/
 componentDidUpdate //called when props and state updates
 
+3)Unmount
+	componentWillUnmount()
+
+4)Error Handling
+	static getDerivedStateFromError()
+	componentDidCatch()
 
 
-
-useEffect is executed at every cycle of component also use for clean up activities or after all rendering done
-
-React.memo() // stores the snapshot of Component only rerender when its input changes otherwise no changes
-				if any props passedto component chnages then only it render otherwise old copies
+Ques: React.memo()
+	stores the snapshot of Component only rerender when its input changes otherwise no changes.
+	if any props passedto component changes then only it render otherwise old copies.
 				
-When should u not use react memo & ShouldComponentUpdate? //if we know coz of parent child component changes then dont wrap it in these two techniques 
+Ques: When should u not use react memo & ShouldComponentUpdate? 
+//if we know coz of parent child component changes then dont wrap it in these two techniques 
 which run unneccessary code while executing
 
 Ques : What is PureComponent?
-Pure Components in React are the components which do not re-renders when the value of state and props has been updated with the same values.If the value of the previous state or props and the new state or props is the same, the component is not re-rendered.
+Pure Components in React are the components which do not re-renders when the value of state and props has been updated with the same values.
+If the value of the previous state or props and the new state or props is the same, the component is not re-rendered.
 
 
 Ques : What are higher order component
-Ques : What are propTypes
+They are a pattern that emerges from React's compositional nature. Concretely, a higher-order component is a function that takes a component
+and returns a new component
+
+
+Ques : What are propTypes ?
+		import PropTypes from 'prop-types';
+
+		class Greeting extends React.Component {
+		  render() {
+			return (
+			  <h1>Hello, {this.props.name}</h1>
+			);
+		  }
+		}
+
+		Greeting.propTypes = {
+		  name: PropTypes.string
+		};
+
+
 Ques : cssfilename.module.css in order to run it without npm run eject
 
-.................Topic: React Routing...................
+Ques: What is the diff between react.memo() and useMemo?
+React.memo() is a higher-order component that we can use to wrap components that we do not want to re-render unless props within them change
+useMemo() is a React Hook that we can use to wrap functions within a component. We can use this to ensure that the values within that
+ function are re-computed only when one of its dependencies change
+
+Ques: What is memoization?
+In simple terms, memoization is a process that allows us to cache the values of recursive/expensive function calls so that the next 
+time the function is called with the same argument(s), the cached value is returned rather than having to re-compute the function.
+
+Ques: What is <React.Fragment> ?
+	React Fragments allow you to wrap or group multiple elements without adding an extra node to the DOM
+	React inbuild hoc
+	
+Ques: How to create AsyncComponents in React?
+Refere "react-post-ajax" asyncComponent.js	
+	
+	
+Ques: How click is handled in React.js?
+  <Post   clicked={()=> this.selectedPostHandler(post.id)}  />    //with passing argumemnt id
+   <button className="Delete" onClick={this.deletePostHandler}>Delete</button>    //when u dont need to pass any arg
+	
+
+.................Topic: REACT ROUTING...................
 To install in your app 
 npm install -save react-router react-router-dom  //install router
 
-Routing...
+Ques: Routing...
 wrap App.js in BrowserRouter component
+	<BrowserRouter basename="/my-app">
+      <App/>
+    </BrowserRouter>
 
-Redirect...
+Ques: Redirect...
 can be used with Switch or can be used directly but without switch u cannot use from u can only use to props
+ <Redirect from='/' to='/posts' />
 
-Guards...
+Ques: In <Route component={Contact} />  if you want to pass some argument with it how do u do that?
+<Route render={()=>(<Contact ingr={this.state.ingredients}/>} />
+
+
+Ques: Guards...
 {this.state.auth ? <Route path='/new-post'  component={NewPost} : null />}
 
 Handle 404 case using Route without path...
@@ -143,11 +347,70 @@ Lazy Route loading...
 
 this.props.history.push('/checkout'); //pushes checkout page into the current page thus it allows us to switch the page on stack of pages
 
-ReactFragment.....
-<ReactFragment> react inbuild hoc
+Ques: this.props.history.push({pathname:'/checkout'});
+Ans : It is used to go on certain page "/checkout" using routing
 
+Ques:  What is this.props.location.search ?
+const queryParam = new URLSearchParams(this.props.location.search);  
+It contains the query param which should be parsed
+
+Ques: this.props.match.path  ?  
+It stores the current path till now
+
+
+Ques: event.preventDefault();
+when we click on any item like in form it does go to hit a request. and if we dont want that we can use preventDefault
+         
 Ques:What is this.props.history ?
 https://stackoverflow.com/questions/44121069/how-to-pass-params-with-history-push-link-redirect-in-react-router-v4
+
+Ques: what is withRouter?
+pass history and route props to its tree
+export default withRouter(Post);
+
+
+Ques: what is exact in Route?
+The exact param disables the partial matching for a route and makes sure that it only returns the route if the path is an EXACT match to the current url.
+        
+
+--------------------Topic: AXIOS-----------------------
+1)Get Requests example:-
+
+axios.get('/posts')
+        .then((response) =>{
+            const paginatedPost = response.data.slice(0,4);
+            const updatedPost = paginatedPost.map((post) => {
+               return {
+                    ...post,
+                    author : 'SKY'
+                }
+            });
+            
+            this.setState({posts:updatedPost})
+            //console.log(response);
+        } )
+        .catch( error => {
+           // this.setState({error:true});
+            console.log(error);
+        })
+		
+2.) Delete 
+axios.delete('/posts/'+this.props.match.params.id)
+        .then(response => {
+            console.log(response);
+        });		
+
+3.) Post
+ const article = { title: 'React POST Request Example' };
+    axios.post('https://reqres.in/api/articles', article)
+        .then(response => this.setState({ articleId: response.data.id }));
+
+
+4.) PUt
+	const article = { title: 'React PUT Request Example' };
+    axios.put('https://reqres.in/api/articles/1', article)
+    .then(response => this.setState({ updatedAt: response.data.updatedAt }));
+
 
 
 .....................Topic: send Data via Query Param...........
@@ -195,16 +458,21 @@ Intially it fails but as application code done it runs successfully
 
 It is possible that in First Draft all unit test are passing but if any new feature comes some unit test are failing.
 
-What to test
-Dont test library
-Dont test complex connection
+What to test?
+Don't test library
+Don't test complex connection
 Do Test isolated unit ex conditional output,components,check various o/p on various conditions 
 
+Jest & Enzyme?
+Jest as the test runner, assertion library, and mocking library
+Enzyme to provide additional testing utilities to interact with elements
 
 Enzyme
-It allows us to just render this navigation items component standalone independent of the entire react application
-enzyme need adapter to connect with react
-shallow function -render the component but replaces as placeholder
+1.It allows us to just render this navigation items component standalone independent of the entire react application
+2.enzyme need adapter to connect with react
+3.shallow function:- render the component but replaces as placeholder
+4.Enzyme, created by Airbnb, adds some great additional utility methods for rendering a component (or multiple components),
+		finding elements, and interacting with elements
 
 Installation.....
 npm install --save enzyme react-test-render enzyme-adapter-react-16    //yarn add
@@ -214,7 +482,19 @@ enzyme-adapter-react-16 - t connect enzyme with react app
 describe()-defines test suites
 it() defines individual test for a component in react
 
+Example:
+	import React from 'react';
+	import { shallow } from 'enzyme';
+	import MyComponent from './MyComponent';
+	describe('MyComponent', () => {
+	  it('should render correctly in "debug" mode', () => {
+		const component = shallow(<MyComponent debug />);
+	  
+		expect(component).toMatchSnapshot();
+	  });
+	});
 
+Refrence: https://medium.com/codeclan/testing-react-with-jest-and-enzyme-20505fec4675
 
 .............Topic: WebPack...........
 Basically Webpack use for large full stack app but if u have small app or single page app u can use create-react-app
@@ -265,6 +545,7 @@ Question yet to answer
 
 Ques:How to handle onclick event in child component by passing a value id?
 <li key={ig.id} onClick={props.onRemoveItem.bind(this, ig.id)}>   //this syntax basically used to pass some data from child component to parent component
+
 
 
 

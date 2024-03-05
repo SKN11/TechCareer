@@ -1,5 +1,7 @@
 Database
 
+SQL is not case sensitive.
+
 systemctl status mysql.service //check mysql is running ornot
 
 sudo systemctl start mysql  //to start mysql
@@ -15,7 +17,6 @@ SELECT db, host, user FROM mysql.db WHERE db = 'test'
 
 CREATE USER 'front'@'localhost' IDENTIFIED BY 'front';
 GRANT ALL PRIVILEGES ON database_name.* TO 'front'@'localhost';
-
 
 UPDATE  mysql.user SET  Password = PASSWORD('rootnew') WHERE  User = 'root'; 
 FLUSH PRIVILEGES;
@@ -41,22 +42,26 @@ DELETE FROM table_name WHERE condition
 
 
 pagination or limit or top sql synatx
-SELECT column_name(s)
-FROM table_name
-WHERE condition
-LIMIT number;
+	SELECT column_name(s)
+	FROM table_name
+	WHERE condition
+	LIMIT number;
 
+	SELECT top(1)
+	FROM table_name
+	WHERE condition
+	
 
 min max
-SELECT MAX(column_name)   //MIN(column_name)
-FROM table_name
-WHERE condition;
+	SELECT MAX(column_name)   //MIN(column_name)
+	FROM table_name
+	WHERE condition;
 
 
 The SQL COUNT(), AVG() and SUM() Functions
-SELECT COUNT(column_name) //AVG(column_name) , SUM(column_name)    //null values are ignored
-FROM table_name
-WHERE condition;
+	SELECT COUNT(column_name) //AVG(column_name) , SUM(column_name)    //null values are ignored
+	FROM table_name
+	WHERE condition;
 
 SQL LIKE Operator
 It uses two wild card
@@ -90,43 +95,48 @@ use as
 SQL JOINS   //JOIN clause is used to combine rows from two or more tables, based on a related column between them
 
 INNER JOIN..
-SELECT Orders.OrderID, Customers.CustomerName
-FROM Orders
-INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID;
+	SELECT Orders.OrderID, Customers.CustomerName
+	FROM Orders
+	INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID;
 
 LEFT OUTER JOIN...
-SELECT Customers.CustomerName, Orders.OrderID
-FROM Customers
-LEFT JOIN Orders ON Customers.CustomerID = Orders.CustomerID
-ORDER BY Customers.CustomerName;
+	SELECT Customers.CustomerName, Orders.OrderID
+	FROM Customers
+	LEFT JOIN Orders ON Customers.CustomerID = Orders.CustomerID
+	ORDER BY Customers.CustomerName;
 
 RIGHT OUTER JOIN.....
-SELECT Orders.OrderID, Employees.LastName, Employees.FirstName
-FROM Orders
-RIGHT JOIN Employees ON Orders.EmployeeID = Employees.EmployeeID
-ORDER BY Orders.OrderID;
+	SELECT Orders.OrderID, Employees.LastName, Employees.FirstName
+	FROM Orders
+	RIGHT JOIN Employees ON Orders.EmployeeID = Employees.EmployeeID
+	ORDER BY Orders.OrderID;
 
 FULL OUTER JOIN
-SELECT Customers.CustomerName, Orders.OrderID
-FROM Customers
-FULL OUTER JOIN Orders ON Customers.CustomerID=Orders.CustomerID
-ORDER BY Customers.CustomerName;
+	SELECT Customers.CustomerName, Orders.OrderID
+	FROM Customers
+	FULL OUTER JOIN Orders ON Customers.CustomerID=Orders.CustomerID
+	ORDER BY Customers.CustomerName;
 
 SELF  JOIN
-SELECT A.CustomerName AS CustomerName1, B.CustomerName AS CustomerName2, A.City
-FROM Customers A, Customers B
-WHERE A.CustomerID <> B.CustomerID     //not equal operator
-AND A.City = B.City
-ORDER BY A.City;
+	SELECT A.CustomerName AS CustomerName1, B.CustomerName AS CustomerName2, A.City
+	FROM Customers A, Customers B
+	WHERE A.CustomerID <> B.CustomerID     //not equal operator
+	AND A.City = B.City
+	ORDER BY A.City;
 
 
 Sql Union....
-SELECT City FROM Customers
-UNION     //UNION ALL
-SELECT City FROM Suppliers
-ORDER BY City;
+	SELECT City FROM Customers
+	UNION     //UNION ALL    //INTERSECT(give only the matched one)
+	SELECT City FROM Suppliers
+	ORDER BY City;
 
-NOTE: if some customers or suppliers have the same city, each city will only be listed once, because UNION selects only distinct values. Use UNION ALL to also select duplicate values
+NOTE: if some customers or suppliers have the same city, each city will only be listed once, because UNION selects only distinct values. 4
+Use UNION ALL to also select duplicate values
+
+Ques: UNION vs INNER JOIN ?
+The join such as INNER JOIN or LEFT JOIN combines columns from two tables while the UNION combines rows from two queries.
+ In other words, join appends the result sets horizontally while union appends the result set vertically.
 
 
 "a.custid <> b.custid "  //It is called not equal to operator
@@ -155,6 +165,7 @@ show databases; 		//show dbs
 use dbname;  		//use that db
 drop database test 		//delete db
 backup database test to disk ="filepath"   //backup db
+
 CREATE TABLE Persons (     //create table in db
     PersonID int,   
     LastName varchar(255),
@@ -162,6 +173,7 @@ CREATE TABLE Persons (     //create table in db
     
 drop table customer //delete full table from rdbms
 truncate table customer //delete only its data not table
+
 ALTER TABLE Customers ADD Email varchar(255);    //ADD,MODIFY,DROP etc
 
 
@@ -187,7 +199,12 @@ create table orders (
 
 CREATE INDEX idx_lastname
 ON Persons (LastName);
-
+ To improve the performance Indexes are used.
+ 
+Clustered or non clustered
+by default primary id is clustereded
+non clusetered is created by user for ex index on emp_name
+both clustered and nonclustered work together and find the data very quickly
 
 SQL Date //DATE - format YYYY-MM-DD
 SELECT * FROM Orders WHERE OrderDate='2008-11-11'
@@ -241,7 +258,7 @@ select name,max(salary) from employee group by deptId
 
 Ques: Select second max salary?
 SELECT max(salary) FROM Employee WHERE salary < (SELECT max(salary) FROM Employee);
-
+select Top1 from (Select Top 2 from Emp order by desc) order by desc
 
 
 

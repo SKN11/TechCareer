@@ -4,6 +4,101 @@ use arrow function
 use first class functions
 
 
+Ques: What is Javascript? 
+It is a scripting language runs in background and interacts with html & CSS to see what is change or what u can do. also weakly typed language
+
+1.Web Page= HTML(ContentLayer)+CSS(Presentation Layer)+Javascript(Presentation Layer+Interactive Layer)
+2.Java & javascript are two very different. Ex: Cat is to Catfish
+3.Javascript is EICMAScript standard 
+4.JQuery is abstarction to the core Javascript ....It is a library to code javascript in very limited code
+
+
+Ques: Javascript Rules ?
+1. JS is case sensitive ex new date() is wrong new Date() is correct.
+2. Use camelCase for var , Objects and Classes with uppercase ,Constant are in all caps
+3. whitespace matters only to human not to javascript
+4. use semicolon; so code should be readable
+5. Use comments in ur code // or /*multilin*/
+
+----
+
+Ques: Initiliase Date in javascript
+	var Date = new Date();
+	document.body.innerHTML = "" ;
+
+Ques: What is the difference between undefined and null in javascript
+	In JavaScript, undefined is a type, whereas null an object.
+	It means a variable declared, but no value has been assigned a value. Whereas, null in JavaScript is an assignment value. You can assign it to a variable.
+	var e=null; console o/p object
+	var e; console o/p undefined
+
+== check equality
+=== check equaltity and data type i.e strict equality
+
+Ques: BOM and DOM?
+	BOM:Browser Object Model(window,browser etc)
+	DOM:Document Object Model(document, HTML,CSS
+
+	document.getElementById("id");
+	document.getElementsByClassName("claassname");
+	document.querySelector(".hello"); //first specified className hello
+	document.querySelectorAll("a"); //all all anchor tag in dom
+
+	document.querySelector(".hello a"); //first a with className hello
+	document.querySelectorAll(".hello a"); //all  anchor tag with className hello in dom
+
+
+	Browser Level Events
+		Load- when the resource and dependednts are finished loading
+		Error-when a resource failed to load
+		Online/Offline-self explanatory
+		Resize
+		Scroll
+		
+	DOM Events
+		Focus
+		Blur
+		Reset/Submit
+		MouseEvent
+
+	element.classList.toggle("hide") hide the hide applied before
+
+
+
+Ques: const,var,let ?   //ECMA Script 2015 let,var
+var : to avoid global scope use var. Also using var would provide variable with some scope
+
+let : Block scope variable & Smaller scope than var. Use when u want to limit variable to just a code block use let
+
+const: ques: What happens if you try to set new value for a const variable that is already defined?
+		The script will break on an exception.  //Uncaught SyntaxError: Identifier 'i' has already been declare
+		you can use try catch to handle the error.
+
+
+var explanation :   O/p hi hi
+	function logscope()
+	{
+	var localVar=2;
+	if(localVar){
+		var localVar = "hi";
+		console.log(localVar);
+	}
+	console.log(localVar);
+	}
+
+let explanation:    O/p hi 2
+	function logscope() 
+	{
+	var localVar=2;
+	if(localVar){
+		let localVar = "hi";
+		console.log(localVar);
+	}
+	console.log(localVar);
+	}
+
+
+
 
 .........................Topic : Array Questions......................
 
@@ -11,20 +106,63 @@ Ques : push & concat difference?   //[Array
 (return same array with pushing it i.e mutated obj) and concat (add item and return copy of the array i.e immutable array obj)
 
 Ques: What is Array.prototype?
+The JavaScript array prototype constructor is used to allow to add new methods and properties to the Array() object. If the method 
+is constructed, then it will available for every array. When constructing a property, All arrays will be given the property, and its value, as default.
+
+		Array.prototype.upperCase = function() {
+            var i;
+            for (i = 0; i < this.length; i++) {
+                this[i] = this[i].toUpperCase();
+            }
+        };
+         
+        function myGeeks() {
+            var sub = ["Algorithm", "Data Structure",
+                            "Operating System", "html"];
+            sub.upperCase();
 
 Ques:Array Initiliase
-var arrayname=[value1,value2.....valueN];  //first
+	var arrayname=[value1,value2.....valueN];  //first way
 
-var emp = new Array();   //second
-emp[0] = "Arun";  
-emp[1] = "Varun";  
+	var emp = new Array();   //second way
+	emp[0] = "Arun";  
+	emp[1] = "Varun";  
 
-var emp= new Array("Jai","Vijay","Smith");   //third
+	var emp= new Array("Jai","Vijay","Smith");   //third way
 
 
-Ques: What is the diff b/w forEach and map method?
-map:     If you plan to change, alternate, or use the data, you should pick map(), because it returns a new array with the transformed data.
-forEach: This iterates over a list and applies some operation with side effects to each list member
+Ques: What is the diff b/w forEach and map method?    (!important question  other way Array.prototype.map() vs Array.prototype.forEach().)
+	Note: Revise what is prototyping in Array.
+
+			MAP																				FOREACH
+	1.If you plan to change, alternate, or use the data,      |    This iterates over a list and applies some operation with side effects(alteration) to
+	you should pick map(), because it returns a new array			 each list member
+	with the transformed data.
+	
+	2. map() returns a new array with the transformed elements  |  The forEach() method returns undefined and
+	
+	3.map() is chainable. This means that you can attach		|   returns undefined hence it is not chainable
+	reduce(), sort(), filter()
+	
+	4.The map() method returns an entirely new array with 		|	 In the case of forEach(), even if it returns undefined,
+	transformed elements and the same amount of data.					 it will mutate the original array with the callback.
+
+    5.Therefore, we see clearly that map() relies on    	     | forEach() is a mutator method.
+	immutability
+	
+	Reference:https://www.freecodecamp.org/news/4-main-differences-between-foreach-and-map/
+	
+	Performance Check : 
+	const myAwesomeArray = [1, 2, 3, 4, 5]
+	const startForEach = performance.now()
+	myAwesomeArray.forEach(x => (x + x) * 10000000000)
+	const endForEach = performance.now()
+	console.log(`Speed [forEach]: ${endForEach - startForEach} miliseconds`)
+
+	const startMap = performance.now()
+	myAwesomeArray.map(x => (x + x) * 10000000000)
+	const endMap = performance.now()
+	console.log(`Speed [map]: ${endMap - startMap} miliseconds`)
 
 Ques: construct it different way let buckets = [[],[],[],[],[],[],[],[],[],[]];
 Array.from({length:10},()=>[]);
@@ -33,65 +171,281 @@ Ques:  arr = [].concat(...buckets);
 copying from buckets [[1,2],[4],[5,6,7,7]]
 arr is now = [1,2,4,5,6,7,7]
 
+slice,spread,concat all methods do not mutate the array it makes copies of the array
+----------------------------------
+Ques: What is the diff b/w shallow copy and Deep copy?
+var employee = {
+    eid: "E102",
+    ename: "Jack",
+    eaddress: "New York",
+    salary: 50000
+}
+console.log("=========Deep Copy========");
+var newEmployee = JSON.parse(JSON.stringify(employee));     // object is copied i.e immutable obj
+
+console.log("=========Shallow Copy========");
+var newEmployee = employee;              //same object is referred  //mutable obj
+
+
+A deep copy means that all of the values of the new variable are copied and disconnected from the original variable.
+A shallow copy means that certain (sub-)values are still connected to the original variable.
+
+CAVEAT!!!! but if you copy nested object using spreadoperator. this nested object is not deep copy, it is shallow copy
+to prevent it
+1.override that key explicitly
+2.convert it into string then to json(if object is too much nested )
+https://www.freecodecamp.org/news/copying-stuff-in-javascript-how-to-differentiate-between-deep-and-shallow-copies-b6d8c1ef09cd/#:~:text=A%20deep%20copy%20means%20that,into%20how%20JavaScript%20stores%20values.
+
+SpreadOperator old alternative,   let b = Object.assign({}, a);
+
+Ques: What for Nested arrays?
+Similar to objects, using the methods above to copy an array with another array or object inside will generate a shallow copy.
+ To prevent that, also use
+ JSON.parse(JSON.stringify(someArray)) .
+
+Ques: What for  custom constructor functions or classes?  // BONUS point
+As mentioned before, you cannot just stringify + parse those, as you will lose your class methods.
+ Instead, you would want to add a custom "copy method" to create a new instance with all of the old values.
+ Let’s see how that works:
+
+		class Counter {
+		  constructor() {
+			 this.count = 5
+		  }
+		  copy() {
+			const copy = new Counter()
+			copy.count = this.count
+			return copy
+		  }
+		}
+		const originalCounter = new Counter()
+		const copiedCounter = originalCounter.copy()
+		console.log(originalCounter.count) // 5
+		console.log(copiedCounter.count) // 5
+		copiedCounter.count = 7
+		console.log(originalCounter.count) // 5
+		console.log(copiedCounter.count) // 7
+
+
+[Array Fill] Method    //Mutable method
+	var ingr = [1,2,3,4,5];
+	ingr.fill(9);   //  [9, 9, 9, 9, 9]
+
+[Array Filter] Method     //Provide immutable array
+	Ques : provide new immutable array and removing element where condition matches 
+	var ingr = [1,2,3,4,5];
+	const removedIdIngre = prevIngredients.filter(ingr => ingr !== 2)
+	o/p = [1,3,4,5]
+
+[Array slice()]  //gives the shallow copy but The original array will not be modified   //immutable
+	const animals = ['ant', 'bison', 'camel', 'duck', 'elephant'];
+	console.log(animals.slice(2));   // expected output: Array ["camel", "duck", "elephant"]
+	console.log(animals.slice(2, 4));  // expected output: Array ["camel", "duck"]
+	console.log(animals.slice(1, 5));  // expected output: Array ["bison", "camel", "duck", "elephant"]
+
+[Array splice ] //removes or adds in the array   //mutate the array
+	const months = ['Jan', 'March', 'April', 'June'];
+	months.splice(1, 0, 'Feb'); //add
+	// inserts at index 1 , Array ["Jan", "Feb", "March", "April", "June"]
+
+
+	months.splice(4, 1, 'May');   //removes and replace
+	// replaces 1 element at index 4 , ["Jan", "Feb", "March", "April", "May"]
+	Note: If u dont pass third argument it just removes that item from array
+
+
+	const months = ['Jan', 'March', 'April', 'June'];
+	months.splice(1, 1);   //removes
+	// replaces 1 element at index 4 , ["Jan","April", "May"]
+
+	Note: map,filter,reduce all give immutable copy
+
+[Array reduce]
+Example 1: Sum of All Values of Array
+const numbers = [1, 2, 3, 4, 5, 6];
+let summation = numbers.reduce(
+  (accumulator, currentValue) => accumulator + currentValue
+);
+console.log(summation); // 21
+
+Example 3: Remove Duplicate Items from Array
+let ageGroup = [18, 21, 1, 1, 51, 18, 21, 5, 18, 7, 10];
+let uniqueAgeGroup = ageGroup.reduce(function (accumulator, currentValue) {
+  if (accumulator.indexOf(currentValue) === -1) {
+    accumulator.push(currentValue);
+  }
+  return accumulator;
+}, []);
+
+console.log(uniqueAgeGroup); // [ 18, 21, 1, 51, 5, 7, 10 ]
+
+Refer: https://www.programiz.com/javascript/library/array/reduce
+
+
+
 
 .........................Topic : ES6 Questions......................
 
 Ques: When to use arrow function?       //How Arrow function solve closures problem?
-It is easy to write
-less verbose
-solves closure problem
-bind this automatically    
+1.It is easy to write
+2.less verbose
+3.solves closure problem
+4.bind this automatically    
+	(we have to bind this explicitly)
+	var obj = {
+	  id: 42,
+	  counter: function counter() {
+		setTimeout(function() {
+		  console.log(this.id);
+		}.bind(this), 1000);
+	  }
+	};
 
-(we have to bind this explicitly)
-var obj = {
-  id: 42,
-  counter: function counter() {
-    setTimeout(function() {
-      console.log(this.id);
-    }.bind(this), 1000);
-  }
-};
-
-
-with arrow function
-var obj = {
-  id: 42,
-  counter: function counter() {
-    setTimeout(() => {
-      console.log(this.id);
-    }, 1000);
-  }
-};
+	with arrow function
+	var obj = {
+	  id: 42,
+	  counter: function counter() {
+		setTimeout(() => {
+		  console.log(this.id);
+		}, 1000);
+	  }
+	};
 
 
 Ques : Array & Object Destructuring?
-const array = [1, 2, 3];
-const [a, b] = array;
+	const array = [1, 2, 3 ];
+	const [a, b] = array;   //a =1 & b=2
 
-const myObj = {
- name: 'Max',
- age: 28
- }
-const {name} = myObj;
-console.log(name); //'Max'
+	const myObj = {
+	 name: 'Max',
+	 age: 28
+	 }
+	const {name} = myObj;
+	console.log(name); //'Max'
 
-Note: name property must be same
+	Note: name property must be same
+	
+	
+Ques: SpreadOpeartor?
+
+const a = {
+  en: 'Bye',
+  de: 'Tschüss'
+}
+let b = {...a}
+b.de = 'Ciao'
+console.log(b.de) // Ciao    			// Old way- let b = Object.assign({}, a)
+console.log(a.de) // Tschüss
+You can also use it to merge two objects together, for example const c = {...a, ...b} 
+
+CAVEAT!!!! but if you copy nested object using spreadoperator. this nested object is not deep copy, it is shallow copy
+To make a deep copy of nested objects, you would have to consider that.
+1. One way to prevent that is manually copying all nested objects
+2.convert it into string then to json(if object is too much nested )
+var newEmployee = JSON.parse(JSON.stringify(employee));  
+Reference : https://www.freecodecamp.org/news/copying-stuff-in-javascript-how-to-differentiate-between-deep-and-shallow-copies-b6d8c1ef09cd/#:~:text=A%20deep%20copy%20means%20that,into%20how%20JavaScript%20stores%20values.
+
+
+
+
+......................................Topic: Object................
+
+Ques: Object.assign ?
+	To make copies(immutable) of objects use Object.assign, or the spread operator
+		var obj = {
+			name:'sam'
+		};
+		var objAssign = Object.assign({},obj);
+		console.log(objAssign);
+
+Ques: Javascript Object Creation   //very important
+	1. first technique
+	var course = new Object();   
+	course.name="physics";
+	course.teacher="sam";
+
+	2. second technique
+	var course = {   
+				name:"physics",
+				teacher:"sam",
+				views:0,
+				updateviews:function()
+							{
+							return ++view:
+							}
+				}
+
+	3. third technique using constructor
+
+	Object Constrcutors.....
+	function Course(name,teacher){
+						this.name=name;
+						this.teacher=teacher;
+						}
+	var course1 = new Course("physics","sam");  
+	var course1 = new Course("math","andrew");
+
+	Dot Notation Bracket Notation?
+	course.title   course["title"]  //very important ....mug it
+	
+.....................Closures / Protype...........................
+Closure:
+	function doSomeMath(){
+		var a=1;
+		var b=2;
+
+		function multiply()
+			{
+			return a*b;
+			}
+		return multiply;
+		}
+
+	var result = doSomeMath(); summary
+	console.log(result);//o/p Full multiply function body
+	console.log(result());//o/p 2
+
+	It is Closure in the above doSomeMath() function
+	var a=1;
+	var b=2;
+
+	function multiply()
+	{
+	return a*b;
+	}
+
+	Definition of Closures : a function inside function that relies on variable in the outside function to work.
+	Note: if you change any value in closures it wont affect outside varibale.
+
+
+
 
 
 .........................Topic : Code Structural Questions......................
 Ques: What is the use of useStrict in  javascript?  
- It is not a statement, but a literal expression
- With strict mode, you can not, for example, 
- 1.use undeclared variables.
-2.eliminates silent errors
-3.instead throws them so that the code won't run with errors in the code
+	 It is not a statement, but a literal expression
+	 With strict mode, you can not, for example, 
+		1.use undeclared variables.
+		2.eliminates silent errors
+		3.instead throws them so that the code won't run with errors in the code
 
 Ques: what happen if you write script in head ?
-If you write <script> in head it will through error as it has not loaded the html body tag. It should be written after body element.
+	If you write <script> in head it will through error as it has not loaded the html body tag. It should be written after body element.
+	Recommended:write js or src after body is executed;
+	<!DOCTYPE html>
+	<html lang="en-US">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>An empty page</title>
+	</head>
+		<body>
+		</body>
+		<script src="script.js"></script>
+	</html>
 
-Recommended:write js or src after body is executed;
 
-Ques: How to make it More Modular?   //Put it js code in separate .js files
+Ques: How to make it js code more Modular?   //Put it js code in separate .js files
 
 
 Ques: How should you import an external JavaScript and execute it only after everything else is loaded?
@@ -99,36 +453,34 @@ Ques: How should you import an external JavaScript and execute it only after eve
 	<script src ="script.js" async></script>
 	HTML parsing and JS download downloaded at the same time....Render blocking executed when script is fully loaded. (Attach picture from 		video)
 
-<script src ="script1.js" async></script>
-<script src ="script1.js" async></script>
-Both script downloaded asynchronously
+	<script src ="script1.js" async></script>
+	<script src ="script1.js" async></script>
+	Both script downloaded asynchronously
 
+Ques: How to download script1 first and script2 afterwards 
 <script src ="script1.js" defer></script>
 <script src ="script1.js" defer></script>
-script1 downloaded first and script2 afterwards 
----------------
 
 
- 
-Ques :Is javscript multithreaded ? It is single threaded //it is also disadvanatage of javascript
+Ques :Is javscript multithreaded ? 
+It is single threaded //it is also disadvanatage of javascript
 
 
  
 -----------------
 Ques:What is First Class Function?
- A programming language is said to have First-class functions when functions in that language are treated like any other variable
+ A programming language is said to have First-class functions when functions in particular language are treated like any other variable
  It can be passed as an arg or return from a function
  const foo = function() {
    console.log("foobar");
 }
-// Invoke it using the variable
-foo();
+// Invoke it using the variable foo like "  foo();  "
 
 Ques : document.write("1 plus 1 is " + 1 + 1); //1 plus 1 is 11
 
 Ques : Lexical Scoping ?
-A lexical scope in JavaScript means that a variable defined outside a function can be accessible inside another function defined after the variable declaration. But the opposite is not true; the variables defined inside a function will not be accessible outside that function.
-
+A lexical scope in JavaScript means that a variable defined outside a function can be accessible inside another function defined after the variable declaration.
+ But the opposite is not true; the variables defined inside a function will not be accessible outside that function.
 This concept is heavily used in closures in JavaScript.
 
 Let's say we have the below code.is
@@ -145,7 +497,7 @@ Ques : How to add event listener on element?
 element.addEventListener("click",function name without paranthesis, false);
 
 what is that third argument? 
-It is "useCapture" in the specification allows the programmer to specify which phase they want to use capture phase and bubbling phase events
+It is "useCapture" in the specification allows the programmer to specify which phase they want to use, capture phase or bubbling phase events
 
 capturephase & bubblephase 
 ex: when click on a element
@@ -156,11 +508,16 @@ a (bubbling phase)
 body (bubbing phase)
 html (bubbling phase)
 
+Ques: If u use two click on same element then one of click event is hindered. How do u solve it?
+		Alternative:use addeventlisterner();
+		element.addEventListener("click",function name without paranthesis, false);  //add event listener on element element
+		functionName : name or name() . use name(not name()) only if you dont want it to execute when script loads
 
 Ques: How to stop bubbling in javascript?
 event.stopPropagation() stops the move upwards, but on the current element all other handlers will run.
 
-To stop the bubbling and prevent handlers on the current element from running, there’s a method " event.stopImmediatePropagation(). " After it no other handlers execute.
+To stop the bubbling and prevent handlers on the current element from running, there’s a method " event.stopImmediatePropagation(). " After it
+ no other handlers execute.
 
 Note:Don’t stop bubbling without a need!
 
@@ -168,15 +525,35 @@ reference: https://javascript.info/bubbling-and-capturing#:~:text=To%20stop%20th
 
 
 
-Ques : How to set the cursor to wait in JavaScript?
+Ques : How to set the cursor to wait in JavaScript?   (like a loading cursor O )
 window.document.body.style.cursor = "wait";   
 
 Ques:What is the difference between View state and Session state?
 View state : session only for current page ex: paymenet page
 Session state : session for any page ex:you can open your amazon account on any page
 
-Ques: popup boxes in javascript
-alert , confirm , prompt
+Ques: popup boxes in javascript ?
+alert- function to display a message to the user that requires their attention.
+		This alert box will have the OK button to close the alert box.
+		alert("This is an alert message box.");  // display string message
+		
+prompt- when u want to give any input
+		var tenure = prompt("Please enter preferred tenure in years", "15");
+		if (tenure != null) {
+			alert("You have entered " + tenure + " years" );
+		}
+
+confirm- The confirm() function displays a popup message to the user with two buttons, OK and Cancel.
+		The confirm() function 
+			returns true if a user has clicked on the OK button or
+			returns false if clicked on the Cancel button
+			
+		var userPreference;
+		if (confirm("Do you want to save changes?") == true) {
+			userPreference = "Data saved successfully!";
+		} else {
+			userPreference = "Save Cancelled!";
+		}
 
 Ques: How can we detect OS of the client machine using JavaScript?
 navigator.appVersion
@@ -191,42 +568,20 @@ Ques:Does fetch work in IE?   //No
 
 https://javascript.info/async
 
-Ques: what is CallBacks?
-Ex if you want to load a script and call a func that script has in it. If we call after load script it will throw error as may be script is not loaded  instead we use callbacks to call that function
-
-...For Error handling
-function loadScript(src, callback) {
-  let script = document.createElement('script');
-  script.src = src;
-
-  script.onload = () => callback(null, script);
-  script.onerror = () => callback(new Error(`Script load error for ${src}`));
-
-  document.head.append(script);
-}
-
-loadScript('/my/script.js', function(error, script) {  //error-first callback” style.
-  if (error) {
-    // handle error
-  } else {
-    // script loaded successfully
-  }
-});
 
 
 Ques 2: What is Pyramid of doom in Javascript?
 callbacks in callbacks........
 
 Ques 3: What is Promise   //plz refere PromiseDemo.html in Javascript folder
-let promise = new Promise(function(resolve, reject) {
-  // executor (the producing code, "singer")
-});
+	let promise = new Promise(function(resolve, reject) {
+	  // executor (the producing code, "singer")
+	});
 
 
-The promise object returned by the new Promise constructor has these internal properties:
-
-state — initially "pending", then changes to either "fulfilled" when resolve is called or "rejected" when reject is called.
-result — initially undefined, then changes to value when resolve(value) called or error when reject(error) is called.
+	The promise object returned by the new Promise constructor has these internal properties:
+	state — initially "pending", then changes to either "fulfilled" when resolve is called or "rejected" when reject is called.
+	result — initially undefined, then changes to value when resolve(value) called or error when reject(error) is called.
 
 Ques 4 What is .then?
 promise.then(
@@ -234,15 +589,24 @@ promise.then(
   function(error) { /* handle an error */ }
 );
 
+Example: 
+		let promise= new Promise(
+				 function(resolve,reject){
+					setTimeout(()=> resolve([1,2,3,4,5]),1000);
+					//setTimeout(()=> reject(new Error("Whoops reject called as your promise failed")),1000);
+				});
 
+		//promise.finally(()=> alert("finallyExecuted"));
+
+		promise.then(
+		result => console.log('1'),
+		error => console.log('-1')
+		);
 
 Ques: Async await?
-
 If u write async before any function it will return response as a promise.
 
-
 async function f() {
-
   let promise = new Promise((resolve, reject) => {
     setTimeout(() => resolve("done!"), 1000)
   });
@@ -254,7 +618,8 @@ async function f() {
 
 f();
 
-await - The function execution “pauses” at the line (*) and resumes when the promise settles, with result becoming its result. So the code above shows “done!” in one second.
+await - The function execution “pauses” at the line (*) and resumes when the promise settles, with result becoming its result. So the code above shows 
+“done!” in one second.
 
 Note: If we try to use await in a non-async function, there would be a syntax error:
 	function f() {
@@ -270,11 +635,12 @@ We may get this error if we forget to put async before a function. As stated ear
 Ques: What is Javascript Pure Function?
 A function is only pure if, given the same input, it will always produce the same output.
 
-Ex: Math.random() is impure new Date().toLocaleTimeString() is pure
+Ex: Math.random() is impure 
+	new Date().toLocaleTimeString() is pure
 
 Referenece: https://medium.com/javascript-scene/master-the-javascript-interview-what-is-a-pure-function-d1c076bec976
 
-......................Prototype...................
+......................Prototype & Hoisting...................
 Ques: What is Array.prototype?
 
 Ques: Write any prototype in javascript?
@@ -293,9 +659,54 @@ Ques: What is cyclic proto error in javascript object?
 obj.__proto__=obj2;
 obj2.__proto__=obj;
 
+
+
+Ques: what is hoisting in javascript?
+https://www.freecodecamp.org/news/what-is-hoisting-in-javascript/
+
+Hoisting is the phenomenon in which the JavaScript interpreter splits the declaration and assignment of functions and variables:
+ it "hoists" your declarations to the top of their containing scope before execution
+
+1)Variable hoisting with var
+console.log(foo);  //undefined
+var foo = 'foo';
+console.log(foo); // "foo"
+
+Note: console.log(foo); // Uncaught ReferenceError: foo is not defined
+if you dont write var foo="foo";
+
+2)Variable hoisting with let and const
+Variables declared with let and const are hoisted but not initialized with a default value. Accessing a let or const variable before it's declared will result in a ReferenceError:
+console.log(foo); // Uncaught ReferenceError: Cannot access 'foo' before initialization
+let foo = 'bar';  // Same behavior for variables declared with const
+
+3)Function hoisting in JavaScript
+Function declarations are hoisted, too. Function hoisting allows us to call a function before it is defined. For example, the following code runs successfully and outputs "foo":
+
+foo(); // "foo"
+function foo() {
+	console.log('foo');
+}
+
+
+
+Ques: What is Temporal DeadZOne? TDZ
+The TDZ starts at the beginning of the variable's enclosing scope and ends when it is declared. Accessing the variable in this TDZ throws a ReferenceError
+{
+ 	// Start of foo's TDZ
+  	let bar = 'bar';
+	console.log(bar); // "bar"
+	console.log(foo); // ReferenceError because we're in the TDZ
+	let foo = 'foo';  // End of foo's TDZ
+}
+
+Ques: What are polyfills?
+A polyfill is a piece of code (usually JavaScript on the Web) used to provide modern functionality on older browsers that do not natively support it.
+
 ..........................Asynchrous programming...........
 Ques: What is event loop?
-When the execution stack is cleared it says I need to do something else. The event loop tells the execution stack that there is a function waiting on the function queue then puts one on the stack
+When the execution stack is cleared it says I need to do something else. The event loop tells the execution stack that there is a function waiting
+ on the function queue then puts one on the stack
 
 Ques: Javascript Asynchrous handling ?
 https://codinglead.github.io/javascript/is-javascript-synchronous-async-or-single-threaded#:~:text=Javascript%20is%20a%20single%2Dthreaded,on%20at%20a%20single%20time.
@@ -304,13 +715,16 @@ JavaScript is a singled threaded synchronous language with capability to do asyn
 
 ..............Callbacks......................
 
-Ques: What is callbacks ?
- A function that does something asynchronously should provide a callback argument where we put the function to run after it’s complete.
-example:
+Ques: what is CallBacks?
+Ex if you want to load a script and call a func that script has in it. If we call after load script it will throw error as may be script is not loaded
+  instead we use callbacks to call that function
+
+...For Error handling
 function loadScript(src, callback) {
   let script = document.createElement('script');
   script.src = src;
-  script.onload = () => callback(script);
+  script.onload = () => callback(null, script);
+  script.onerror = () => callback(new Error(`Script load error for ${src}`));
   document.head.append(script);
 }
 
@@ -320,21 +734,9 @@ loadScript('https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.2.0/lodash.js', s
 });
 
 
+
 Ques: What is error-first callback?
-
-function loadScript(src, callback) {
-  let script = document.createElement('script');
-  script.src = src;
-
-  script.onload = () => callback(null, script);
-  script.onerror = () => callback(new Error(`Script load error for ${src}`));
-
-  document.head.append(script);
-}
-It calls callback(null, script) for successful load and callback(error) otherwise.
-
-The usage:
-loadScript('/my/script.js', function(error, script) {
+loadScript('/my/script.js', function(error, script) {  //error-first callback” style.
   if (error) {
     // handle error
   } else {
@@ -343,21 +745,10 @@ loadScript('/my/script.js', function(error, script) {
 });
 
 
-Ques: What is the diff b/w let and var?
-var gives global scope let gives local scope with in the curly braces only.
-
-Ques: What is Deepcopy & shallowcopy?
-A deep copy means that all of the values of the new variable are copied and disconnected from the original variable. A shallow copy means that certain (sub-)values are still connected to the original variable.
-
-but if u copy nested object isnig spreadoperator it is shallow copy
-to prevent it
-1.override that key explicitly
-2.convert it into string then to json(if object is too much nested )
-https://www.freecodecamp.org/news/copying-stuff-in-javascript-how-to-differentiate-between-deep-and-shallow-copies-b6d8c1ef09cd/#:~:text=A%20deep%20copy%20means%20that,into%20how%20JavaScript%20stores%20values.
 
 =================================================Pseudo Coding Problems=======================================================
 
-use jsbin editor online
+NOTE: use jsbin editor online
 
 Ques: ["cba","wrz","zyx"] reverse each word in this array .
 
@@ -474,6 +865,57 @@ LinkedIn POST
 2.Tom and Jerry narrating technical stuff
 
 
+............Javascript Question...............
+Ques: what is automatic semilcolon insertion
+Ans: 
+alert('Hello')
+alert('World')
+Here, JavaScript interprets the line break as an “implicit” semicolon. This is called an automatic semicolon insertion.
+Note: We recommend putting semicolons between statements even if they are separated by newlines. 
+
+
+Ques: What is "use strict" in javascript?
+This was the case until 2009 when ECMAScript 5 (ES5) appeared. It added new features to the language and modified some of the existing ones. 
+To keep the old code working, most such modifications are off by default. You need to explicitly enable them with a special directive: "use strict".
+
+Ques: let message = "This";
+// repeated 'let' leads to an error
+let message = "That"; // SyntaxError: 'message' has already been declared
+
+Ques: How do u make variable in js?
+Ans: using camel casing.
+
+Ques: Is Js is case sensitive?
+Variables named apple and AppLE are two different variables.
+
+Ques: JS string interpolation?
+return `Your full name is ${this.firstName} ${this.lastName}`
+
+
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>An empty page</title>
+</head>
+
+<body>
+
+</body>
+<script>
+
+var d = new Date();
+document.body.innerHTML="<h1>"+d +"</h1>";
+
+</script>
+</html>
+
+-----------------------
+
+Ques: Performance for let and var?
+https://stackoverflow.com/questions/40070631/v8-javascript-performance-implications-of-const-let-and-var
 
 
 
@@ -481,8 +923,11 @@ LinkedIn POST
 
 
 
+PENDING!!!!!!!!!
+Ques: What are polyfills?
+Ques: What are prototype?  //done
+Ques: what is hoisting in javascript?  //done   https://www.freecodecamp.org/news/what-is-hoisting-in-javascript/
+Ques: You can also consider using the no-use-before-define ESLint rule which will ensure you don't use a variable before its declaration.
 
 
 
-Pending
-Ques: What are polyfills

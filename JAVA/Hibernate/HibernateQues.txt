@@ -109,8 +109,7 @@ public class Regular_Employee extends Employee{
 
 	@Inheritance(strategy=InheritanceType.JOINED)   //  TPS
 	
-put this annotation in top of child class to create column foreignkey column
-	@PrimaryKeyJoinColumn(name="ID")  
+	@PrimaryKeyJoinColumn(name="ID")   //put this annotation in top of child class to create column foreignkey column
 
 -------------------------------------------------------------------
 Ques : Hibernate Mapping
@@ -124,12 +123,14 @@ one cart has multiple items
 example : put this annotation on answer list type variable i.e many object(Answer) in one object (Question)
 
 @OneToMany(mappedBy="question" ,cascade = CascadeType.ALL)  
-@JoinColumn(name="qid")  
-@OrderColumn(name="type")  
+@JoinColumn(name="qid")     //fk
+@OrderColumn(name="type")    //0,1,2,3,4,5
 private List<Answer> answers; 
 
 Note: no need to put anything in answer class just create it like a normal class. but
 to making this a bidirectional relationship put @ManyToOne on on Question Data reference in Answer (remembr it's optional)
+
+Ques: What is owning side and ow? 
 -------------------------------------------
 
 [2.] Many to Many Annotation
@@ -182,11 +183,15 @@ Note : Try creating many to many example in eclipse
 
 Ques : What is cascade = { CascadeType.ALL } ?
 
-for example, the Person–Address relationship. Without the Person, the Address entity doesn't have any meaning of its own. When we delete the Person entity, our Address entity should also get deleted.
+for example, the Person–Address relationship. Without the Person, the Address entity doesn't have any meaning of its own. When we delete the Person entity,
+ our Address entity should also get deleted.
 
 Cascading is the way to achieve this. When we perform some action on the target entity, the same action will be applied to the associated entity.
 
-Cascade.ALL - propagates all below operations — including Hibernate-specific ones — from a parent to a child entity.
+Cascade.ALL 
+	- propagates all below operations 
+	— including Hibernate-specific ones 
+	—from a parent to a child entity.
 
 CascadeType.PERSIST(Jpa specific) - When we save the person entity, the address entity will also get saved(or persist)
 
@@ -201,19 +206,13 @@ CascadeType.LOCK (hibernate specific)- re-attaches the entity and its associated
 
 CascadeType.REFRESH(hibernate specific) -  the child entity also gets reloaded from the database whenever the parent entity is refreshed.
 
-CascadeType.REPLICATE() -The replicate operation is used when we have more than one data source, and we want the data in sync. With 				CascadeType.REPLICATE, a sync operation also propagates to child entities whenever performed on the parent entity.
+CascadeType.REPLICATE() -The replicate operation is used when we have more than one data source, and we want the data in sync. With
+ 				CascadeType.REPLICATE, a sync operation also propagates to child entities whenever performed on the parent entity.
 
 CascadeType.SAVE_UPDATE -CascadeType.SAVE_UPDATE propagates the same operation to the associated child entity. 
 
 
-------------------------------------
-Ques : Enable Hibernate seconlevel caache?
 
-@Cacheable  
-@Cache(usage=CacheConcurrencyStrategy.READ_ONLY)  
-public class Employee {    
-}    
- 
 
 --------------------------------------------------------------    
 Ques : Annotations 
@@ -233,7 +232,7 @@ public class Regular_Employee extends Employee{
 
 ----------------------
 @Join Table - create column in the table acting as foreign key to the table
-mappedBy=employee - To make this association bidirectional. the value of mappedBy is the name of the association-mapping attribute on the owning 				side.
+mappedBy=employee - To make this association bidirectional. the value of mappedBy is the name of the association-mapping attribute on the owning side.
 		In employee class use (mappedBy = "employee")
 		In project class use (mappedBy = "projects")
 
@@ -256,12 +255,14 @@ private Employee employee;
 -----------------------------------------------------------------------------------------------------------------
 
 
-Ques : Bidirectional association : if Employee class has-a reference of Address and Address has a reference of Employee. Additionally, you have applied one-to-one or one-to-many relationship for the classes in mapping file as well, it is known as bidirectional association.
+Ques : Bidirectional association : if Employee class has-a reference of Address and Address has a reference of Employee. Additionally, you have applied
+ one-to-one or one-to-many relationship for the classes in mapping file as well, it is known as bidirectional association.
 
 Ques :Hibernate Lazy Loading
 Hibernate 3.0, lazy collection is enabled by default.
 
-To use lazy collection, you may optionally use lazy="true" attribute in your collection. It is by default true, so you don't need to do this. If you set it to false, all the child objects will be loaded initially which will decrease performance in case of big data.   
+To use lazy collection, you may optionally use lazy="true" attribute in your collection. It is by default true, so you don't need to do this. If you set it 
+to false, all the child objects will be loaded initially which will decrease performance in case of big data.   
  
  
  ---------------------
@@ -344,12 +345,20 @@ In POJO
  
  -------------------  
  Ques :What is the advantage of second level cache?
- if we have two session who has same requirement then both session fire same query if we are using first level cache only but it will not fire second query if we use second level cache
+ if we have two session who has same requirement then both session fire same query if we are using first level cache only but it will not fire
+ second query if we use second level cache
  
  To enable write this in your pojo after @Entity
  @Cacheable  
+ @Cache(usage=CacheConcurrencyStrategy.READ_ONLY)  
+
+Ques : Enable Hibernate seconlevel caache?
+
+@Cacheable  
 @Cache(usage=CacheConcurrencyStrategy.READ_ONLY)  
-    
+public class Employee {    
+}    
+     
   --------------------------
 Ques :   Hibernate LifeCycle?
 https://www.javatpoint.com/hibernate-lifecycle
@@ -461,8 +470,9 @@ Automatic dirty checking feature of Hibernate, calls update statement automatica
 Read Ques 25 on this page - https://www.javatpoint.com/hibernate-interview-questions
 
 
-Ques: How to make sure Tha object in cache is updated or not?
-Hibernate manages the cache himself, so when you update some entity thru hibernate Session it will invalidate cache entry assocciated with this entity - so cache is always fresh.
+Ques: How to make sure That object in cache is updated or not?
+Hibernate manages the cache itself, so when you update some entity thru hibernate Session it will invalidate cache entry assocciated with this entity 
+- so cache is always fresh.
 
 If you use EhCache cache provider you can provide such configuration:
 <cache name="com.my.company.Entity" 
@@ -489,3 +499,8 @@ It is a uniqueconstraint which tells hibernate that this column value must alway
   
   create projects of hibernate relationship in eclipse
   whta is mappedByattribute
+
+
+Ques: What is the diff b/w openSession & getCurrentSession?
+bound to context i.e gives session which is associated to current session. u dont need to closed it explicitly
+opens the new session . u neeed to closed it explicitly

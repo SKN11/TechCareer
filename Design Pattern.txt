@@ -3,16 +3,24 @@
 Ques1 : Higher-Order Component (or HOC) is essentially a design pattern, also known as a Decorator Pattern.
 
 
-................Topic: Data Structure................React
+................Topic: Data Structure................
 
-Helper Method recursion
-create recursive function in a function which is not recursive 
+Helper Method recursion - create recursive function in a function which is not recursive 
 
 
 
 ................Topic: Design Pattern................Java
+	-Creational DP
+	-Structural DP
+	-Behavioral DP
+	-J2EE DP
 
-Ques : Why we use Design P? //to improve performance and memory utilization and security
+
+Ques : Why we use Design Patterns?
+		to improve 
+			-performance
+			-memory utilization
+			-security
 
 [Singleton Pattern]  design pattern
   done from notes
@@ -44,6 +52,14 @@ Ques : Why we use Design P? //to improve performance and memory utilization and 
 
 
 CREATIONAL DESIGN PATTERNS....
+	-Singleton Pattern
+	-Factory Pattern
+	-AbstarctFactory Pattern
+	-Prototype Pattern
+	-Object Pool Pattern
+	-Builder Design Pattern
+	
+	
 
 [Factory Method Pattern]    //also known as virtual constructor
 Just define an interface or abstract class for creating an object but let the subclasses decide which class to instantiate
@@ -73,13 +89,13 @@ Ex:Regulation can be assigned by RBI but we get this info from respective bank i
 ...................
 [Prototype Design Pattern]
 Prototype Pattern says that cloning of an existing object instead of creating new one
-and also can also be customized as per the requirement
+and also can be customized as per the requirement
 if the cost of creating a new object is expensive and resource intensive
 
 It  hides complexities of creating objects.
 Just call getclone method it will give you the object
 ....................
-[Object Pool Pattern]
+[Object Pool Pattern]    //thread pool pattern
 Object Pool Pattern says that " to reuse the object that are expensive to create".
 Objects in the pool have a lifecycle: creation, validation and destroy.
 
@@ -97,9 +113,17 @@ construct a complex object from simple objects using step-by-step approach
 
 
 STRUCTURAL DESIGN PATTERN.......
-
+	-Adapter Design Pattern
+	-Bridge Design Pattern
+	-Facade DP
+	-Proxy
+	-Composite
+	-Decorator
+	-Flyweight DP    (Hint: String Constant Pool)
+	
+	
 [Adapter Design Pattern]
-It is a dp in which implementation of the interface is done by some adapter by extending another preimplemented adapter class
+It is a DP in which implementation of the interface is done by some adapter by extending another preimplemented adapter class
 
 Ex:
 public class BankCustomer extends BankDetails implements CreditCard { }
@@ -115,7 +139,8 @@ decouple implementation class with client which uses interface
 implementation class--interface-- bridge class
 in your main code create interface objecte data variable and assign it with implementation class object 
 
-Ex: To book ticket client go on booking portal(interface) which is implemented by airlines(impl class) and provided by paytm having instance of interface and reference of implementation class object
+Ex: To book ticket client go on booking portal(interface) which is implemented by airlines(impl class) and provided by paytm having instance of interface
+ and reference of implementation class object
 
 ....................
 [Facade Pattern]
@@ -140,6 +165,7 @@ Example: https://www.javatpoint.com/proxy-pattern
 It is a pattern in which an object represent multiple object
 Employee(Interface) repsent HR,Developer,Tester(Impl Classes) etc
 
+Ex: List represent Array List, Linked List, Vector ,Stack
 
 -------------------
 [Decorator Pattern]
@@ -156,8 +182,8 @@ food + madrasi etc
 
 [FlyWeight Design Pattern]
 To reuse already existing similar kind of objects by storing them and create new object when no matching object is found
-
 For ex : In Java String Constant pool it creates new object if that object is not present
+
 
 ........................
 
@@ -165,12 +191,19 @@ For ex : In Java String Constant pool it creates new object if that object is no
 
 
 BEHAVIORAL DESIGN PATTERN.......
+	- Chain Of Responsibility DP
+	-Iterator DP
+	-Interpretor DP
+	-Mediator-
+	-Memento
+	-Observer
+	
 
 [Chain Of responsibilty Pattern]
 normally each receiver contains reference of another receiver. If one object cannot handle the request then it passes the same to the next receiver and so on.
 
 For example: an ATM uses the Chain of Responsibility design pattern in money giving process.(if one service down it goes to another consecutive service
-e
+
 .........
 [Iterator Pattern]
 
@@ -187,7 +220,9 @@ ex: infix to postfix
 .........
 
 [Mediator Pattern]
-When we begin with development, we have a few classes and these classes interact with each other producing results. Now, consider slowly, the logic becomes more complex when functionality increases. Then what happens? We add more classes and they still interact with each other but it gets really difficult to maintain this code now. So, Mediator pattern takes care of this problem.
+When we begin with development, we have a few classes and these classes interact with each other producing results. Now, consider slowly, the logic becomes
+ more complex when functionality increases. Then what happens? We add more classes and they still interact with each other but it gets really 
+ difficult to maintain this code now. So, Mediator pattern takes care of this problem.
 
 
 ex: Chatroom example......
@@ -205,23 +240,25 @@ Ex: Undo operation in notepad , Ctrl Y,Ctrl Z
 .........
 [ Observer Pattern ]    //also known as Dependents or Publish-Subscribe.
 
-An Observer Pattern says that "just define a one-to-one dependency so that when one object changes state, all its dependents are notified and updated automatically".
+An Observer Pattern says that "just define a one-to-one dependency so that when one object changes state, all its dependents are notified
+ and updated automatically".
 
 ..........
 
 
-JEE PATTERN.................................
+J2EE PATTERN.................................
 
 [ Front Controller Pattern ]
 
-A Front Controller Pattern says that if you want to provide the centralized request handling mechanism so that all the requests will be handled by a single handler". 
+A Front Controller Pattern says that if you want to provide the centralized request handling mechanism so that all the requests will be handled by a
+ single handler". 
 
 This handler can do the 
-authentication,
-authorization,
-logging,
-tracking of request 
-and then pass the requests to corresponding handlers.
+	-authentication,
+	-authorization,
+	-logging,
+	-tracking of request 
+	-passing the requests to corresponding handlers.
 
 ex: dispatcher servlet.
 
@@ -254,3 +291,17 @@ send redirect etc
 
 ---------------
 
+What DP you have USed in your Projectt.
+Observer Pattern - Epro Custom List also get removed
+Adapter Design Pattern
+
+
+
+Ques: What is SOLID Design Priniciple In Java?
+SOLID principles are an object-oriented approach that are applied to software structure design
+
+Single Responsibility Principle (SRP)  - every Java class must perform a single functionality.
+Open-Closed Principle (OCP)   -  the module should be open for extension but closed for modification.
+Liskov Substitution Principle (LSP)  -  derived classes must be completely substitutable for their base classes
+Interface Segregation Principle (ISP)  -  larger interfaces split into smaller ones or Functional Interfaces
+Dependency Inversion Principle (DIP)  - we must use abstraction (abstract classes and interfaces) instead of concrete implementations

@@ -21,6 +21,13 @@ const [enteredTitle, setEnteredTitle] = useState('');
 
 
 ..............useEfffect()..............
+useEffect :-
+is executed at every cycle of component,
+ also use for clean up activities,
+ or after all rendering done
+
+
+
 sideEffect -> it is something for ex an http call which effect our applictaion .
 ex fetching data after u update your component
 
@@ -68,9 +75,9 @@ It is use when ur state depends on prevstate or very complex state or various op
 Note: It has no connection to react redux
 
 const [userIngredients, dispatch] =  useReducer(ingredientReducer,[]);    //(first arg is the handler funct , second arg is an initial state)
-dispatch is a function in which u can trigger your action
-ex
-dispatchHttp({type : 'ERROR',errorMessage:"Something went wrong"});
+
+	dispatch is a function in which u can trigger your action
+	ex: dispatchHttp({type : 'ERROR',errorMessage:"Something went wrong"});
 
 React will re render the component whenever your reducer returns the new state
 
@@ -89,7 +96,7 @@ export const AuthContext = React.createContext({
 
 Steps to create context in application
 1. Create context using React.createContext()
-2. wrapp App to AuthContext.Provider
+2. wrapp App in index.js to AuthContext.Provider
 3. In any component access context using useCOntext();
 4. Perform whatever operation u want to operate it will directly change into ContextObject
 

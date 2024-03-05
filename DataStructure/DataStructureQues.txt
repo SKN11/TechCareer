@@ -1,7 +1,5 @@
 Ques : Infix,Postfix
 
-colt tseele webpack
-https://www.youtube.com/playlist?list=PLblA84xge2_zwxh3XJqy6UVxS60YdusY8
 
 DS Book References
 George Poly data structures(How to solve it)    //PENDING
@@ -11,55 +9,76 @@ Todo --
 revise selection sort algo from video
 
 
-.......................Topic : Big O Notation.....................
-Slides 
-https://cs.slides.com/colt_steele/big-o-notation#/6/0/1      //big O
+.......................Topic : Big O Notation & Arrays n Objects.....................
+Slides
+https://cs.slides.com/colt_steele/big-o-notation#/6/0/1      //big  O
 https://cs.slides.com/colt_steele/built-in-data-structures-25#/12      //Array & Object Complexity
-Performance Tracker Tool- https://rithmschool.github.io/function-timer-demo/
-
 
 Ques: return n*(n+1)/2    //O(1)
 
 Ques: for(int i=0;i<n;i++){}   //O(n)
-
 
 Ques : for(int i=0;i<n;i++)   //O(n^2)
 	{
   	  for(int j=0;j<n;j++){}
 	}
 
+Ques: Logarithms?
+log2(value)=exponent   OR   2^exponent = value
+ex: log2(8) =3 (2^3 =8)
 
-...Logarithms
-log2(value) =exponent  
-
-log2(8) =3   =>  2^exponent = value    (2^3 =8)
-
+Hence, The logarithm of a number roughly measures the number of times you can divide that number by 2
+before you get a value that's less than or equal to one.
 note: log2(2) =1
 
 
 Ques: If you want to run the Loop minimum for 5(constant) times use
-for(var i=1;i<Math.max(5,n);i++){ }
+for(var i=1;i<Math.max(5,n);i++){ }   //O(n)
 
 Ques: If you want to run the Loop maximum for 5(constant) times use
-for(var i=1;i<Math.min(5,n);i++){ }
+for(var i=1;i<Math.min(5,n);i++){ }   //O(1)
 
-Ques: If you have lot of space but very less time?  //Recursion can be good in that case
+Ques: If you have lot of space but very less time?   //Recursion can be good in that case
 
 Ques: How O(logn) is very less ?
 O(logn) roughly gives no of times divide by 2.
+Example: BINARY SEARCH do the same. It divides array by 2 and then by 2 until it gets a mid number equal to the desired number
 
+
+Ques: Use Arrays? 
+Need Order
+Fast Access
+Insertion ANd Removal ? It depends
+Big O of Array Operations
+	push -   O(1)
+	pop -   O(1)
+	shift -   O(N)
+	unshift -   O(N)
+	concat -   O(N)
+	slice -   O(N)
+	splice -   O(N)
+	sort -   O(N * log N)
+	forEach/map/filter/reduce/etc. -   O(N)
+
+Ques: Use Objects?
+Need Not Order, Fast Access, Fast Insertion, Fast Removal
+Big O of Objects
+	Insertion -   O(1)
+	Removal -   O(1)
+	Searching -   O(N)
+	Access -   O(1) 
 
 
 .......................Topic : Problems Solving Approach.....................
-
 slides   
 https://cs.slides.com/colt_steele/problem-solving-patterns#/1/0/2
 
+Book Refrerence :- George Poliya How to solve It
 ...Some Commonly Use approaches
 
 FrequencyCounter - create object which has key value pair and then compare & remove
 Multiple PointerPattern - use 2 or more pointer to traverse through array or linked list to solve problem 
-			   for minimal space complexity
+							for minimal space complexity
 Siding Window - just slide and remove start and add end (ex- count sum of consective n digit no.)
 Divide&Conquer - split code in small pieces (ex- binary search half the search array on each iteration)
 DynamicProgramming - you can use an array which stores repetitive computation
@@ -75,6 +94,7 @@ find longest substring question -revise
 .......................Topic : Recursion.....................
 
 slides - https://cs.slides.com/colt_steele/searching-algorithms-22
+
 
 boy dragon story of recursion
 
@@ -102,15 +122,17 @@ https://www.toptal.com/developers/sorting-algorithms
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
 https://visualgo.net/en/sorting?slide=1
 
-works good if data is almost sorted
+works good if data is almost sorted (obvisously using the noSwap variable optimisation technique)
 O(n2)
+
+[2,3,5,1,3,6].sort(a,b => a-b )  //sort need a comparator function to do sort based on desired comparator function
 
 ...SELECTION SORT
 slide - see bubble sort( same) 
 O(n2)
-Use when u dont want much swap otherwise use bubblesort which is more efficient than selection
+Use selection sort when you dont want much swaps otherwise use bubblesort which is more efficient than selection
 
-...INSERTIONSORT
+...INSERTIONSORT    - done
 
 O(n2)
 
@@ -119,9 +141,7 @@ slide
 https://cs.slides.com/colt_steele/intermediate-sorting-algorithms  //notes slide
 
 
-
-
-...QuickSort     //It is Comparison Sort
+...QUICKSORT     //It is Comparison Sort
 worst case when array is already sorted [1,2,3,4,5,6,7,8];
 find a pivot which reduces the execution time(use median,or any random pivot)
 
@@ -145,7 +165,7 @@ Ques: Quicksort vs MergeSort
 
 https://www.geeksforgeeks.org/quick-sort-vs-merge-sort/#:~:text=Merge%20sort%20is%20more%20efficient,larger%20array%20size%20or%20datasets.&text=Quick%20sort%20is%20more%20efficient,smaller%20array%20size%20or%20datasets.
 
-...RadixSort  
+...RADIX SORT  
 
 It is not a comparison sort
 It is only for number
@@ -156,18 +176,18 @@ It is only for number
 .......................Topic : Data Structures Intro......................
 https://cs.slides.com/colt_steele/es2015-class-syntax
 
-...Singly Linked list
+...Singly Linked list  - done
 https://cs.slides.com/colt_steele/singly-linked-lists
 
 Important :	Stairs in building is a real life ex (RLE) of Linked List
 		Elevator in building is a RLE of Array(or index based DS)
 
-...DoublyLinkedList
+...DoublyLinkedList    
 https://cs.slides.com/colt_steele/doubly-linked-lists
 
 
 
-...Stack & Queue (LIFO & FIFO) 
+...Stack & Queue (LIFO & FIFO)   - done 
 (Push Pop)  & (enqueue dequeue)
 
 https://cs.slides.com/colt_steele/stacks
@@ -187,15 +207,16 @@ Queue real life example...
 Background task in computer
 waiting fo game to join
 printer print using queue
+
 frisking in airport and Metro
 
 Array Stack impl - push(O1) & pop (O1)  || unshift(On) & shift (On)
 Array Queue impl - push & shift  || unshift & pop (Both r not ideal as shift and unshift are not O1)
 
 
-Pending stack and queue impl using array
+Pending stack and queue impl using array -done
 
-...Trees
+...Trees    -ongoing
 https://cs.slides.com/colt_steele/trees
 
 Real Life Example...
@@ -209,13 +230,13 @@ Real Life Example...
 Ques: When Tree is not good to use? //when  u have only one side tree 	
 
 Ques: When to use Inorder,preorder,postorder?
-Inorder :- gives in sorted order 
+Inorder :-  gives tree data in sorted order 
 Preorder :- when u want to flatten it or remake it to tree [root left right root left right...]
 
 
 
-........Heap
-https://cs.slides.com/colt_steele/heaps
+........Heap  
+https://cs.slides.com/colt_steele/heaps  -done  but keep revising
 
 MaxHeap MinHeap
 
@@ -225,13 +246,24 @@ parent floored ((n-1)/2)
 
 To make heap correct use Bubbling up
 
+Ques: arr = [5,7,6,10,9,12,11,13] for min binary heap if you do two min enqueue operation whta will be the resulting result
 
-...HashTables
+
+
+...HashTables  - done
 https://cs.slides.com/colt_steele/hash-tables
 
+Array vs Hashtable
+[ "#ff69b4","#ff4500","#00ffff" ]  - Not Readable
+{pink: "#ff69b4", red: "#ff4500",blue: "#00ffff"  }
 
+Ex:  colors["cyan"] is way better than colors[2]
 
-...Graph
+Hash Function ?  //return same o/p for every i/p ( note. Math.random() is not hashfucntion)
+
+The prime number ? Prime number in the hash is helpful in spreading out the keys more uniformly.
+
+...Graph -done ( re revise dijkstar impl)
 https://cs.slides.com/colt_steele/graphs
 
 
@@ -254,31 +286,21 @@ https://cs.slides.com/colt_steele/dynamic-programming
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ...................................PROBLEMS
 https://practice.geeksforgeeks.org/problems/determine-if-two-trees-are-identical/1#
 https://practice.geeksforgeeks.org/problems/count-squares3649/1
+
+
+..................................ALGORITHMS
+1. Sieve of Eratosthenes algorithm
+
+The sieve of Eratosthenes algorithm is an ancient algorithm that is used to find all the prime numbers less than given number T.
+It can be done using O(n*log(log(n))) operations. Using this algorithm we can eliminate all the numbers which are not prime and
+ those that are less than given T
+
+LeetCode: https://leetcode.com/explore/interview/card/top-interview-questions-easy/102/math/744/
+
+
 
 
 

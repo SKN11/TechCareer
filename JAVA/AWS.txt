@@ -1,3 +1,65 @@
+.....................TOPIC: AWS..........................
+
+On demand Cloud computing
+AWS maintains the server
+Less management by Individual more by AWS
+Add server automatically if traffic increases
+
+Components.....
+Simple Email Service // allows mail via smtp
+Route53  //DNS Service
+S3 -simple storage service   //cloud storage device...store data... scales as per requirement
+Load Balancer  
+EC2     //Servers or Computing resources for hosting   (RCMIGT)
+EBS -Elastic Block Store     //Use to store persistent data ... It is really fast
+RDS  	// Relational Databases
+VPC		//EC2+RDS  Netwrok where these server and DB enclosed in 
+CloudWatch  //monitoring systems
+
+Auto Scaling - Property which incr no of servers according to traffic is Auto scaling
+
+
+Ques: What is AMI or Amazon Machine Image?
+User for launch the system. It is basially a virtual image. it is just conguration file.
+
+Ques: SQS or Simple Queue Service? 
+same like Active MQ.
+
+Ques: What is AWS Lambda?
+	Serverless Computing service
+	Event Driven
+	Serverless Architecture
+	It is a computing service that runs code in response to events and automatically manages the computing resources required by that code
+
+
+Ques: Horizontal Scaling vs Vertical Scaling?
+Adding computing resources to the existing pool while in Vertical it adds more power in the existing machines(cpu ,ram etc)
+
+QUes: 18 Geographical Regions and 50 Availablity ZOnes. Buy why these Global Regions?
+	Savguard from natural calamity & Disaster Recovery
+	power outage
+	mutual help between regions
+	Provide more Latency
+
+Ques: Servies offered by Cloud COmputing?
+	Paas - access cloud based environment for build and delivery
+	Iaas - servers and resources
+	Saas - cloud based service
+
+Ques: How to identify Http Error in AWS?
+Create log groupes
+we are using splunk
+
+
+AWS s3 commands
+
+aws s3 mb
+aws s3 ls
+aws s3 rm
+aws s3 cp
+aws s3 mv
+
+
 
 all datacentre(3 to 6) are separated geographically (to save from disaster) with high bandwidth and ultra low latency
 For Low Latency choose availibilty zone which is near to you
@@ -97,3 +159,35 @@ ds- supervision - create at a time when we create ec2 instance
 what to study?
 loadbalancer
 scalability
+
+
+
+............................Topic Oauth 2.0.......................
+Refernce - https://www.youtube.com/watch?v=CPbvxxslDTU
+
+Grant access and get Token which is added in subsequent request (in header)
+
+Ques: To specify to authenticate via google put some oath property in properties file
+
+	oath acccess tokenuri = "some googleauthenticateurl"
+	tokenName =oath_token
+	scope = profile , username     //tells what acces need application can provide
+	clientid=	   public unique identifier
+	clientsecret = private identifer between the google and the application which wants access
+
+	register google cloud, login it, go in api services -> go in oauth tab->give ur app name->provide scope(information to show)
+	then save
+	create oauth client id
+	give url of your application from where access needed
+
+
+
+	it will give u now clientid &clientsecret id put it in you properties file
+
+	create principal for user in your controller 
+	and u r done :)
+
+
+
+
+

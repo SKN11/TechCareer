@@ -1,45 +1,65 @@
-Redux...
 
-It need 4 thing
-reducer //normal js function which takes 2 arg state and action and returns state also contains initial state of the app
-store   //createStore
-subscription
-dispatchingAction
+Ques: Redux...
+	It needs 4 things
+		1. reducer //normal js function which takes 2 arg state and action and returns state also contains initial state of the app
+		2. store   //createStore
+		3. subscription  //connect
+		4. dispatchingAction
 
 yarn add redux //3rd part redux
 yarn add react-redux //redux with react support
 
 
-connect store with our react...
-need special package react-redux
-import Provider from this package
-Provider 
-//help to inject store into the react applictaion
-//need props store
-<Provider store={store}><App/></Provider>
+Ques: connect store with our react app?
+	need special package react-redux
+	import Provider from this package
+	Provider 
+	//help to inject store into the react applictaion
+	//need props store
+	ReactDOM.render(<Provider store={store}> <App/></Provider>, document.getElementById('root'));
 
-Subscribe in react is implemented by 'connect' from 'react-redux'
-connect(mapStateProps)(ComponentName) 
-connect is a fucntion which return a hoc
-connect(arg1,arg2) //arg1 : mapStateToProps arg2:dispatch object
+Ques: Subscribe in react
+	Subscribe in react is implemented by 'connect' from 'react-redux'
+	
+	export default connect(mapStateToProps,mapDispatchToProps)(Counter);
+	connect is a fucntion which return a HOC
+	connect(arg1,arg2) //arg1 : mapStateToProps arg2:dispatch object
 
-mapStateProps // is a store state provided by the react we pass it to the connect whic gives the updated state if any action is executed
-const mapStateProps = (state) =>{
-return ctr : state.counter
-}
-
-
-Dispatch action in react app...
-const mapDispatchToProps = (dispatch) => {
-    return {
-        onIncrementCounter: () => dispatch({type:'INCREMENT'}),
-    }
-}
-
-pass this dispatch const to connect method second arg
+Ques: mapStateProps // is a store state provided by the react we pass it to the connect whic gives the updated state if any action is executed
+	const mapStateToProps = (state) => {     //depicting what we want from the stored state
+							return {
+								ctr:state.ctr.counter,
+								resultsList:state.res.results
+							}
+	}
 
 
-combineReducer //to combine diff reducer
+Ques: mapDispatchToProps
+    Dispatch action in react app...
+	
+	const mapDispatchToProps = (dispatch) => {
+		return {
+			onIncrementCounter: () => dispatch(actionCreator.increment()),
+			onDecrementCounter: ()=> dispatch(actionCreator.decrement()),
+			onAddCounter: ()=> dispatch(actionCreator.add(5)),
+			onSubtracttCounter: ()=> dispatch(actionCreator.subtract(5)),
+			onSubmitResult:(currentCounter)=> dispatch(actionCreator.submitResult(currentCounter)),
+			onDeleteResult:(id)=> dispatch(actionCreator.deleteResult(id)),
+		}
+	}
+
+pass this mapDispatchToProps dispatch const to connect method second arg
+
+
+Ques: combineReducer //to combine diff reducer
+		const rootReducer = combineReducers({
+			ctr : counterReducer,
+			res : resultReducer
+		});
+
+Ques: Create STore?
+const store = createStore(rootReducer , composeWithDevProviderTools(applyMiddleware(logger,thunk)));
+
 
 Middleware .....
 It gives inside of our store but only we dispatch any action
@@ -70,7 +90,9 @@ react combineReducer -> allows us to combine reducer
 redux thunk  
 It is use to handle asynchronous call in react redux application
 
-Redux Thunk is a middleware that lets you call action creators that return a function instead of an action object. That function receives the store's dispatch method, which is then used to dispatch regular synchronous actions inside the function's body once the asynchronous operations have been completed.
+Redux Thunk is a middleware that lets you call action creators that return a function instead of an action object.
+ That function receives the store's dispatch method, which is then used to dispatch regular synchronous actions inside 
+ the function's body once the asynchronous operations have been completed.
 
 action creators....
 const submitResult = (res) => { //it is Action Creators
