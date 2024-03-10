@@ -56,13 +56,13 @@ yangshun - https://github.com/yangshun/tech-interview-handbook
 
 ................Topic : Core Java.........
 
-Interface & Exception Handling-done
-Collection & Map- done
-MultiThreading1 - done
+Interface & Exception Handling-
+Collection & Map- 
+MultiThreading1 - 
 MultiThreading2 -
-Java8 Feature & Java Design Pattern - done
-Generics & Constructor- done & ?
-OOPS & RegularExpression- done & ?
+Java8 Feature & Java Design Pattern - 
+Generics & Constructor-  & ?
+OOPS & RegularExpression-  & ?
 InnerClasses -
 File I/O- 
 Serialization- done

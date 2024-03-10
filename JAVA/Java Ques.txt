@@ -29,6 +29,17 @@ Overloading
 
 Overriding
 	-it is done on runtime by jvm.
+	
+Ques: Piilars of oops?
+Data Hiding
+Abstraction
+Encapsulation
+Inheritence
+Polymorphism
+
+
+Ques: Advantage of HAS A relationships? The main advantage of HAS-A relationship is flexibility & reusability	
+Ques: Advantage of IS A (inheritence) relationship? Reusibility
 
 
 ............String................
@@ -80,7 +91,7 @@ QUes: Why Strings are immutable?
 In the String constant pool, a String object is likely to have one or many references. If several references point to the same String without even knowing it,
  it would be bad if one of the references modified that String value. That's why String objects are immutable
 
-...............Topic: Threading.................
+............... Topic: Threading & Multithreading.................
 pending-> 
 create ProducerConsumer Prom=blem and wait notify code in eclipse
 create and learn BlockingQueue 
@@ -261,6 +272,25 @@ Ques: withoud using synchronization or wait notify can u achieve concurrency?
 Yes we can leverage it by using BlockingQueue Collection
 
 
+Ques: Callable vs Runnable
+
+a) Runnable tasks can be run using the      ||       Callables can be run only using the latter
+	Thread class or ExecutorService 
+ 
+b)This is suitable for situations where     ||       The Callable interface is a generic interface 
+ we are not looking for a result of the              containing a single call() method – which returns a generic value V
+ thread execution, for example, incoming
+ events logging
+ 
+c) No excepton is thrown                    ||      throws InvalidParamaterException   // Activatee only when u do future.get()
+
+Refer:
+https://www.javatpoint.com/java-executorservice
+https://www.baeldung.com/java-executor-service-tutorial
+https://www.baeldung.com/java-runnable-callable
+
+Ques: How executor service Shuts Down? Important please read the first reference
+
 
 
 ...........................Topic: Collection.............
@@ -399,6 +429,12 @@ Ques : whT this snippet will return? //important
 Ans: 2   i.e finally executes but after finally nothing executes.
 
 Ques:SQL Excetion is checked or unchecked? //checked
+
+
+
+System.exit(0) - Shutdowns JVM with normal termination
+System.exit(non-zero) - Shutdowns JVM with abnormal termination( with stack trace if exception)
+
 
 
 ...........................Topic: Array.............
