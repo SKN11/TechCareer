@@ -1,6 +1,0 @@
-alt+leeft click //Arbitrary Cursor select
-
-ctrl+alt //for multiline cursor
-ref https://stackoverflow.com/questions/30037808/multiline-editing-in-visual-studio-code
-
-select -> ctrl+k -> ctrl+F  //VSCode Indentation

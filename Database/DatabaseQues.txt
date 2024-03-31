@@ -1,5 +1,9 @@
 Database
 
+
+To login into mysql cmd
+mysql -u root -p
+
 SQL is not case sensitive.
 
 systemctl status mysql.service //check mysql is running ornot

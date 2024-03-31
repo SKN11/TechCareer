@@ -29,7 +29,7 @@ core,
             Web,
              Servlet
 -------------------------
-Ques : What is IOC ? Reduces Tight coupling
+Ques : What is IOC ? Maintain creation of object and Reduces Tight coupling
 
 Ques : But how ? IOC Container(Spring Container) responsible to inject dependency only we need to provide metadata via XML or Annotation
 

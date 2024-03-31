@@ -1,3 +1,0 @@
-ctrl+z  // undo command
-
-ctrl+shift +z //redo command

@@ -100,7 +100,7 @@ if lastindex-n is 0 , head to head.next & assign arr[1].next to null;
 assing lastindex - n next to lastindex-n next.next
  
 ==============================================
-Merge two sorted List
+Merge two sorted Linked List
 /**
  * Definition for singly-linked list.
  * function ListNode(val, next) {
@@ -148,3 +148,5 @@ var mergeTwoLists = function(l1, l2) {
     return result.next;
     
 };
+
+===============================================================

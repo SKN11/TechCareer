@@ -1,8 +1,27 @@
+TODO:
+SOLID Priniciple.
+AWS Course
+Discuss With Taufiq bhai for AWS microservcies
+
+
+
+
+
+
+
 RoadMap
 
 Data Structures	
-	- Basics Of DS
+	- Basics Of DS from ColtSteele Slides
 	- Leetcode questions
+	- 1 Ques Solve 1 Old Ques revise
+
+System Design
+	-Gaurav Sen
+	-Sudo Code
+
+Cloud
+	-AWS
 
 Javascript
 	-javascript-info
@@ -14,14 +33,21 @@ React
 	-hosted that project
 	
 Java
-	-basics Java
+	-Basics Java
 	-MultiThreading
+	-spring
 	-Springboot
 	-Hibernate
-	-spring
+	-Microservices
 	-FTL templates
 	-Tomcat and Deployment
 	-CI/CD Concepts
+	-Any project written by yourself
+	-hosted that project
+	
+Advanced Java
+	-Create CUSTOM Generation Identity in Hibernate
+	
 
 Database
 	-DatabseQUes.txt
@@ -37,12 +63,6 @@ Communication
 
 
 	
-
-
-
-
-How to stay Updated DS?
-1. Revise colt steele slides
 
 
 

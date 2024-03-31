@@ -1,0 +1,33 @@
+*****************VSCODE******************
+1.VSCode Indentation
+select -> ctrl+k -> ctrl+F  
+
+ctrl+alt //for multiline cursor
+ref https://stackoverflow.com/questions/30037808/multiline-editing-in-visual-studio-code
+
+
+
+alt+leeft click //Arbitrary Cursor select
+
+
+*************************INTELLIJ*******************************
+
+1. Indentation
+Ctrl A
+Ctrl+alt+L
+
+
+
+************************* UBUNTU *******************************
+
+ctrl+z  // undo command
+
+ctrl+shift +z //redo command
+
+************************* ECLIPSE *******************************
+
+
+ctrl+shft+W : close all open file in eclipse
+
+ctrl+I : to indent
+
